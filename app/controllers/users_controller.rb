@@ -28,12 +28,8 @@ class UsersController < ApplicationController
     Category.all.each do |category|
       @completed_categories["#{category.name}"] = category.calculate_category_instances(@user)
     end
-    # puts @total_categories
 
     @completed_categories = Hash[@completed_categories.sort_by{|k,v| v}.reverse]
-
-    # p '*' * 30
-    # p @completed_categories
   end
 
 
