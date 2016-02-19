@@ -170,7 +170,6 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   byebug
-  coffee-rails (~> 4.1.0)
   devise
   faker
   jbuilder (~> 2.0)
