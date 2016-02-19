@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.nav-fix {
+  margin-top: 4em;
+}
+
+#sign-up-form, #log-in-form {
+  display: none;
+}
+
+#landing {
+  margin-top: 6em;
+  text-align: center;
+}
