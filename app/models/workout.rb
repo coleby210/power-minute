@@ -13,6 +13,10 @@ class Workout < ActiveRecord::Base
     total_workouts.where(workout_template_id: self.workout_template_id).length
   end
 
+  def calculate_category_instances(total_workouts)
+    total_workouts.where(workout_template_id: self.workout_template_id).length
+  end
+
   # def calculate_category_instances(total_workouts)
   #   yoga = 0
   #   aerobic = 0

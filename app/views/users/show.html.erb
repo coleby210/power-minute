@@ -10,4 +10,12 @@
 
   <% end %>
 
+  <% @completed_categories.each do |key, value| %>
+
+    <li>
+      <%= "#{key}: #{value}" %>
+    </li>
+
+  <% end %>
+
 </ul>

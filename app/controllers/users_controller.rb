@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
-    @total_workouts = Workout.where(user_id: @user.id)
+    @user = current_user
+    @total_workouts = @user.workouts
     @distinct_workouts = @total_workouts.select(:workout_template_id).distinct
     sort_most_common_workouts
+    sort_most_common_categories
     # @workout_names = find_workout_names(@workouts)
 
     render :show
@@ -19,8 +20,20 @@ class UsersController < ApplicationController
 
     @completed_workouts = Hash[@completed_workouts.sort_by{|k,v| v}.reverse]
 
-    puts @completed_workouts
+  end
 
+  def sort_most_common_categories
+    @completed_categories = {}
+
+    Category.all.each do |category|
+      @completed_categories["#{category.name}"] = category.calculate_category_instances(@user)
+    end
+    # puts @total_categories
+
+    @completed_categories = Hash[@completed_categories.sort_by{|k,v| v}.reverse]
+
+    # p '*' * 30
+    # p @completed_categories
   end
 
 
