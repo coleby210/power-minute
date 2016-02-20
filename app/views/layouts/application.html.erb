@@ -25,7 +25,7 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="/users/<%=current_user.id%>">Profile</a></li>
-              <li><a href="#">Settings</a></li>
+              <li><%= link_to "Settings", edit_user_registration_path %></li>
               <li><%= link_to("Log out", destroy_user_session_path, method: :delete) %></li>
             </ul>
           </div><!--/.nav-collapse -->
