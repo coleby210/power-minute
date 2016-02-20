@@ -27,7 +27,11 @@
 		WorkoutTemplate.create(title: Faker::Company.name, description: Faker::Company.catch_phrase, creator_id: rand(2..6), category_id: rand(1..3))
 	end
 
-	300.times do
-		Workout.create(user_id: rand(2..6), workout_template_id: rand(1..20), reps: rand(0..25))
+	200.times do
+		Workout.create(user_id: rand(2..6), workout_template_id: rand(1..20), reps: rand(0..25), created_at: DateTime.new(2016,1,rand(1..31),4,5,6,'+7'))
+	end
+
+	100.times do
+		Workout.create(user_id: rand(2..6), workout_template_id: rand(1..20), reps: rand(0..25), created_at: DateTime.new(2016,2,rand(1..18),4,5,6,'+7'))
 	end
 

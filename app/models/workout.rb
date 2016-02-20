@@ -13,19 +13,4 @@ class Workout < ActiveRecord::Base
     total_workouts.where(workout_template_id: self.workout_template_id).count
   end
 
-  def calculate_category_instances(total_workouts)
-    total_workouts.where(workout_template_id: self.workout_template_id).count
-  end
-
-  # def calculate_category_instances(total_workouts)
-  #   yoga = 0
-  #   aerobic = 0
-  #   power = 0
-  #   total_workouts.each do |workout|
-  #     template = WorkoutTemplate.find(self.workout_template_id)
-  #     if template.category.name == 'yoga'
-  #       yoga +=1
-  #     elsif template.category.name == 'aerobic'
-  # end
-
 end

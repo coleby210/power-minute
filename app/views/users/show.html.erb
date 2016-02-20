@@ -3,11 +3,11 @@
 <h1><%= "#{@user.first_name}'s Page" %></h1>
 
 
+<h3> All Time </h3>
 <%= "Total workouts: #{@total_workouts.length}" %>
-
 <ul>
 
-  <% @user.sort_most_common_workouts.each do |key, value| %>
+  <% @user.sort_most_common_workouts(1000000).each do |key, value| %>
 
     <li>
       <%= "#{key}: #{value}" %>
@@ -15,7 +15,52 @@
 
   <% end %>
 <h2> categories </h2>
-  <% @user.sort_most_common_categories.each do |key, value| %>
+  <% @user.sort_most_common_categories(1000000).each do |key, value| %>
+
+    <li>
+      <%= "#{key}: #{value}" %>
+    </li>
+
+  <% end %>
+
+</ul>
+
+
+<h3> Last 31 Days </h3>
+Total Workouts:
+<ul>
+
+  <% @user.sort_most_common_workouts(31).each do |key, value| %>
+
+    <li>
+      <%= "#{key}: #{value}" %>
+    </li>
+
+  <% end %>
+<h2> categories </h2>
+  <% @user.sort_most_common_categories(31).each do |key, value| %>
+
+    <li>
+      <%= "#{key}: #{value}" %>
+    </li>
+
+  <% end %>
+
+</ul>
+
+
+<h3> Last 7 Days </h3>
+<ul>
+
+  <% @user.sort_most_common_workouts(7).each do |key, value| %>
+
+    <li>
+      <%= "#{key}: #{value}" %>
+    </li>
+
+  <% end %>
+<h2> categories </h2>
+  <% @user.sort_most_common_categories(7).each do |key, value| %>
 
     <li>
       <%= "#{key}: #{value}" %>
