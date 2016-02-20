@@ -1,4 +1,29 @@
 
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<script>
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var data = [
+    <% @user.sort_most_common_workouts(1000000).each_with_index do |(key, value),index| %>
+       <% random_color = "#%06x" % (rand * 0xffffff) %>
+      <% if index != @user.sort_most_common_workouts(1000000).length-1 %>
+        {
+          value: <%= value %>,
+          color: "<%= "#{random_color}" %>",
+          label: "<%= "#{key}" %>"
+        },
+      <% else %>
+        {
+          value: <%= value %>,
+          color: "<%= "#{random_color}" %>",
+          label: "<%= "#{key}" %>"
+        }
+      <% end %>
+    <% end %>
+  ]
+  var myNewChart = new Chart(ctx).Doughnut(data)
+
+</script>
 
 <h1><%= "#{@user.first_name}'s Page" %></h1>
 
