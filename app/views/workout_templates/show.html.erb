@@ -1,9 +1,16 @@
 <h1><%= @workout_template.title %></h1>
-<h2> TIMER TO BE ADDED HERE </h2>
-<p>Button: Start workout</p>
-<p>Button: Favorite workout</p>
-<button class="btn btn-success">YOOOO</button>
+<div id="log-workout">
+  <h2> TIMER TO BE ADDED HERE </h2>
+  <p>Button: Start workout</p>
+  <p>Button: Favorite workout</p>
+  <button class="btn btn-success">Log workout</button>
+</div>
+<div id="log-workout-form">
+  <h1>FORM HERE</h1>
+  <button class="btn btn-success">Submit</button>
+</div>
 
 <p><%= @workout_template.description %></p>
 
-
+<br>
+<%= link_to "Back", category_path(@category) %>
