@@ -1,12 +1,51 @@
+<canvas id="myLineChart" width="400" height="400"></canvas>
 
-<canvas id="myChart" width="400" height="400"></canvas>
 
 <script>
-  var ctx = document.getElementById("myChart").getContext("2d");
-  var data = [
-    <% @user.sort_most_common_workouts(1000000).each_with_index do |(key, value),index| %>
+  var ctx1 = document.getElementById("myLineChart").getContext("2d");
+  // our_labels = []
+
+  // @user.number_of_workouts_per_day.keys.each do |date|
+
+  // end
+
+  var data1 = {
+    labels: [
+              <% @user.number_of_workouts_per_day.each_with_index do |(key, value), index| %>
+                <% if index != @user.number_of_workouts_per_day.keys.length - 1 %>
+                  "<%= key.to_s %>",
+                <% else %>
+                  "<%= key.to_s %>"
+                <% end %>
+              <% end %>],
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: <%= "#{@user.number_of_workouts_per_day.values}" %>
+        }
+    ]
+};
+
+  var myLineChart = new Chart(ctx1).Bar(data1);
+
+</script>
+
+<h1><%= "#{@user.first_name}'s Page" %></h1>
+
+<canvas id="myChart" width="400" height="400"></canvas>
+<h1>Your top workouts by categories</h1>
+<script>
+  var ctx2 = document.getElementById("myChart").getContext("2d");
+  var data2 = [
+    <% @user.sort_most_common_categories(1000).each_with_index do |(key, value),index| %>
        <% random_color = "#%06x" % (rand * 0xffffff) %>
-      <% if index != @user.sort_most_common_workouts(1000000).length-1 %>
+      <% if index != @user.sort_most_common_categories(1000).length-1 %>
         {
           value: <%= value %>,
           color: "<%= "#{random_color}" %>",
@@ -21,11 +60,40 @@
       <% end %>
     <% end %>
   ]
-  var myNewChart = new Chart(ctx).Doughnut(data)
+
+  // *********************************************
+  // Attempt to get text to appear with chart
+
+  // Chart.types.Doughnut.extend({
+  //   name: "DoughtnutTextInside",
+  //   showTooltip: function() {
+  //     this.chart.ctx.save();
+  //     Chart.types.Doughnut.prototype.showTooltip.apply(this, arguments);
+  //     this.chart.ctx.restore();
+  //   },
+  //   draw: function() {
+  //     Chart.types.Doughnut.prototype.draw.apply(this, arguments);
+
+  //     var width = this.chart.width,
+  //         height = this.chart.height;
+
+  //     var fontSize = (height / 114).toFixed(2);
+  //     this.chart.ctx.font = fontSize + "em Verdana";
+  //     this.chart.ctx.textBaseline = "middle";
+
+  //     var text = "82%",
+  //         textX = Math.round((width = this.chart.ctx.measureText(text).width) / 2),
+  //         textY = height / 2;
+
+  //     this.chart.ctx.fillText(text, textX, textY);
+  //   }
+  // });
+
+  var myDoughnutChart = new Chart(ctx2).Doughnut(data2);
 
 </script>
 
-<h1><%= "#{@user.first_name}'s Page" %></h1>
+
 
 
 <h3> All Time </h3>
