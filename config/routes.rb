@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
   root "categories#index"
 
-  resources :categories do
-    resources :workout_templates
-  end
+  resources :categories
+  resources :workout_templates
+
   get "users/:id", to: "users#show"
 
   # The priority is based upon order of creation: first created -> highest priority.

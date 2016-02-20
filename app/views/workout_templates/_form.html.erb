@@ -1,0 +1,34 @@
+<h2> Create a new workout </h2>
+
+<%= form_for @workout_template do |f| %>
+  <div class="field">
+    <%= f.text_field :title, placeholder: "Title" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.text_field :description, placeholder: "Workout description" %><br>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.text_field :image, placeholder: "Image link" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <input type="radio" name="category" value="Power"> Power <br>
+    <input type="radio" name="category" value="Cardio"> Cardio <br>
+    <input type="radio" name="category" value="Yoga"> Yoga <br>
+  </div>
+  <br>
+
+
+  <div class="actions">
+    <%= f.submit "Create new workout" %>
+  </div>
+
+
+
+
+<% end %>
