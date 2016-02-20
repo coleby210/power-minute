@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
-
   has_many :workout_templates, foreign_key: :creator_id
   has_many :workouts
 
@@ -37,5 +35,22 @@ class User < ActiveRecord::Base
     Hash[@completed_categories.sort_by{|k,v| v}.reverse]
   end
 
+  def number_of_workouts_per_day
+    daily_workouts = {}
+    first_workout = (self.workouts.first.created_at).to_date
+    @total_workouts = self.workouts
+
+    # first_workout = first_workout.to_date
+
+    while (first_workout < Date.today)
+      daily_workouts[first_workout] =  @total_workouts.where( "created_at < ?" , first_workout + 1).where( "created_at > ?" , first_workout).length
+
+      first_workout += 1;
+    end
+
+    p daily_workouts
+    # p daily_workouts.keys
+
+  end
 
 end

@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :workout_templates
+  resources :workouts
 
-  get "users/:id", to: "users#show"
+  get "users/:id", to: "users#show", as: "profile"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
