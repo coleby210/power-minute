@@ -6,10 +6,8 @@ Rails.application.routes.draw do
 
   root "categories#index"
 
-  resources :categories do
-    resources :workout_templates
-  end
-
+  resources :categories
+  resources :workout_templates
   resources :workouts
 
   get "users/:id", to: "users#show", as: "profile"

@@ -1,8 +1,8 @@
 <h1><%= @category.name %></h1>
 
-<% @category.workout_templates.each do |workout_template| %>
+<% @workout_templates.each do |workout_template| %>
   <li>
-      <%= link_to workout_template.title, category_workout_template_path(@category, workout_template) %>
+      <%= link_to workout_template.title, workout_template_path( workout_template) %>
   </li>
 <% end %>
 <br>
