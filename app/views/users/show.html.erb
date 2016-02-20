@@ -1,16 +1,19 @@
+
+<h1><%= "#{@user.first_name}'s Page" %></h1>
+
 <%= "Total workouts: #{@total_workouts.length}" %>
 
 <ul>
 
-  <% @completed_workouts.each do |key, value| %>
+  <% @user.sort_most_common_workouts.each do |key, value| %>
 
     <li>
       <%= "#{key}: #{value}" %>
     </li>
 
   <% end %>
-
-  <% @completed_categories.each do |key, value| %>
+<h2> categories </h2>
+  <% @user.sort_most_common_categories.each do |key, value| %>
 
     <li>
       <%= "#{key}: #{value}" %>
