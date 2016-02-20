@@ -10,5 +10,3 @@ class WorkoutsController < ApplicationController
     params.require(:workouts).permit(:workout_template_id)
   end
 end
-
-<%
