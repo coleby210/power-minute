@@ -10,11 +10,11 @@ class Workout < ActiveRecord::Base
   end
 
   def calculate_workout_instances(total_workouts)
-    total_workouts.where(workout_template_id: self.workout_template_id).length
+    total_workouts.where(workout_template_id: self.workout_template_id).count
   end
 
   def calculate_category_instances(total_workouts)
-    total_workouts.where(workout_template_id: self.workout_template_id).length
+    total_workouts.where(workout_template_id: self.workout_template_id).count
   end
 
   # def calculate_category_instances(total_workouts)
