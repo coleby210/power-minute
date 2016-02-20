@@ -1,0 +1,21 @@
+<%= "Total workouts: #{@total_workouts.length}" %>
+
+<ul>
+
+  <% @completed_workouts.each do |key, value| %>
+
+    <li>
+      <%= "#{key}: #{value}" %>
+    </li>
+
+  <% end %>
+
+  <% @completed_categories.each do |key, value| %>
+
+    <li>
+      <%= "#{key}: #{value}" %>
+    </li>
+
+  <% end %>
+
+</ul>
