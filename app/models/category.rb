@@ -3,6 +3,6 @@ class Category < ActiveRecord::Base
   has_many :workouts, through: :workout_templates
 
   def calculate_category_instances(user)
-      self.workouts.where(user_id: user.id).length
+      self.workouts.where(user_id: user.id).count
   end
 end

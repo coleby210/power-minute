@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def show
-    @user = current_user
-    @total_workouts = @user.workouts
+    @total_workouts = current_user.workouts
     @distinct_workouts = @total_workouts.select(:workout_template_id).distinct
     sort_most_common_workouts
     sort_most_common_categories
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @completed_categories = {}
 
     Category.all.each do |category|
-      @completed_categories["#{category.name}"] = category.calculate_category_instances(@user)
+      @completed_categories["#{category.name}"] = category.calculate_category_instances(current_user)
     end
 
     @completed_categories = Hash[@completed_categories.sort_by{|k,v| v}.reverse]
