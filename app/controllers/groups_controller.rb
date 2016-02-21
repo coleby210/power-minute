@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    p GroupsUser.find_by(member_id: current_user.id)
+    GroupsUser.find_by(member_id: current_user.id)
     @usergroups = GroupsUser.where(member_id: current_user.id)
     @groups = []
     @usergroups.each do |groupuser|
