@@ -26,6 +26,7 @@ gem "devise"
 gem "bootstrap-sass"
 gem 'faker'
 gem 'chartjs-ror'
+gem 'omniauth-facebook'
 
 gem 'rails_12factor', group: :production
 # Use ActiveModel has_secure_password
