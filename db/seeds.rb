@@ -35,3 +35,15 @@
 		Workout.create(user_id: rand(2..6), workout_template_id: rand(1..20), reps: rand(0..25), created_at: DateTime.new(2016,2,rand(1..18),4,5,6,'+7'))
 	end
 
+
+	5.times do |count|
+		Group.create(name: Faker::Company.name, admin_id: count)
+		GroupsUser.create(member_id: count, group_id: count)
+	end
+
+	30.times do
+		GroupComment.create(member_id: rand(2..6), group_id: rand(1..5), comment_text: Faker::Hacker.say_something_smart)
+	end
+
+
+

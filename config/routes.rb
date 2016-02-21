@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :categories
   resources :workout_templates
   resources :workouts
+  resources :groups
+  resources :groups_user
+  resources :group_comments
 
   root "categories#index"
 
