@@ -2,17 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+input {
+    padding:4px;
+}
+
 #log-workout {
   display: none;
 }
 
-input {
-    padding:4px;}
-
-input[type="text"] {
-    width:50px;
-    text-align:center;}
-
 #cd_s {
   font-size: 5em;
 }
+
+
