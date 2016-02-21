@@ -1,0 +1,29 @@
+<h2> Create a new group </h2>
+
+<%= form_for @group do |f| %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Group Name" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.text_field :picture, placeholder: "Group Picture URL" %><br>
+  </div>
+  <div>
+    Note: You will be the admin of this group, responsible for adding and deleting members.
+  </div>
+  <br>
+  <br>
+
+
+  <br>
+
+
+  <div class="actions">
+    <%= f.submit "Create new group" %>
+  </div>
+
+
+
+
+<% end %>

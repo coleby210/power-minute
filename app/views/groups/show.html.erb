@@ -1,0 +1,48 @@
+<h1> <%= "#{@group.name}'s Page" %> </h1>
+
+<% if current_user.is_group_admin?(@group) %>
+  <%= form_for @group do |f| %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Group Name" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.text_field :user_id, placeholder: "user_email" %><br>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add User" %>
+  </div>
+
+
+
+<% end %>
+
+Members:
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Workouts Last 7 Days</th>
+    <th>Workouts Last 31 Days</th>
+    <th>Workouts All Time</th>
+    <% if current_user.is_group_admin?(@group) %>
+    <th>Remove User</th>
+    <% end %>
+  </tr>
+  <% @groupmembers.each do |member| %>
+    <td><a href= <%="/users/#{member.id}"%>> <%= member.email %> </a></td>
+    </td>
+    <td> <%= member.sort_most_common_workouts(7).values.reduce(:+)  %> </td>
+    </td>
+    <td> <%= member.sort_most_common_workouts(31).values.reduce(:+)  %> </td>
+    </td>
+    <td> <%= member.sort_most_common_workouts(1000).values.reduce(:+)  %> </td>
+    </td>
+    <% if current_user.is_group_admin?(@group) %>
+      <td> Remove User </td>
+    <% end %>
+  <% end %>
+
+
+</table>
+

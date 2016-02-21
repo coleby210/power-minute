@@ -57,4 +57,8 @@ class User < ActiveRecord::Base
 
   end
 
+  def is_group_admin?(group)
+    self.id == group.admin_id
+  end
+
 end

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :workout_templates
   resources :workouts
+  resources :groups
+  resources :groups_user
 
   get "users/:id", to: "users#show", as: "profile"
 
