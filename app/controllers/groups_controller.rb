@@ -33,10 +33,21 @@ class GroupsController < ApplicationController
     @groupcomments = GroupComment.where(group_id: @group.id)
   end
 
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    Group.find(params[:id]).update_attributes(group_params)
+    redirect_to "/groups/#{params[:id]}"
+  end
+
   def destroy
     group_to_delete = Group.find(params[:id])
+    group_users_to_delete = GroupsUser.find_by(group_id: params[:id])
+    GroupsUser.destroy(group_users_to_delete)
     Group.destroy(group_to_delete)
-    redirect_to "/groups/#{params[:group_id]}"
+    redirect_to "/groups"
   end
 
   private

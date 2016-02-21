@@ -1,7 +1,13 @@
 
 <h1> <%= "#{current_user.name}'s Groups" %> </h1>
+
 <ul>
 <% @groups.each do |group| %>
   <li> <a href=<%="/groups/#{group.id}"%>> <%= group.name %> </a> </li>
 <% end %>
 </ul>
+
+<br>
+<br>
+
+<a href = "/groups/new"> Create a New Group </a>
