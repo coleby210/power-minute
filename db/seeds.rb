@@ -6,17 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-	User.create(first_name: 'Admin', last_name: 'Admin', email: 'admin@power-minute.com', password: '12345678')
+	User.create(name: 'Admin Admin', email: 'admin@power-minute.com', password: '12345678')
 
-	User.create(first_name: 'Beni', last_name: 'Shpringer', email: 'bshpringer@gmail.com', password: '12345678')
+	User.create(name: 'Beni Shpringer', email: 'bshpringer@gmail.com', password: '12345678')
 
-	User.create(first_name: 'Ryan', last_name: 'Ho', email: 'ryan@power-minute.com', password: '12345678')
+	User.create(name: 'Ryan Ho', email: 'ryan@power-minute.com', password: '12345678')
 
-	User.create(first_name: 'Sean', last_name: 'From Iran', email: 'sean@power-minute.com', password: '12345678')
+	User.create(name: 'Sean From Iran', email: 'sean@power-minute.com', password: '12345678')
 
-	User.create(first_name: 'Josh', last_name: 'Kim', email: 'josh@power-minute.com', password: '12345678')
+	User.create(name: 'Josh Kim', email: 'josh@power-minute.com', password: '12345678')
 
-	User.create(first_name: 'Cole', last_name: 'Kent', email: 'cole@power-minute.com', password: '12345678')
+	User.create(name: 'Cole Kent', email: 'cole@power-minute.com', password: '12345678')
 
 
 	Category.create(name: 'Power')

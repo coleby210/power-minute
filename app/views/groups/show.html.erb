@@ -30,7 +30,7 @@ Members:
     <% end %>
   </tr>
   <% @groupmembers.each do |member| %>
-    <td><a href= <%="/users/#{member.id}"%>> <%= member.email %> </a></td>
+    <td><a href= <%="/users/#{member.id}"%>> <%= member.name %> </a></td>
     </td>
     <td> <%= member.sort_most_common_workouts(7).values.reduce(:+)  %> </td>
     </td>
