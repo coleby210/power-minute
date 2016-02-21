@@ -1,192 +1,121 @@
-$(document).ready(function(){
-  var startPause = false;
+//Found a repo for jQuery Circle - Edited a ton of the code to make it work with a number in the middle.
+var $, methods;
 
-  (function($){
+$ = window.jQuery || window.Zepto;
 
-    $.extend({
+window.requestAnimFrame = (function() {
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
+    return window.setTimeout(callback, 1000 / 60);
+  };
+})();
 
-      APP : {
-
-        formatTimer : function(a) {
-          if (a < 10) {
-            a = '0' + a;
-          }
-          return a;
-        },
-
-        startTimer : function(dir) {
-          var a;
-          // save type
-          $.APP.dir = dir;
-          // get current date
-          $.APP.d1 = new Date();
-          switch($.APP.state) {
-            case 'pause' :
-              // resume timer
-              // get current timestamp (for calculations) and
-              // substract time difference between pause and now
-              $.APP.t1 = $.APP.d1.getTime() - $.APP.td;
-            break;
-            default :
-              // get current timestamp (for calculations)
-              $.APP.t1 = $.APP.d1.getTime();
-              if ($.APP.dir === 'cd') {
-                $.APP.t1 += 1000;
-              }
-            break;
-          }
-          // reset state
-          $.APP.state = 'alive';
-          $('#' + $.APP.dir + '_status').html('Running');
-          // start loop
-          $.APP.loopTimer();
-        },
-
-        pauseTimer : function() {
-          // save timestamp of pause
-          $.APP.dp = new Date();
-          $.APP.tp = $.APP.dp.getTime();
-          // save elapsed time (until pause)
-          $.APP.td = $.APP.tp - $.APP.t1;
-          // change button value
-          $('#' + $.APP.dir + '_start').val('Resume');
-          // set state
-          $.APP.state = 'pause';
-          $('#' + $.APP.dir + '_status').html('Paused');
-        },
-
-        stopTimer : function() {
-          // change button value
-          $('#' + $.APP.dir + '_start').val('Restart');
-          // set state
-          $.APP.state = 'stop';
-          $('#' + $.APP.dir + '_status').html('Stopped');
-        },
-
-        resetTimer : function() {
-          // reset display
-          $('#' + $.APP.dir + '_ms,#' + $.APP.dir + '_s,#' + $.APP.dir + '_m,#' + $.APP.dir + '_h').html('00');
-          // change button value
-          $('#' + $.APP.dir + '_start').val('Start');
-          // set state
-          $.APP.state = 'reset';
-          $('#' + $.APP.dir + '_status').html('Reset & Idle again');
-        },
-
-        endTimer : function(callback) {
-          // change button value
-          $('#' + $.APP.dir + '_start').val('Restart');
-          // set state
-          $.APP.state = 'end';
-          // invoke callback
-          if (typeof callback === 'function') {
-            callback();
-          }
-        },
-
-        loopTimer : function() {
-          var td;
-          var d2,t2;
-          var ms = 0;
-          var s  = 0;
-          var m  = 0;
-          var h  = 0;
-          if ($.APP.state === 'alive') {
-            // get current date and convert it into
-            // timestamp for calculations
-            d2 = new Date();
-            t2 = d2.getTime();
-            // calculate time difference between
-            // initial and current timestamp
-            if ($.APP.dir === 'sw') {
-              td = t2 - $.APP.t1;
-            // reversed if countdown
-            } else {
-              td = $.APP.t1 - t2;
-              if (td <= 0) {
-                // if time difference is 0 end countdown
-                $.APP.endTimer(function(){
-                  $.APP.resetTimer();
-                  $('#' + $.APP.dir + '_status').html('Ended & Reset');
-                  $(".timer").hide();
-                  $("#log-workout").show();
-                  startPause = false;
-                });
-              }
-            }
-
-            // calculate milliseconds
-            ms = td%1000;
-            if (ms < 1) {
-              ms = 0;
-            } else {
-              // calculate seconds
-              s = (td-ms)/1000;
-              if (s < 1) {
-                s = 0;
-              } else {
-                // calculate minutes
-                var m = (s-(s%60))/60;
-                if (m < 1) {
-                  m = 0;
-                } else {
-                  // calculate hours
-                  var h = (m-(m%60))/60;
-                  if (h < 1) {
-                    h = 0;
-                  }
-                }
-              }
-            }
-            // substract elapsed minutes & hours
-            ms = Math.round(ms/100);
-            s  = s-(m*60);
-            m  = m-(h*60);
-            // update display
-            $('#' + $.APP.dir + '_ms').html($.APP.formatTimer(ms));
-            $('#' + $.APP.dir + '_s').html($.APP.formatTimer(s));
-            $('#' + $.APP.dir + '_m').html($.APP.formatTimer(m));
-            $('#' + $.APP.dir + '_h').html($.APP.formatTimer(h));
-            // loop
-            $.APP.t = setTimeout($.APP.loopTimer,1);
-          } else {
-            // kill loop
-            clearTimeout($.APP.t);
-            return true;
-          }
-        }
+methods = {
+  init: function(options) {
+    var circle, data, defaults, div, svg;
+    this.empty();
+    defaults = {
+      timeout: 5000,
+      onComplete: (function() {}),
+      onUpdate: (function() {}),
+      clockwise: true
+    };
+    data = {};
+    data.options = $.extend(defaults, options);
+    this.data("ct-meta", data);
+    circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    text = document.createElementNS("http://www.w3.org/2000/svg", "text")
+    text.textContent = '60';
+    text.setAttributeNS(null, "x", "42%")
+    text.setAttributeNS(null, "y", "-45%")
+    text.setAttributeNS(null, "transform", "rotate(90)")
+    circle.setAttributeNS(null, "r", "25%");
+    circle.setAttributeNS(null, "cx", "50%");
+    circle.setAttributeNS(null, "cy", "50%");
+    circle.setAttributeNS(null, "stroke-dasharray", (50 * Math.PI) + "%");
+    svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.appendChild(circle);
+    svg.appendChild(text);
+    div = $("<div></div>");
+    div.attr("id", "ct-circle-container");
+    div.append(svg);
+    return this.append(div);
+  },
+  start: function() {
+    var circle, data, lastTimestamp, step;
+    data = this.data("ct-meta");
+    if ((data.timeElapsed == null) || data.timeElapsed === data.options.timeout) {
+      lastTimestamp = null;
+      data.timeElapsed = 0;
+    }
+    if (data.reqId != null) {
+      window.cancelAnimationFrame(data.reqId);
+    }
+    circle = $(this).find("circle");
+    step = function(timestamp) {
+      var direction;
+      if (lastTimestamp != null) {
+        data.timeElapsed += timestamp - lastTimestamp;
       }
-    });
-
-    $('#sw_start').on('click', function() {
-      $.APP.startTimer('sw');
-    });
-
-    $('#cd_start').on('click', function() {
-      $.APP.startTimer('cd');
-    });
-
-    $('#sw_stop,#cd_stop').on('click', function() {
-      $.APP.stopTimer();
-    });
-
-    $('#sw_reset,#cd_reset').on('click', function() {
-      $.APP.resetTimer();
-    });
-
-    $('#sw_pause,#cd_pause').on('click', function() {
-      $.APP.pauseTimer();
-    });
-
-    $(".timer").on("click", "#countdown span", function(){
-      if(startPause == false){
-        $.APP.startTimer('cd');
-        startPause = true;
+      lastTimestamp = timestamp;
+      direction = data.options.clockwise ? -1 : 1;
+      circle.css("stroke-dashoffset", (direction * 50 * Math.PI * data.timeElapsed / data.options.timeout) + "%");
+      if (data.timeElapsed < data.options.timeout) {
+        data.reqId = window.requestAnimationFrame(step);
+        return data.options.onUpdate(data.timeElapsed);
       } else {
-        $.APP.pauseTimer();
-        startPause = false;
+        data.timeElapsed = data.options.timeout;
+        data.options.onUpdate(data.timeElapsed);
+        return data.options.onComplete();
+      }
+    };
+    data.reqId = window.requestAnimationFrame(step);
+    return this.data("ct-meta", data);
+  },
+  pause: function() {
+    var data;
+    data = this.data("ct-meta");
+    window.cancelAnimationFrame(data.reqId);
+    return this.data("ct-meta", data);
+  },
+};
+
+$.fn.circletimer = function(methodOrOptions) {
+  if (methods[methodOrOptions]) {
+    return methods[methodOrOptions].apply(this, Array.prototype.slice.call(arguments, 1));
+  } else if (typeof methodOrOptions === "object" || !methodOrOptions) {
+    return methods.init.apply(this, arguments);
+  } else {
+    return $.error("Method " + methodOrOptions + " does not exist in circletimer!");
+  }
+};
+
+$(document).ready(function(){
+  var startPause = false
+  var time = 12000
+
+  $(".timer").circletimer({
+    timeout: time,
+    onComplete: (function() {
+      $(".timer").hide();
+      $("#log-workout").show();
+    }),
+    onUpdate: (function(elapsed) {
+      if(((time / 1000) - Math.round(elapsed) / 1000) >= 10){
+        $("text").html(((time / 1000) - Math.round(elapsed) / 1000).toString().split(".")[0]);
+      } else {
+        $("text").html("0" + ((time / 1000) - Math.round(elapsed) / 1000).toString().split(".")[0]);
       }
     })
+  });
 
-  })(jQuery);
+  $(".timer").on("click", "svg", function() {
+    if(startPause == false){
+      $(".timer").circletimer("start");
+      startPause = true;
+    } else {
+      $(".timer").circletimer("pause");
+      startPause = false;
+    }
+  });
 });
+
