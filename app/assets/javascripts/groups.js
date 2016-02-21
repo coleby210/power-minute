@@ -194,10 +194,10 @@ sorttable = {
     hasInputs = (typeof node.getElementsByTagName == 'function') &&
                  node.getElementsByTagName('input').length;
 
-    if (node.getAttribute("sorttable_customkey") != null) {
-      return node.getAttribute("sorttable_customkey");
-    }
-    else if (typeof node.textContent != 'undefined' && !hasInputs) {
+    // if (node.getAttribute("sorttable_customkey") != null) {
+      // return node.getAttribute("sorttable_customkey");
+    // }
+    if (typeof node.textContent != 'undefined' && !hasInputs) {
       return node.textContent.replace(/^\s+|\s+$/g, '');
     }
     else if (typeof node.innerText != 'undefined' && !hasInputs) {
