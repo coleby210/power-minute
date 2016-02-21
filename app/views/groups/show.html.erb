@@ -1,6 +1,10 @@
 <!-- <h1> <%= "#{@group.name}'s Group Page" %> </h1> -->
 
 <% if current_user.is_group_admin?(@group) %>
+  Delete Group:
+  <form method="POST" action = <%= "/groups/#{@group.id}"%>> <input name="_method" type="hidden" value="delete"/> <input type = "submit" value = "Delete Group"> </form>
+
+
   Add New User:
   <form method="POST" action = "/groups_user">
     <input type = "hidden" name="group_id" value=<%="#{@group.id}"%> >
