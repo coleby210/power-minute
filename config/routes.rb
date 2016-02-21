@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :workouts
   resources :groups
   resources :groups_user
+  resources :group_comments
 
   root "categories#index"
 

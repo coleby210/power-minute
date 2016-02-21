@@ -20,6 +20,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @groupmembers = @group.members
+    @groupcomments = GroupComment.where(group_id: @group.id)
   end
 
 

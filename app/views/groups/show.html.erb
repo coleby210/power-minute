@@ -1,4 +1,4 @@
-<h1> <%= "#{@group.name}'s Page" %> </h1>
+<!-- <h1> <%= "#{@group.name}'s Group Page" %> </h1> -->
 
 <% if current_user.is_group_admin?(@group) %>
   Add New User:
@@ -9,7 +9,7 @@
   </form>
 <% end %>
 
-Members:
+<h2> <%= "Members of #{@group.name}" %> </h2>
 <table style="width:100%">
   <tr>
     <th>Name</th>
@@ -36,4 +36,22 @@ Members:
     </tr>
   <% end %>
 </table>
+<br>
+<br>
+Comments:
+<ul>
+  <% @groupcomments.each do |comment| %>
+    <li> <%= "#{comment.comment_text} - #{comment.member.name}, #{comment.created_at}" %> </li>
+  <% end %>
+</ul>
+
+
+
+Add comment:
+  <form method="POST" action = "/group_comments">
+    <input type = "hidden" name="comment[group_id]" value=<%="#{@group.id}"%> >
+    <input type = "hidden" name="comment[member_id]" value=<%="#{current_user.id}"%> >
+    <input type="textarea" name="comment[comment_text]" placeholder="Add Your Comment">
+    <input type = "submit" value='Submit Comment'>
+  </form>
 
