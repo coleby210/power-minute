@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-
   devise_for :users, controllers: {
         registrations: 'users/registrations'
       }
 
-  root "categories#index"
+  get "users/:id", to: "users#show", as: "profile"
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :categories
   resources :workout_templates
@@ -12,7 +14,8 @@ Rails.application.routes.draw do
   resources :groups
   resources :groups_user
 
-  get "users/:id", to: "users#show", as: "profile"
+  root "categories#index"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
