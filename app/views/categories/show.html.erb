@@ -1,9 +1,27 @@
 <h1><%= @category.name %></h1>
 
-<% @workout_templates.each do |workout_template| %>
-  <li>
-      <%= link_to workout_template.title, workout_template_path( workout_template) %>
-  </li>
-<% end %>
-<br>
+<div class="workout-templates">
+  <% @workout_templates.each do |workout_template| %>
+    <div class="row" id="workout-template-<%= workout_template.id %>">
+      <div class="col-xs-10 col-md-10">
+        <%= link_to workout_template.title, workout_template_path( workout_template) %>
+      </div>
+
+      <div class="col-xs-2 col-md-2">
+        <form id="favorite-post" method="POST" action="/users/<%= current_user.id %>/favorites">
+          <input type="hidden" name="workout_template_id" value="<%=workout_template.id %>" >
+          <%= button_tag(type: "submit") do %>
+          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            <% end %>
+        </form>
+      </div>
+    </div><br>
+
+  <% end %>
+  <br>
+</div>
+
 <%= link_to "Back", categories_path %>
+
+
+

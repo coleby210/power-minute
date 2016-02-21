@@ -1,0 +1,5 @@
+<h2>My Favorites</h2>
+
+<% @favorites.each do |favorite| %>
+  <li><%= link_to favorite.workout_template.title, workout_template_path(favorite.workout_template) %></li>
+<% end %>
