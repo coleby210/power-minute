@@ -1,0 +1,57 @@
+<!-- <h1> <%= "#{@group.name}'s Group Page" %> </h1> -->
+
+<% if current_user.is_group_admin?(@group) %>
+  Add New User:
+  <form method="POST" action = "/groups_user">
+    <input type = "hidden" name="group_id" value=<%="#{@group.id}"%> >
+    <input type="text" name="new_user_email" placeholder="enter user email">
+    <input type = "submit">
+  </form>
+<% end %>
+
+<h2> <%= "Members of #{@group.name}" %> </h2>
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Workouts Last 7 Days</th>
+    <th>Workouts Last 31 Days</th>
+    <th>Workouts All Time</th>
+    <% if current_user.is_group_admin?(@group) %>
+    <th>Remove User</th>
+    <% end %>
+  </tr>
+  <% @groupmembers.each do |member| %>
+    <tr>
+      <td><a href= <%="/users/#{member.id}"%>> <%= member.name %> </a></td>
+      </td>
+      <td> <%= member.sort_most_common_workouts(7).values.reduce(:+)  %> </td>
+      </td>
+      <td> <%= member.sort_most_common_workouts(31).values.reduce(:+)  %> </td>
+      </td>
+      <td> <%= member.sort_most_common_workouts(1000).values.reduce(:+)  %> </td>
+      </td>
+      <% if current_user.is_group_admin?(@group) %>
+        <td><form method="POST" action = <%= "/groups_user/#{member.id}"%>> <input type = "hidden" name="group_id" value=<%="#{@group.id}"%> >  <input name="_method" type="hidden" value="delete"/> <input type = "submit" value = "Remove User"> </form></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<br>
+<br>
+Comments:
+<ul>
+  <% @groupcomments.each do |comment| %>
+    <li> <%= "#{comment.comment_text} - #{comment.member.name}, #{comment.created_at}" %> </li>
+  <% end %>
+</ul>
+
+
+
+Add comment:
+  <form method="POST" action = "/group_comments">
+    <input type = "hidden" name="comment[group_id]" value=<%="#{@group.id}"%> >
+    <input type = "hidden" name="comment[member_id]" value=<%="#{current_user.id}"%> >
+    <input type="textarea" name="comment[comment_text]" placeholder="Add Your Comment">
+    <input type = "submit" value='Submit Comment'>
+  </form>
+

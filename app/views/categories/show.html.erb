@@ -3,17 +3,20 @@
 <div class="workout-templates">
   <% @workout_templates.each do |workout_template| %>
     <div class="row" id="workout-template-<%= workout_template.id %>">
-      <div class="col-xs-10 col-md-10">
+      <div class="col-xs-10 col-md-11">
         <%= link_to workout_template.title, workout_template_path( workout_template) %>
       </div>
 
-      <div class="col-xs-2 col-md-2">
-        <form id="favorite-post" method="POST" action="/users/<%= current_user.id %>/favorites">
+      <div class="col-xs-2 col-md-1">
+        <a class="fav-button" id="<%=workout_template.id %> "href="/users/<%= current_user.id %>/favorites">
+          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+        </a>
+        <!-- <form id="favorite-post" method="POST" action="/users/<%= current_user.id %>/favorites">
           <input type="hidden" name="workout_template_id" value="<%=workout_template.id %>" >
           <%= button_tag(type: "submit") do %>
           <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
             <% end %>
-        </form>
+        </form> -->
       </div>
     </div><br>
 

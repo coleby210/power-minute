@@ -9,16 +9,16 @@ class FavoritesController < ApplicationController
     # p "--------------------------------------"
     # p params
 
-    if request.xhr?
-      workout_template_id = params[:workout_template_id]
-      @favorite = current_user.favorites.new(workout_template_id: workout_template_id)
-      p @favorite
-      # p @favorite
-      # if @favorite.save
-        render json: ['_remove_favorite', 3]
-      # else
-      # end
-    end
+    # if request.xhr?
+    #   workout_template_id = params[:workout_template_id]
+    #   @favorite = current_user.favorites.new(workout_template_id: workout_template_id)
+    #   p @favorite
+    #   # p @favorite
+    #   # if @favorite.save
+    #     render json: ['_remove_favorite', 3]
+    #   # else
+    #   # end
+    # end
 
     # workout_template_id = params[:workout_template_id]
     # @favorite = current_user.favorites.new(workout_template_id: workout_template_id)

@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :favorites
   end
+  resources :groups
+  resources :groups_user
+  resources :group_comments
 
   root "categories#index"
 
