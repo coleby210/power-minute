@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :workout_templates, foreign_key: :creator_id
   has_many :workouts
+  has_many :groups, foreign_key: :admin_id
+  has_many :groups_users, foreign_key: :member_id
+
 
   def sort_most_common_workouts(time_period)
     now = Date.today
