@@ -43,7 +43,12 @@
 Comments:
 <ul>
   <% @groupcomments.each do |comment| %>
-    <li> <%= "#{comment.comment_text} - #{comment.member.name}, #{comment.created_at}" %> <% if comment.member_id == current_user.id %><br> <a href = <%="/group_comments/#{comment.id}/edit"%>>  edit comment </a>delete comment <%end%> </li>
+    <li> <%= "#{comment.comment_text} - #{comment.member.name}, #{comment.created_at}" %>
+      <% if comment.member_id == current_user.id %><br>
+        <a href = <%="/group_comments/#{comment.id}/edit"%>>  Edit Comment </a>
+        <%= link_to "Delete Comment",group_comment_path(comment),method: :delete %>
+      <%end%>
+    </li>
 
   <% end %>
 </ul>
