@@ -1,5 +1,18 @@
-<h1>INDEX PAGE</h1>
+<h1>Welcome to<br>Power Minute</h1>
 
-<% @categories.each do |category| %>
-  <li><h4><%= link_to category.name, category_path(category) %></h4></li>
+<%= link_to user_favorites_path(current_user), class: "category-name" do %>
+  <div class="category-index-tile">
+    <h2>Favorites</h2>
+  </div>
 <% end %>
+
+<% @categories.each_with_index do |category| %>
+
+  <%= link_to category_path(category), class: "category-name" do %>
+
+    <div class="category-index-tile">
+      <h2><%= category.name %></h2>
+    </div>
+  <% end %>
+<% end %>
+

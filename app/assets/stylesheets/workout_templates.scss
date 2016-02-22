@@ -2,16 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-input {
-    padding:4px;
-}
 
 #log-workout {
   display: none;
 }
 
-#cd_s {
-  font-size: 5em;
+#ct-circle-container svg{
+  height: 20em;
+  -webkit-transform:rotate(-90deg);
+  transform:rotate(-90deg);
+  width: 20em;
 }
 
+#ct-circle-container svg circle {
+  fill: none;
+  stroke: #A0B26C;
+  stroke-dashoffset: 0;
+  stroke-width: 3%
+}
+
+svg text {
+  font-size: 300%;
+  fill: #A0B26C;
+}
 

@@ -1,0 +1,3 @@
+<%= link_to user_favorites_path(current_user, workout_template_id: workout_template.id), method: :post, class: "fav-add", id: "workout-template-#{workout_template.id}" do %>
+  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+<% end %>
