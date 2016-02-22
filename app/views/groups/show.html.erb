@@ -9,15 +9,15 @@
   </form>
 <% end %>
 
-<h2> <%= "Members of #{@group.name}" %> </h2>
+<h2 class = "table-title"> <%= "Members of #{@group.name}" %> </h2>
 <table class="sortable" style="width:100%">
   <tr>
-    <th>Name</th>
-    <th>Workouts Last 7 Days</th>
-    <th>Workouts Last 31 Days</th>
-    <th>Workouts All Time</th>
+    <th class="table-header">Name</th>
+    <th class="table-header">Workouts Last 7 Days</th>
+    <th class="table-header">Workouts Last 31 Days</th>
+    <th class="table-header">Workouts All Time</th>
     <% if current_user.is_group_admin?(@group) %>
-    <th>Remove User</th>
+    <th class="table-header">Remove User</th>
     <% end %>
   </tr>
   <% @groupmembers.each do |member| %>
@@ -41,7 +41,8 @@
 Comments:
 <ul>
   <% @groupcomments.each do |comment| %>
-    <li> <%= "#{comment.comment_text} - #{comment.member.name}, #{comment.created_at}" %> </li>
+    <li> <%= "#{comment.comment_text} - #{comment.member.name}, #{comment.created_at}" %> <% if comment.member_id == current_user.id %><br> <a href = <%="/group_comments/#{comment.id}/edit"%>>  edit comment </a>delete comment <%end%> </li>
+
   <% end %>
 </ul>
 

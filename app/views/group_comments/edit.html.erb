@@ -1,0 +1,12 @@
+<h2> Edit Comment </h2>
+
+<%= form_for @comment do |f| %>
+  <div class="field">
+    <%= f.text_field :comment_text %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Edit Comment" %>
+  </div>
+  <%end%>
+  <br>
+  <br>
