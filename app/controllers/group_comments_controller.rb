@@ -25,6 +25,11 @@ class GroupCommentsController < ApplicationController
   end
 
   def destroy
+    comment_to_delete = GroupComment.find(params[:id])
+    comment_group = comment_to_delete.group_id
+    GroupComment.destroy(comment_to_delete)
+    redirect_to "/groups/#{comment_group}"
+
   end
 
   def comment_params
