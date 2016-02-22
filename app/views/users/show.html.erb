@@ -1,7 +1,7 @@
 
 
-<h1><%= "#{@user.name}'s Page" %></h1>
-<% if @user.workouts %>
+<h1><%= "#{@user.first_name}'s Page" %></h1>
+<% if @user.workouts.length > 0 %>
 <canvas id="myLineChart" width="380" height="300"></canvas><br><br><br>
   <script>
     var ctx1 = document.getElementById("myLineChart").getContext("2d");

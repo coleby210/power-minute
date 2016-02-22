@@ -35,7 +35,15 @@
       <%= devise_error_messages! %>
 
       <div class="field">
-        <%= f.text_field :name, autofocus: true, placeholder: "Full Name" %>
+        <%= f.text_field :first_name, autofocus: true, placeholder: "First Name" %>
+      </div><br>
+
+      <div class="field">
+        <%= f.text_field :last_name, placeholder: "Last Name" %>
+      </div><br>
+
+      <div class="field">
+        <%= f.text_field :timezone, placeholder: "-8" %>
       </div><br>
 
       <div class="field">
