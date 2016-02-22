@@ -10,13 +10,9 @@
       <div class="col-xs-2 col-md-1 favorite-button" >
         <% favorite = current_user.favorites.find_by(workout_template_id: workout_template.id) %>
         <% unless favorite %>
-          <%= link_to user_favorites_path(current_user, workout_template_id: workout_template.id), workout_template_id: workout_template.id, method: :post, class: "fav-add", id: "workout-template-#{workout_template.id}" do %>
-            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-          <% end %>
+          <%= render partial: 'favorites/category_add_favorite', locals: {workout_template: workout_template} %>
         <% else %>
-          <%= link_to user_favorite_path(current_user, current_user.favorites.find_by(workout_template_id: workout_template.id)), method: :delete, class: "fav-remove", id: "favorite-#{favorite.id}" do %>
-            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-          <% end %>
+          <%= render partial: 'favorites/category_remove_favorite', locals: {favorite: favorite} %>
         <% end %>
 
         <!-- <a class="fav-add" id="<%= workout_template.id %>" href="/users/<%= current_user.id %>/favorites">

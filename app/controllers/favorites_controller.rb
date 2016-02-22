@@ -14,7 +14,6 @@ class FavoritesController < ApplicationController
       end
     else
       @favorite = current_user.favorites.new(workout_template_id: params[:workout_template_id])
-
       category = WorkoutTemplate.find(params[:workout_template_id]).category
       if @favorite.save
         redirect_to category_path(category)
@@ -30,7 +29,6 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-
     if request.xhr?
       @favorite = Favorite.find(params[:id])
       workout_template = WorkoutTemplate.find(@favorite.workout_template_id)
@@ -40,7 +38,11 @@ class FavoritesController < ApplicationController
     else
       @favorite = Favorite.find(params[:id])
       @favorite.destroy
-      redirect_to user_favorites_path(current_user)
+      if params[:on_page] == "category"
+        redirect_to category_path(Category.find(params[:category_id]))
+      else
+        redirect_to user_favorites_path(current_user)
+      end
     end
 
   end
