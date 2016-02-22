@@ -1,6 +1,8 @@
 <!-- <h1> <%= "#{@group.name}'s Group Page" %> </h1> -->
 
 <% if current_user.is_group_admin?(@group) %>
+  <a href =<%="/groups/#{@group.id}/edit"%>> Edit Group </a>
+  <br>
   Add New User:
   <form method="POST" action = "/groups_user">
     <input type = "hidden" name="group_id" value=<%="#{@group.id}"%> >

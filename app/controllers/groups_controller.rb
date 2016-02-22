@@ -1,9 +1,19 @@
 class GroupsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
 
   def new
     @group = current_user.groups.new
+  end
+
+  def index
+    GroupsUser.find_by(member_id: current_user.id)
+    @usergroups = GroupsUser.where(member_id: current_user.id)
+    @groups = []
+    @usergroups.each do |groupuser|
+      @groups << Group.find(groupuser.group_id)
+    end
+    @groups
   end
 
   def create
@@ -23,8 +33,22 @@ class GroupsController < ApplicationController
     @groupcomments = GroupComment.where(group_id: @group.id)
   end
 
+  def edit
+    @group = Group.find(params[:id])
+  end
 
+  def update
+    Group.find(params[:id]).update_attributes(group_params)
+    redirect_to "/groups/#{params[:id]}"
+  end
 
+  def destroy
+    group_to_delete = Group.find(params[:id])
+    group_users_to_delete = GroupsUser.find_by(group_id: params[:id])
+    GroupsUser.destroy(group_users_to_delete)
+    Group.destroy(group_to_delete)
+    redirect_to "/groups"
+  end
 
   private
   def group_params
