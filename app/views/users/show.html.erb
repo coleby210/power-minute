@@ -1,164 +1,167 @@
 <canvas id="myLineChart" width="400" height="400"></canvas>
 
+<% if @workouts %>
+  <script>
+    var ctx1 = document.getElementById("myLineChart").getContext("2d");
+    // our_labels = []
 
-<script>
-  var ctx1 = document.getElementById("myLineChart").getContext("2d");
-  // our_labels = []
+    // @user.number_of_workouts_per_day.keys.each do |date|
 
-  // @user.number_of_workouts_per_day.keys.each do |date|
+    // end
 
-  // end
+    var data1 = {
+      labels: [
+                <% @user.number_of_workouts_per_day.each_with_index do |(key, value), index| %>
+                  <% if index != @user.number_of_workouts_per_day.keys.length - 1 %>
+                    "<%= key.to_s %>",
+                  <% else %>
+                    "<%= key.to_s %>"
+                  <% end %>
+                <% end %>],
+      datasets: [
+          {
+              label: "My First dataset",
+              fillColor: "rgba(220,220,220,0.2)",
+              strokeColor: "rgba(220,220,220,1)",
+              pointColor: "rgba(220,220,220,1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(220,220,220,1)",
+              data: <%= "#{@user.number_of_workouts_per_day.values}" %>
+          }
+      ]
+  };
 
-  var data1 = {
-    labels: [
-              <% @user.number_of_workouts_per_day.each_with_index do |(key, value), index| %>
-                <% if index != @user.number_of_workouts_per_day.keys.length - 1 %>
-                  "<%= key.to_s %>",
-                <% else %>
-                  "<%= key.to_s %>"
-                <% end %>
-              <% end %>],
-    datasets: [
-        {
-            label: "My First dataset",
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
-            data: <%= "#{@user.number_of_workouts_per_day.values}" %>
-        }
-    ]
-};
+    var myLineChart = new Chart(ctx1).Bar(data1);
 
-  var myLineChart = new Chart(ctx1).Bar(data1);
+  </script>
 
-</script>
+  <h1><%= "#{@user.email}'s Page" %></h1>
 
-<h1><%= "#{@user.email}'s Page" %></h1>
-
-<canvas id="myChart" width="400" height="400"></canvas>
-<h1>Your top workouts by categories</h1>
-<script>
-  var ctx2 = document.getElementById("myChart").getContext("2d");
-  var data2 = [
-    <% @user.sort_most_common_categories(1000).each_with_index do |(key, value),index| %>
-       <% random_color = "#%06x" % (rand * 0xffffff) %>
-      <% if index != @user.sort_most_common_categories(1000).length-1 %>
-        {
-          value: <%= value %>,
-          color: "<%= "#{random_color}" %>",
-          label: "<%= "#{key}" %>"
-        },
-      <% else %>
-        {
-          value: <%= value %>,
-          color: "<%= "#{random_color}" %>",
-          label: "<%= "#{key}" %>"
-        }
+  <canvas id="myChart" width="400" height="400"></canvas>
+  <h1>Your top workouts by categories</h1>
+  <script>
+    var ctx2 = document.getElementById("myChart").getContext("2d");
+    var data2 = [
+      <% @user.sort_most_common_categories(1000).each_with_index do |(key, value),index| %>
+         <% random_color = "#%06x" % (rand * 0xffffff) %>
+        <% if index != @user.sort_most_common_categories(1000).length-1 %>
+          {
+            value: <%= value %>,
+            color: "<%= "#{random_color}" %>",
+            label: "<%= "#{key}" %>"
+          },
+        <% else %>
+          {
+            value: <%= value %>,
+            color: "<%= "#{random_color}" %>",
+            label: "<%= "#{key}" %>"
+          }
+        <% end %>
       <% end %>
+    ]
+
+    // *********************************************
+    // Attempt to get text to appear with chart
+
+    // Chart.types.Doughnut.extend({
+    //   name: "DoughtnutTextInside",
+    //   showTooltip: function() {
+    //     this.chart.ctx.save();
+    //     Chart.types.Doughnut.prototype.showTooltip.apply(this, arguments);
+    //     this.chart.ctx.restore();
+    //   },
+    //   draw: function() {
+    //     Chart.types.Doughnut.prototype.draw.apply(this, arguments);
+
+    //     var width = this.chart.width,
+    //         height = this.chart.height;
+
+    //     var fontSize = (height / 114).toFixed(2);
+    //     this.chart.ctx.font = fontSize + "em Verdana";
+    //     this.chart.ctx.textBaseline = "middle";
+
+    //     var text = "82%",
+    //         textX = Math.round((width = this.chart.ctx.measureText(text).width) / 2),
+    //         textY = height / 2;
+
+    //     this.chart.ctx.fillText(text, textX, textY);
+    //   }
+    // });
+
+    var myDoughnutChart = new Chart(ctx2).Doughnut(data2);
+
+  </script>
+
+
+
+
+  <h3> All Time </h3>
+  <%= "Total workouts: #{@total_workouts.length}" %>
+  <ul>
+
+    <% @user.sort_most_common_workouts(1000000).each do |key, value| %>
+
+      <li>
+        <%= "#{key}: #{value}" %>
+      </li>
+
     <% end %>
-  ]
+  <h2> categories </h2>
+    <% @user.sort_most_common_categories(1000000).each do |key, value| %>
 
-  // *********************************************
-  // Attempt to get text to appear with chart
+      <li>
+        <%= "#{key}: #{value}" %>
+      </li>
 
-  // Chart.types.Doughnut.extend({
-  //   name: "DoughtnutTextInside",
-  //   showTooltip: function() {
-  //     this.chart.ctx.save();
-  //     Chart.types.Doughnut.prototype.showTooltip.apply(this, arguments);
-  //     this.chart.ctx.restore();
-  //   },
-  //   draw: function() {
-  //     Chart.types.Doughnut.prototype.draw.apply(this, arguments);
+    <% end %>
 
-  //     var width = this.chart.width,
-  //         height = this.chart.height;
-
-  //     var fontSize = (height / 114).toFixed(2);
-  //     this.chart.ctx.font = fontSize + "em Verdana";
-  //     this.chart.ctx.textBaseline = "middle";
-
-  //     var text = "82%",
-  //         textX = Math.round((width = this.chart.ctx.measureText(text).width) / 2),
-  //         textY = height / 2;
-
-  //     this.chart.ctx.fillText(text, textX, textY);
-  //   }
-  // });
-
-  var myDoughnutChart = new Chart(ctx2).Doughnut(data2);
-
-</script>
+  </ul>
 
 
+  <h3> Last 31 Days </h3>
+  Total Workouts:
+  <ul>
+
+    <% @user.sort_most_common_workouts(31).each do |key, value| %>
+
+      <li>
+        <%= "#{key}: #{value}" %>
+      </li>
+
+    <% end %>
+  <h2> categories </h2>
+    <% @user.sort_most_common_categories(31).each do |key, value| %>
+
+      <li>
+        <%= "#{key}: #{value}" %>
+      </li>
+
+    <% end %>
+
+  </ul>
 
 
-<h3> All Time </h3>
-<%= "Total workouts: #{@total_workouts.length}" %>
-<ul>
+  <h3> Last 7 Days </h3>
+  <ul>
 
-  <% @user.sort_most_common_workouts(1000000).each do |key, value| %>
+    <% @user.sort_most_common_workouts(7).each do |key, value| %>
 
-    <li>
-      <%= "#{key}: #{value}" %>
-    </li>
+      <li>
+        <%= "#{key}: #{value}" %>
+      </li>
 
-  <% end %>
-<h2> categories </h2>
-  <% @user.sort_most_common_categories(1000000).each do |key, value| %>
+    <% end %>
+  <h2> categories </h2>
+    <% @user.sort_most_common_categories(7).each do |key, value| %>
 
-    <li>
-      <%= "#{key}: #{value}" %>
-    </li>
+      <li>
+        <%= "#{key}: #{value}" %>
+      </li>
 
-  <% end %>
+    <% end %>
 
-</ul>
-
-
-<h3> Last 31 Days </h3>
-Total Workouts:
-<ul>
-
-  <% @user.sort_most_common_workouts(31).each do |key, value| %>
-
-    <li>
-      <%= "#{key}: #{value}" %>
-    </li>
-
-  <% end %>
-<h2> categories </h2>
-  <% @user.sort_most_common_categories(31).each do |key, value| %>
-
-    <li>
-      <%= "#{key}: #{value}" %>
-    </li>
-
-  <% end %>
-
-</ul>
-
-
-<h3> Last 7 Days </h3>
-<ul>
-
-  <% @user.sort_most_common_workouts(7).each do |key, value| %>
-
-    <li>
-      <%= "#{key}: #{value}" %>
-    </li>
-
-  <% end %>
-<h2> categories </h2>
-  <% @user.sort_most_common_categories(7).each do |key, value| %>
-
-    <li>
-      <%= "#{key}: #{value}" %>
-    </li>
-
-  <% end %>
-
-</ul>
+  </ul>
+<% else %>
+  <h1>You haven't done any workouts yet!</h1>
+<% end %>
