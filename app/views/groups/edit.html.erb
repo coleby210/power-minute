@@ -1,0 +1,22 @@
+
+<h1> Editing <%= @group.name %> </h1>
+
+<%= form_for @group do |f| %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Group Name" %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.text_field :picture, placeholder: "Group Picture URL" %><br>
+  </div>
+  <div class="actions">
+    <%= f.submit "Edit group" %>
+  </div>
+<%end%>
+
+<br>
+<br>
+<br>
+
+Delete Group:
+  <form method="POST" action = <%= "/groups/#{@group.id}"%>> <input name="_method" type="hidden" value="delete"/> <input type = "submit" value = "Delete Group"> </form>

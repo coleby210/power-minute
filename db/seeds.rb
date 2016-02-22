@@ -36,7 +36,7 @@
 	end
 
 
-	5.times do |count|
+	1.upto(5) do |count|
 		Group.create(name: Faker::Company.name, admin_id: count)
 		GroupsUser.create(member_id: count, group_id: count)
 	end
