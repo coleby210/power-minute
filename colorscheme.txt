@@ -1,0 +1,9 @@
+colors:
+
+
+gray/slate: #3F4045
+bright green: #A0B26C
+Red:
+#F32C31
+Text/Cream:
+#F0EAD6
