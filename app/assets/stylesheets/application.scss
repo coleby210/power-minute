@@ -16,6 +16,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$our-green: #A0B27C;
+$our-gray: #3F4045;
+$our-cream: #F0EAD6;
+
 .nav-fix {
   margin-top: 4em;
 }
@@ -27,4 +31,24 @@
 #landing {
   margin-top: 6em;
   text-align: center;
+}
+
+body {
+  background: $our-green;
+}
+
+.navbar {
+ background: $our-gray;
+}
+
+#navbar a {
+  color: $our-cream;
+  position: relative;
+}
+
+#header-text {
+  font-family:'Copperplate';
+  color: #F0EAD6;
+  font-size: 2.2em;
+  position: relative;
 }

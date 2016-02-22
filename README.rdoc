@@ -30,6 +30,6 @@ Please feel free to use a different markup language if you do not plan to run
 *************************************
 * Color Scheme
   * Gray/slate: #3F4045
-  * Green: #A0B26C
+  * Green: #A0B27C
   * Red: #F32C31
   * Text/cream: #F0EAD6
