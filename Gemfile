@@ -28,7 +28,6 @@ gem "bootstrap-sass"
 gem 'faker'
 gem 'chartjs-ror'
 gem 'omniauth-facebook'
-gem 'jquery-turbolinks'
 
 gem 'rails_12factor', group: :production
 # Use ActiveModel has_secure_password
