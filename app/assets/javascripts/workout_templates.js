@@ -91,7 +91,7 @@ $.fn.circletimer = function(methodOrOptions) {
 
 $(document).ready(function(){
   var startPause = false
-  var time = 12000
+  var time = 60000
 
   $(".timer").circletimer({
     timeout: time,
