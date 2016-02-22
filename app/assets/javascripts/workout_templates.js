@@ -25,12 +25,12 @@ methods = {
     circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     text = document.createElementNS("http://www.w3.org/2000/svg", "text")
     text.textContent = '60';
-    text.setAttributeNS(null, "x", "42%")
-    text.setAttributeNS(null, "y", "-45%")
+    text.setAttributeNS(null, "x", "34.5%")
+    text.setAttributeNS(null, "y", "-39.5%")
     text.setAttributeNS(null, "transform", "rotate(90)")
     circle.setAttributeNS(null, "r", "25%");
     circle.setAttributeNS(null, "cx", "50%");
-    circle.setAttributeNS(null, "cy", "50%");
+    circle.setAttributeNS(null, "cy", "48%");
     circle.setAttributeNS(null, "stroke-dasharray", (50 * Math.PI) + "%");
     svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.appendChild(circle);
