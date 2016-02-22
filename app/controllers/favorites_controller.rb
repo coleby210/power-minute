@@ -13,7 +13,8 @@ class FavoritesController < ApplicationController
         render 'favorites/_remove_favorite', layout: false, locals: {current_user: current_user, favorite: @favorite}
       end
     else
-      @favorite = current_user.favorites.new(workout_template_id: workout_template_id)
+      @favorite = current_user.favorites.new(workout_template_id: params[:workout_template_id])
+
       category = WorkoutTemplate.find(params[:workout_template_id]).category
       if @favorite.save
         redirect_to category_path(category)
