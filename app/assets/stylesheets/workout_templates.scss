@@ -8,21 +8,21 @@
 }
 
 #ct-circle-container svg{
-  height: 20em;
+  height: 28em;
   -webkit-transform:rotate(-90deg);
   transform:rotate(-90deg);
-  width: 20em;
+  width: 28em;
 }
 
 #ct-circle-container svg circle {
   fill: none;
-  stroke: #A0B26C;
+  stroke: #3F4045;
   stroke-dashoffset: 0;
   stroke-width: 3%
 }
 
 svg text {
-  font-size: 300%;
-  fill: #A0B26C;
+  font-size: 800%;
+  fill: #3F4045;
 }
 
