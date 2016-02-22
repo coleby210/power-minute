@@ -40,21 +40,30 @@
 </table>
 <br>
 <br>
-Comments:
-<ul>
-  <% @groupcomments.each do |comment| %>
-    <li> <%= "#{comment.comment_text} - #{comment.member.name}, #{comment.created_at}" %> <% if comment.member_id == current_user.id %><br> <a href = <%="/group_comments/#{comment.id}/edit"%>>  edit comment </a>delete comment <%end%> </li>
 
-  <% end %>
-</ul>
+<% if @groupmembers.include?(current_user) %>
+  Comments:
+  <ul>
+    <% @groupcomments.each do |comment| %>
+      <li> <%= "#{comment.comment_text} - #{comment.member.name}, #{comment.created_at}" %>
+        <% if comment.member_id == current_user.id %><br>
+          <a href = <%="/group_comments/#{comment.id}/edit"%>>  Edit Comment </a>
+          <%= link_to "Delete Comment",group_comment_path(comment),method: :delete %>
+        <%end%>
+      </li>
+
+    <% end %>
+  </ul>
 
 
 
-Add comment:
-  <form method="POST" action = "/group_comments">
-    <input type = "hidden" name="comment[group_id]" value=<%="#{@group.id}"%> >
-    <input type = "hidden" name="comment[member_id]" value=<%="#{current_user.id}"%> >
-    <input type="textarea" name="comment[comment_text]" placeholder="Add Your Comment">
-    <input type = "submit" value='Submit Comment'>
-  </form>
-
+  Add comment:
+    <form method="POST" action = "/group_comments">
+      <input type = "hidden" name="comment[group_id]" value=<%="#{@group.id}"%> >
+      <input type = "hidden" name="comment[member_id]" value=<%="#{current_user.id}"%> >
+      <input type="textarea" name="comment[comment_text]" placeholder="Add Your Comment">
+      <input type = "submit" value='Submit Comment'>
+    </form>
+<% else %>
+  <h3>You must be a member of this group to comment... </h3>
+<% end %>
