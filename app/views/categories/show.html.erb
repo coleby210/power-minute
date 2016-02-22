@@ -2,15 +2,23 @@
 
 <div class="workout-templates">
   <% @workout_templates.each do |workout_template| %>
-    <div class="row" id="workout-template-<%= workout_template.id %>">
+    <div class="row workout-template-<%= workout_template.id %>">
       <div class="col-xs-10 col-md-11">
         <%= link_to workout_template.title, workout_template_path( workout_template) %>
       </div>
 
-      <div class="col-xs-2 col-md-1">
-        <a class="fav-button" id="<%=workout_template.id %> "href="/users/<%= current_user.id %>/favorites">
+      <div class="col-xs-2 col-md-1 favorite-button" >
+        <%= link_to user_favorites_path(current_user), class: "fav-add", id: "workout-template-#{workout_template.id}" do %>
+          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+        <% end %>
+
+        <!-- <a class="fav-add" id="<%= workout_template.id %>" href="/users/<%= current_user.id %>/favorites">
+          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+        </a> -->
+<!--         <a class="fav-remove" id="<%=workout_template.id %>" href="/users/<%= current_user.id %>/favorites">
           <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
         </a>
+         -->
         <!-- <form id="favorite-post" method="POST" action="/users/<%= current_user.id %>/favorites">
           <input type="hidden" name="workout_template_id" value="<%=workout_template.id %>" >
           <%= button_tag(type: "submit") do %>
@@ -25,6 +33,7 @@
 </div>
 
 <%= link_to "Back", categories_path %>
+
 
 
 

@@ -10,7 +10,4 @@ class CategoriesController < ApplicationController
     @workout_templates = @category.workout_templates
   end
 
-  def create
-  end
-
 end
