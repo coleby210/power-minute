@@ -46,14 +46,20 @@ class User < ActiveRecord::Base
     @total_workouts = self.workouts
 
     # first_workout = first_workout.to_date
+    puts "*" * 30
+    p first_workout
+    p Date.today
 
-    while (first_workout < Date.today)
-      daily_workouts[first_workout] =  @total_workouts.where( "created_at < ?" , first_workout + 1).where( "created_at > ?" , first_workout).length
+    while (first_workout <= Date.today)
+
+      p Date.today
+      daily_workouts[first_workout] =  @total_workouts.where("created_at >= ? AND created_at < ?", first_workout, first_workout + 1).length
 
       first_workout += 1;
     end
 
-    p daily_workouts
+
+    daily_workouts
     # p daily_workouts.keys
 
   end

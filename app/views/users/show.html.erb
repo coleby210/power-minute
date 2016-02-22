@@ -1,6 +1,8 @@
-<canvas id="myLineChart" width="400" height="400"></canvas>
 
-<% if @workouts %>
+
+<h1><%= "#{@user.name}'s Page" %></h1>
+<% if @user.workouts %>
+  <canvas id="myLineChart" width="400" height="400"></canvas>
   <script>
     var ctx1 = document.getElementById("myLineChart").getContext("2d");
     // our_labels = []
@@ -36,7 +38,7 @@
 
   </script>
 
-  <h1><%= "#{@user.email}'s Page" %></h1>
+
 
   <canvas id="myChart" width="400" height="400"></canvas>
   <h1>Your top workouts by categories</h1>
