@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorite/index'
+
   devise_for :users, controllers: {
         registrations: 'users/registrations',
         omniauth_callbacks: "users/omniauth_callbacks"
@@ -12,6 +14,9 @@ Rails.application.routes.draw do
   resources :categories
   resources :workout_templates
   resources :workouts
+  resources :users do
+    resources :favorites
+  end
   resources :groups
   resources :groups_user
   resources :group_comments

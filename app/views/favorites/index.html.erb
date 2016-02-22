@@ -1,0 +1,12 @@
+<h2>My Favorites</h2>
+
+<% @favorites.each do |favorite| %>
+  <div class="col-xs-10 col-md-11">
+    <%= link_to favorite.workout_template.title, workout_template_path(favorite.workout_template) %>
+  </div>
+
+  <div class="col-xs-2 col-md-1" >
+    <%= link_to 'Remove', user_favorite_path(current_user, favorite), method: :delete %>
+  </div>
+
+<% end %>
