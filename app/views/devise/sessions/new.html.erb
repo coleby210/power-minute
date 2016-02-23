@@ -1,6 +1,6 @@
 <div id="landing">
-  <h1> Power Minute </h1>
-  <br>
+  <div id = "landing-description"> Grab Your Friends <br> It's Time For A </div>
+  <div id = "landing-header"> POWER<br> MINUTE </div>
   <center>
   <div id="log-in-form">
     <h2>Log in</h2>
@@ -65,10 +65,10 @@
     <% end %>
     <button id="back-button" class="btn btn-info">Back Home</button>
   </div>
-  <button id="log-in" class="btn btn-success">Log In</button>
-  <br>
-  <br>
   <button id="sign-up" class="btn btn-success">Sign Up</button>
+  <br>
+  <br>
+  <button id="log-in" class="btn btn-success">Log In</button>
   <br>
   <br>
   <%= link_to image_tag("/fb_login.png"), user_omniauth_authorize_path(:facebook), class: "fb-login" %>

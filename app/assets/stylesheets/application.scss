@@ -17,6 +17,7 @@
 @import "bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Oswald:700);
 
 $our-green: #A0B27C;
 $our-gray: #3F4045;
@@ -29,8 +30,6 @@ $our-blue: #252A40;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-
-
 .nav-fix {
   margin-top: 4em;
 }
@@ -40,8 +39,10 @@ $our-blue: #252A40;
 }
 
 #landing {
-  margin-top: 6em;
+  padding-top: 6em;
   text-align: center;
+  background: #3F4045;
+  width: 100%;
 }
 
 body {
@@ -57,6 +58,10 @@ body {
   position: relative;
 }
 
+#navbar a:hover {
+  color: #ff7003; // orange color
+}
+
 #header-text {
   font-family:'Copperplate';
   color: #F0EAD6;
@@ -69,13 +74,28 @@ body {
 }
 
 .navbar-header a.nav-btn-color:hover {
-  color: #20cfb1
+  color: #ff7003; // orange color
 }
 
 #logo {
-  color: #ff7003;
+  color: #ff7003; // orange color
+  font-size: 2em;
+  margin: auto;
+  padding-left: 10px;
 }
 
 #logo:hover {
   color: $our-cream;
+}
+
+#landing-header{
+  font-size: 6em;
+  align: center;
+  color: #FF7003;
+  font-family: 'Oswald';
+}
+#landing-description{
+  font-size: 2em;
+  align: center;
+  color: #F0EADF;
 }

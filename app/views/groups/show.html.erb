@@ -4,6 +4,7 @@
     <br>
   <% end %>
 </h2>
+
 <table class="table table-hover sortable" style="width:100%">
   <tr>
     <th class="table-header">Name</th>
@@ -22,7 +23,7 @@
       </td>
       <td><%= member.sort_most_common_workouts(31).values.reduce(:+) %></td>
       </td>
-      <td><%= member.sort_most_common_workouts(1000).values.reduce(:+) %></td>
+      <td><%= member.workouts.length %></td>
       </td>
       <% if current_user.is_group_admin?(@group) %>
         <td>
@@ -70,6 +71,17 @@
       <input type="textarea" name="comment[comment_text]" placeholder="Add Your Comment", class="form-control inline">
       <input type="submit" value='Submit Comment' class="btn btn-success  ">
     </form>
+    <br>
+    <br>
+  <% if !current_user.is_group_admin?(@group) %>
+    <form method="POST" action=<%= "/groups_user/#{current_user.id}" %>>
+      <input type="hidden" name="group_id" value=<%= "#{@group.id}" %>>
+      <input name="_method" type="hidden" value="delete"/>
+      <input type="submit" value="Leave Group" class="btn btn-danger">
+    </form>
+  <% end %>
 <% else %>
   <h3>You must be a member of this group to comment... </h3>
 <% end %>
+
+
