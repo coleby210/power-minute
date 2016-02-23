@@ -17,6 +17,7 @@
 @import "bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Oswald:700);
 
 $our-green: #A0B27C;
 $our-gray: #3F4045;
@@ -76,6 +77,9 @@ body {
 
 #logo {
   color: #ff7003; // orange color
+  font-size: 2em;
+  margin: auto;
+  padding-left: 10px;
 }
 
 #logo:hover {

@@ -11,6 +11,17 @@
 </head>
 <body>
   <% if current_user %>
+  <!-- Facebook Script Below -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1023027834423940";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
@@ -23,8 +34,7 @@
     <!--         <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a> -->
             <a class="navbar-brand nav-btn-color" href="/workout_templates/new">+</a>
             <a class="navbar-brand nav-btn-color" href= <%= "/users/#{current_user.id}/favorites" %>><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></a>
-            <a class="navbar-brand nav-btn-color" href=""></a>
-            <a class="navbar-brand nav-btn-color" id="logo" href="/">POWERMINUTE</a>
+            <a class="navbar-brand nav-btn-color" id="logo" href="/">POWER MINUTE</a>
           </div>
 
           <div id="navbar" class="navbar-collapse collapse">
@@ -49,5 +59,13 @@
     <%= yield %>
   </div>
   <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  <!-- add to footer:
+  <div class="fb-like" data-href="https://www.facebook.com/powerminuteapp/" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div> -->
+  <!-- <a href="https://twitter.com/power_minute" class="twitter-follow-button" data-show-count="false">Follow @power_minute</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+
+  <!-- <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.power-minute.com" data-text="One Minute Workouts Rule! Check it out:" data-via="power_minute">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+
 </body>
 </html>
