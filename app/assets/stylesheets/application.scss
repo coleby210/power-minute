@@ -61,14 +61,18 @@ body {
   position: relative;
 }
 
-a:hover {
-  color: #F32C31;
-}
-
-a:active{
-  color: #F32C31;
-}
-
 .navbar-header a.nav-btn-color {
+  color: $our-cream;
+}
+
+.navbar-header a.nav-btn-color:hover {
+  color: #20cfb1
+}
+
+#logo {
+  color: #ff7003;
+}
+
+#logo:hover {
   color: $our-cream;
 }
