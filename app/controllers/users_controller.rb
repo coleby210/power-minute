@@ -4,6 +4,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @total_workouts = @user.workouts
     @distinct_workouts = @total_workouts.select(:workout_template_id).distinct
+    if request.xhr?
+      render :json => [@user.sort_most_common_categories(7),@user.sort_most_common_categories(31),sort_most_common_categories(1000).to_json]
+    end
   end
 
   def top_users
@@ -13,6 +16,21 @@ class UsersController < ApplicationController
     end
     @user_stats = @user_stats.sort_by {|key, value| value}.reverse
     render :top_performers
+  end
+
+  def get_7
+    @user = User.find(params[:id])
+    render :json => @user.sort_most_common_categories(7)
+  end
+
+  def get_31
+    @user = User.find(params[:id])
+    render :json => @user.sort_most_common_categories(31)
+  end
+
+  def get_all_time
+    @user = User.find(params[:id])
+    render :json => @user.sort_most_common_categories(1000)
   end
 
   protected

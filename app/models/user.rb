@@ -11,6 +11,24 @@ class User < ActiveRecord::Base
   has_many :favorites
   has_many :group_comments, foreign_key: :member_id
 
+  def calculate_number_of_workouts(time_period)
+    today = Date.today
+    @number_of_workouts = self.workouts.where( "created_at > ?" ,today - time_period).length
+  end
+
+  def calculate_change_in_workout_frequency(time_period,compared_time_period)
+    today = Date.today
+
+    @total_workouts_in_range = self.workouts.where( "created_at > ?" ,today - compared_time_period).length
+    @current_workouts_in_range = self.workouts.where( "created_at > ?" ,today - time_period).length
+    @percent_change = ((((@current_workouts_in_range)/(@total_workouts_in_range - @current_workouts_in_range).to_f)-1).round(2)*100)
+    if @percent_change > 0
+      "+"+ @percent_change.to_s + "%"
+    else
+      @percent_change.to_s + "%"
+    end
+  end
+
 
   def sort_most_common_workouts(time_period)
     now = Date.today
