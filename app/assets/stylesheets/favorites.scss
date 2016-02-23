@@ -19,3 +19,29 @@ a.fav-remove:hover {
   color: black;
 }
 
+@media screen and (max-width: 991px) {
+  .favorite-individual {
+    height: 100px;
+    line-height: 100px;
+  }
+
+  .remove-favorite-div {
+    height: 100px;
+
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .favorite-individual {
+    height: 150px;
+    line-height: 150px;
+  }
+
+  .remove-favorite-div {
+    height: 150px;
+  }
+}
+
+.favorite-individual {
+  margin-bottom: 7px;
+}
