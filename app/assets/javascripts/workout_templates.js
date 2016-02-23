@@ -112,9 +112,11 @@ $(document).ready(function(){
     if(startPause == false){
       $(".timer").circletimer("start");
       startPause = true;
+      $(".audioDemo")[0].play();
     } else {
       $(".timer").circletimer("pause");
       startPause = false;
+      $(".audioDemo")[0].pause();
     }
   });
 });
