@@ -36,7 +36,7 @@ before_filter :configure_account_update_params, only: [:update]
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -49,12 +49,22 @@ before_filter :configure_account_update_params, only: [:update]
   end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    generate_schedule
+    super(resource)
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def generate_schedule
+    schedule = Schedule.create(user_id: current_user.id)
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    days.each do |day|
+      Day.create(name: day, schedule_id: schedule.id)
+    end
+  end
+
 end

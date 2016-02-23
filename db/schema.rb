@@ -22,6 +22,39 @@ ActiveRecord::Schema.define(version: 20160223201639) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "days", force: :cascade do |t|
+    t.integer  "schedule_id"
+    t.string   "name"
+    t.boolean  "one",         default: false
+    t.boolean  "two",         default: false
+    t.boolean  "three",       default: false
+    t.boolean  "four",        default: false
+    t.boolean  "five",        default: false
+    t.boolean  "six",         default: false
+    t.boolean  "seven",       default: false
+    t.boolean  "eight",       default: false
+    t.boolean  "nine",        default: false
+    t.boolean  "ten",         default: false
+    t.boolean  "eleven",      default: false
+    t.boolean  "twelve",      default: false
+    t.boolean  "thirteen",    default: false
+    t.boolean  "fourteen",    default: false
+    t.boolean  "fifteen",     default: false
+    t.boolean  "sixteen",     default: false
+    t.boolean  "seventeen",   default: false
+    t.boolean  "eighteen",    default: false
+    t.boolean  "nineteen",    default: false
+    t.boolean  "twenty",      default: false
+    t.boolean  "twentyone",   default: false
+    t.boolean  "twentytwo",   default: false
+    t.boolean  "twentythree", default: false
+    t.boolean  "twentyfour",  default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "days", ["schedule_id"], name: "index_days_on_schedule_id", using: :btree
+
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "workout_template_id"
@@ -51,6 +84,14 @@ ActiveRecord::Schema.define(version: 20160223201639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "schedules", ["user_id"], name: "index_schedules_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",                                     null: false
@@ -101,6 +142,8 @@ ActiveRecord::Schema.define(version: 20160223201639) do
   add_index "workouts", ["user_id"], name: "index_workouts_on_user_id", using: :btree
   add_index "workouts", ["workout_template_id"], name: "index_workouts_on_workout_template_id", using: :btree
 
+  add_foreign_key "days", "schedules"
+  add_foreign_key "schedules", "users"
   add_foreign_key "workouts", "users"
   add_foreign_key "workouts", "workout_templates"
 end

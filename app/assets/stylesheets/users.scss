@@ -17,9 +17,8 @@ $our-cream: #F0EADF;
 }
 
 #profile-title{
-text-align: center;
-width:100%;
-
+  text-align: center;
+  width:100%;
 }
 
 .profile-column-header{
@@ -38,12 +37,33 @@ width:100%;
 }
 
 .profile-data-change{
-   text-align: center;
-   font-size: 1em;
+  text-align: center;
+  font-size: 1em;
 }
 
 form .home {
   width: 15em;
+}
+
+.week-day {
+  text-align: center;
+  width: 10em;
+  height: 39.5em;
+  border: 1px solid black;
+  border-radius: .5em;
+  display: inline-block;
+}
+
+.hours {
+  margin-bottom: 0px;
+}
+
+.daybreak {
+  margin-top: 0.8em;
+}
+
+form .check {
+  margin: 0 !important;
 }
 
 .table-header{
