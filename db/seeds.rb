@@ -31,7 +31,7 @@
 	Category.create(name: 'Yoga')
 
 	20.times do
-		WorkoutTemplate.create(title: Faker::Company.name, description: Faker::Company.catch_phrase, creator_id: rand(2..6), category_id: rand(1..3))
+		WorkoutTemplate.create(title: Faker::Company.name, description: Faker::Company.catch_phrase, creator_id: rand(2..6), category_id: rand(1..3), private_status: false)
 	end
 
 	200.times do
