@@ -1,6 +1,6 @@
 
 
-<h1 id="profile-title"><%= "#{@user.name}'s Stats" %></h1>
+<h1 id="profile-title"><%= "#{@user.first_name}'s Stats" %></h1>
 <% if @user.workouts %>
 
 
@@ -28,7 +28,6 @@
 <div id="pie-chart-div">
   <h1>Your top workouts by categories</h1>
   <canvas id="myChart" width="380" height="400"></canvas>
-
 </div>
 
 <div id="top-workouts-chart">

@@ -7,13 +7,7 @@ $(document).ready(function(){
 
     url = window.location.pathname
     $.get(url+"/7", function( data ){
-      if  ($('.myChart').html() == ""){
-        renderPieChart(data);
-      }
-      else {
-        updatePieChart(data);
-      };
-
+      renderPieChart(data);
     })
 
   });
@@ -25,14 +19,8 @@ $(document).ready(function(){
     $(".column-all-time").css('background-color','#A0B27C');
     url = window.location.pathname
     $.get(url+"/31", function( data ){
-      if  ($('.myChart').html() == ""){
-        renderPieChart(data);
-      }
-      else {
-        updatePieChart(data);
-      };
+      renderPieChart(data);
     });
-
 
   });
 
@@ -43,63 +31,37 @@ $(document).ready(function(){
     $(".column-31").css('background-color','#A0B27C');
     url = window.location.pathname
     $.get(url+"/all_time", function( data ){
-      if  ($('.myChart').html() == ""){
-        renderPieChart(data);
-      }
-      else {
-        updatePieChart(data);
-      };
+      renderPieChart(data);
     });
   });
 
-  updatePieChart = function(data) {
-  var ctx2 = document.getElementById("myChart").getContext("2d");
+  renderPieChart = function(data) {
+    $("#myChart").remove();
+    $("#pie-chart-div").append('<canvas id="myChart" width="380" height="400"></canvas>')
+    var ctx2 = document.getElementById("myChart").getContext("2d");
 
-  data2 = [
-        {
-          value: data["Cardio"],
-          color: "#F32C31",
-          label: "Cardio"
-        },
-        {
-          value: data["Yoga"],
-          color: "#F0EADF",
-          label: "Yoga"
-        },
-        {
-          value: data["Power"],
-          color: "#3F4045",
-          label: "Power"
-        }
-  ]
-  var myPieChart = new Chart(ctx2).Pie(data2);
-}
-
+    data2 = [
+      {
+        value: data["Cardio"],
+        color: "#F32C31",
+        label: "Cardio"
+      },
+      {
+        value: data["Yoga"],
+        color: "#F0EADF",
+        label: "Yoga"
+      },
+      {
+        value: data["Power"],
+        color: "#3F4045",
+        label: "Power"
+      }
+    ]
+    var myPieChart = new Chart(ctx2).Pie(data2);
+  }
 
 });
 
-renderPieChart = function(data) {
-  var ctx2 = document.getElementById("myChart").getContext("2d");
-
-  data2 = [
-        {
-          value: data["Cardio"],
-          color: "#F32C31",
-          label: "Cardio"
-        },
-        {
-          value: data["Yoga"],
-          color: "#F0EADF",
-          label: "Yoga"
-        },
-        {
-          value: data["Power"],
-          color: "#3F4045",
-          label: "Power"
-        }
-  ]
-  var myPieChart = new Chart(ctx2).Pie(data2);
-}
 
 
 
