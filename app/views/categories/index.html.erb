@@ -1,18 +1,38 @@
-<h1>Welcome to<br>Power Minute</h1>
+<h1 class="category-text">Welcome, <%= current_user.first_name %>!</h1>
+<h4 class="category-text">What would you like to do?</h4>
 
+<div class="row">
 <%= link_to user_favorites_path(current_user), class: "category-name" do %>
-  <div class="category-index-tile">
-    <h2>Favorites</h2>
+  <div class="col-md-6 category">
+    <div class="category-index-tile">
+      <h2>Favorites</h2>
+    </div>
   </div>
 <% end %>
 
-<% @categories.each_with_index do |category| %>
-
-  <%= link_to category_path(category), class: "category-name" do %>
-
-    <div class="category-index-tile">
-      <h2><%= category.name %></h2>
+  <%= link_to category_path(@categories[0]), class: "category-name" do %>
+    <div class="col-md-6">
+      <div class="category-index-tile">
+        <h2><%= @categories[0].name %></h2>
+      </div>
     </div>
   <% end %>
-<% end %>
+</div>
 
+<div class="row">
+  <%= link_to category_path(@categories[1]), class: "category-name" do %>
+    <div class="col-md-6">
+      <div class="category-index-tile">
+        <h2><%= @categories[1].name %></h2>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to category_path(@categories[2]), class: "category-name" do %>
+    <div class="col-md-6">
+      <div class="category-index-tile">
+        <h2><%= @categories[2].name %></h2>
+      </div>
+    </div>
+  <% end %>
+</div>

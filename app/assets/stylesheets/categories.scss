@@ -2,18 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.category-text {
+  color: #3F4045; // grey color
+}
+
 .category-index-tile {
   padding: 20px;
   font-size: 18px;
   font-weight: 200;
   line-height: 30px;
-  background-color: #e2063d;
-  margin: 5px 0px 5px 0px;
-  display: block;
+  background-color: #252a40;
+  margin-bottom: 7px;
 }
 
 a.category-name {
-  color: white;
+  color: #F0EADF; // cream color
 }
 
 a.category-name:hover {
@@ -25,10 +28,7 @@ a.category-name:hover .category-index-tile {
   background-color: #b30c33;
 }
 
-
-.col-xs-6 {
-  height: 200px;
-  background-color: black;
-  margin: 5px;
-  display: inline-block;
+.workout-template-individual {
+  height: 50px;
+  border: 1px solid black;
 }
