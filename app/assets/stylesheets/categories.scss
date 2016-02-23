@@ -6,18 +6,19 @@
   color: #3F4045; // grey color
 }
 
-@media(max-width: 34em) {
-  .test {
-    background-color: yellow;
+@media screen and (max-width: 991px) {
+  .category-index-tile {
+    padding: 30px;
   }
 }
 
-.test {
-  background-color: green;
+@media screen and (min-width: 992px) {
+  .category-index-tile {
+    padding: 80px;
+  }
 }
 
 .category-index-tile {
-  padding: 30px;
   font-size: 18px;
   font-weight: 200;
   background-color: #252a40;
@@ -37,8 +38,31 @@ a.category-name:hover .category-index-tile {
   background-color: #b30c33;
 }
 
+@media screen and (max-width: 991px) {
+  .workout-template-individual {
+    height: 100px;
+    line-height: 100px
+  }
+
+  .favorite-button-div {
+    height: 100px;
+    padding: 1em;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .workout-template-individual {
+    height: 150px;
+    line-height: 150px;
+  }
+
+  .favorite-button-div {
+    height: 150px;
+    padding: 2.5em;
+  }
+}
+
 .workout-template-individual {
-  height: 80px;
   margin-bottom: 7px;
 }
 
@@ -47,19 +71,12 @@ a.category-name:hover .category-index-tile {
 }
 
 a .category-description {
-  height: 80px;
-  line-height: 80px;
   background-color: #252a40;
   color: white;
 }
 
 a .category-description:hover {
   background-color: #ff7003; // orange color
-}
-
-.favorite-button-div {
-  height: 80px;
-  //background-color: #252a40;
 }
 
 
