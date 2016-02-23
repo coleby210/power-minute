@@ -1,16 +1,40 @@
 
 
-<h1><%= "#{@user.first_name}'s Page" %></h1>
+<h1 id="profile-title"><%= "#{@user.first_name}'s Stats" %></h1>
 <% if @user.workouts.length > 0 %>
-<canvas id="myLineChart" width="380" height="300"></canvas><br><br><br>
+
+
+<table id ="profile-main-table" width="100%" border="1px black" align="center">
+  <tr>
+    <th id="profile-main-header" colspan="3" > Total Power Minutes </th>
+  </tr>
+  <tr>
+    <th class="profile-column-header column-7 #{@user.id}" id="last-7-header"> Last 7 </th>
+    <th class="profile-column-header column-31" id="last-31-header"> Last 31 </th>
+    <th class="profile-column-header column-all-time" id="all-time-header"> All Time </th>
+  </tr>
+  <tr>
+    <td class="profile-data column-7" id="last-7-stats"><%= @user.calculate_number_of_workouts(7) %></td>
+    <td class="profile-data column-31" id="last-31-stats"><%= @user.calculate_number_of_workouts(31) %></td>
+    <td class="profile-data column-all-time" id="all-time-stats"><%= @user.workouts.length %></td>
+  </tr>
+  <tr>
+    <td class="profile-data-change column-7 #{@user.id}" id="last-7-stats"><%= @user.calculate_change_in_workout_frequency(7,14) + " WoW" %></td>
+    <td class="profile-data-change column-31" id="last-31-stats"><%= @user.calculate_change_in_workout_frequency(31,62)+" WoW" %></td>
+    <td class="profile-data-change column-all-time" id="all-time-stats"></td>
+  </tr>
+</table>
+
+<div id="pie-chart-div">
+  <h1>Your top workouts by categories</h1>
+  <canvas id="myChart" width="380" height="400"></canvas>
+</div>
+
+<div id="top-workouts-chart">
+
+<canvas id="myLineChart" width="317" height="250"></canvas><br><br><br>
   <script>
     var ctx1 = document.getElementById("myLineChart").getContext("2d");
-    // our_labels = []
-
-    // @user.number_of_workouts_per_day.keys.each do |date|
-
-    // end
-
     var data1 = {
       labels: [
                 <% @user.number_of_workouts_per_day.each_with_index do |(key, value), index| %>
@@ -37,63 +61,8 @@
     var myLineChart = new Chart(ctx1).Bar(data1);
 
   </script>
+</div>
 
-
-
-  <canvas id="myChart" width="380" height="400"></canvas>
-  <h1>Your top workouts by categories</h1>
-  <script>
-    var ctx2 = document.getElementById("myChart").getContext("2d");
-    var data2 = [
-      <% @user.sort_most_common_categories(1000).each_with_index do |(key, value),index| %>
-         <% random_color = "#%06x" % (rand * 0xffffff) %>
-        <% if index != @user.sort_most_common_categories(1000).length-1 %>
-          {
-            value: <%= value %>,
-            color: "<%= "#{random_color}" %>",
-            label: "<%= "#{key}" %>"
-          },
-        <% else %>
-          {
-            value: <%= value %>,
-            color: "<%= "#{random_color}" %>",
-            label: "<%= "#{key}" %>"
-          }
-        <% end %>
-      <% end %>
-    ]
-
-    // *********************************************
-    // Attempt to get text to appear with chart
-
-    // Chart.types.Doughnut.extend({
-    //   name: "DoughtnutTextInside",
-    //   showTooltip: function() {
-    //     this.chart.ctx.save();
-    //     Chart.types.Doughnut.prototype.showTooltip.apply(this, arguments);
-    //     this.chart.ctx.restore();
-    //   },
-    //   draw: function() {
-    //     Chart.types.Doughnut.prototype.draw.apply(this, arguments);
-
-    //     var width = this.chart.width,
-    //         height = this.chart.height;
-
-    //     var fontSize = (height / 114).toFixed(2);
-    //     this.chart.ctx.font = fontSize + "em Verdana";
-    //     this.chart.ctx.textBaseline = "middle";
-
-    //     var text = "82%",
-    //         textX = Math.round((width = this.chart.ctx.measureText(text).width) / 2),
-    //         textY = height / 2;
-
-    //     this.chart.ctx.fillText(text, textX, textY);
-    //   }
-    // });
-
-    var myDoughnutChart = new Chart(ctx2).Doughnut(data2);
-
-  </script>
 
 
 
