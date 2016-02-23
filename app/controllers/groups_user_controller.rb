@@ -22,7 +22,11 @@ class GroupsUserController < ApplicationController
   def destroy
     groupmember_to_delete = GroupsUser.find_by(member_id: params[:id], group_id: params[:group_id]).id
     GroupsUser.destroy(groupmember_to_delete)
+    if current_user.is_group_admin?(Group.find(params[:group_id]))
     redirect_to "/groups/#{params[:group_id]}"
+    else
+      redirect_to "/groups"
+    end
   end
 
   def update
