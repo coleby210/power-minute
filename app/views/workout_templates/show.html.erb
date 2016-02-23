@@ -1,9 +1,11 @@
 <h1><%= @workout_template.title %></h1>
 
 <div class="timer">
-
   <div id="example-timer"></div>
 </div>
+<audio class="audioDemo" controls preload="none">
+   <source src="/eye_60s.mp3" type="audio/mpeg">
+</audio>
 <br>
 <div id="log-workout">
   <%= form_for :workouts, url: workouts_path, method: :post do |f| %>
