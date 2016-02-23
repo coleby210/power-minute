@@ -10,11 +10,17 @@ class UsersController < ApplicationController
   end
 
   def top_users
-    @user_stats = {}
-    User.all.each do |user|
-      @user_stats[user] = user.workouts.length
-    end
-    @user_stats = @user_stats.sort_by {|key, value| value}.reverse
+
+    @top_users = User.find_by_sql("Select users.*, COUNT(workouts.id) AS c from users, workouts WHERE workouts.user_id = users.id GROUP BY users.id ORDER BY c DESC")
+    p @top_users
+    # @user_stats = {}
+    # User.all.each do |user|
+    #   if user.workouts.length > 0
+    #   @user_stats[user] = [user.workouts.length, user.sort_most_common_workouts(1000).first[0]]
+    #   end
+    # end
+
+    # @user_stats = @user_stats.sort_by {|key, value| value}.reverse
     render :top_performers
   end
 
