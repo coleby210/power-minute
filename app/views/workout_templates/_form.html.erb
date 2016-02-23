@@ -2,21 +2,21 @@
 
 <%= form_for @workout_template do |f| %>
   <div class="field">
-    <%= f.text_field :title, placeholder: "Title" %>
+    <%= f.text_field :title, placeholder: "Title", class: "form-control" %>
   </div>
   <br>
 
   <div class="field">
-    <%= f.text_field :description, placeholder: "Workout description" %><br>
+    <%= f.text_field :description, placeholder: "Workout description", class: "form-control" %><br>
   </div>
   <br>
 
   <div class="field">
-    <%= f.text_field :image, placeholder: "Image link" %>
+    <%= f.text_field :image, placeholder: "Image link (optional)", class: "form-control" %>
   </div>
   <br>
 
-  <div class="field">
+  <div class="field radio">
     <input type="radio" name="category" value="Power"> Power <br>
     <input type="radio" name="category" value="Cardio"> Cardio <br>
     <input type="radio" name="category" value="Yoga"> Yoga <br>
@@ -25,7 +25,7 @@
 
 
   <div class="actions">
-    <%= f.submit "Create new workout" %>
+    <%= f.submit "Create new workout", class: "btn btn-success" %>
   </div>
 
 

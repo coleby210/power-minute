@@ -1,17 +1,9 @@
-<!-- <h1> <%= "#{@group.name}'s Group Page" %> </h1> -->
-
-<% if current_user.is_group_admin?(@group) %>
-  <a href=<%="/groups/#{@group.id}/edit"%>><button class="btn btn-info">Edit Group</button></a>
-  <br>
-  Add New User:
-  <form method="POST" action="/groups_user">
-    <input type="hidden" name="group_id" value=<%="#{@group.id}"%> >
-    <input type="text" name="new_user_email" placeholder="enter user email", class="form-control inline">
-    <input type="submit" class="btn btn-success">
-  </form>
-<% end %>
-
-<h2 class="table-title"><%= "Members of #{@group.name}" %></h2>
+<h2 class="table-title"><%= @group.name %>
+  <% if current_user.is_group_admin?(@group) %>
+    <a href=<%="/groups/#{@group.id}/edit"%>><button class="btn btn-info">Edit Group</button></a>
+    <br>
+  <% end %>
+</h2>
 <table class="table table-hover sortable" style="width:100%">
   <tr>
     <th class="table-header">Name</th>
@@ -44,6 +36,14 @@
     </tr>
   <% end %>
 </table>
+<% if current_user.is_group_admin?(@group) %>
+  Add New User:
+  <form method="POST" action="/groups_user">
+    <input type="hidden" name="group_id" value=<%="#{@group.id}"%> >
+    <input type="text" name="new_user_email" placeholder="enter user email", class="form-control inline">
+    <input type="submit" class="btn btn-success">
+  </form>
+<% end %>
 <br>
 <br>
 
