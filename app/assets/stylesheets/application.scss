@@ -29,8 +29,6 @@ $our-blue: #252A40;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-
-
 .nav-fix {
   margin-top: 4em;
 }
@@ -57,6 +55,10 @@ body {
   position: relative;
 }
 
+#navbar a:hover {
+  color: #ff7003; // orange color
+}
+
 #header-text {
   font-family:'Copperplate';
   color: #F0EAD6;
@@ -69,11 +71,11 @@ body {
 }
 
 .navbar-header a.nav-btn-color:hover {
-  color: #20cfb1
+  color: #ff7003; // orange color
 }
 
 #logo {
-  color: #ff7003;
+  color: #ff7003; // orange color
 }
 
 #logo:hover {
