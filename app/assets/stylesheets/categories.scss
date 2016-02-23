@@ -6,11 +6,20 @@
   color: #3F4045; // grey color
 }
 
+@media(max-width: 34em) {
+  .test {
+    background-color: yellow;
+  }
+}
+
+.test {
+  background-color: green;
+}
+
 .category-index-tile {
-  padding: 20px;
+  padding: 30px;
   font-size: 18px;
   font-weight: 200;
-  line-height: 30px;
   background-color: #252a40;
   margin-bottom: 7px;
 }
@@ -50,5 +59,7 @@ a .category-description:hover {
 
 .favorite-button-div {
   height: 80px;
-  // background-color: #252a40;
+  //background-color: #252a40;
 }
+
+
