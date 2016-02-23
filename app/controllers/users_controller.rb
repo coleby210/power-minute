@@ -39,6 +39,11 @@ class UsersController < ApplicationController
     render :json => @user.sort_most_common_categories(1000)
   end
 
+  def schedule
+    @hours = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "twentyone", "twentytwo", "twentythree", "twentyfour"]
+    @days = current_user.schedule.days.order(:created_at)
+  end
+
   protected
 
   def verify_user
