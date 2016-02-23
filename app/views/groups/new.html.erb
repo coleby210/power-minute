@@ -2,25 +2,19 @@
 
 <%= form_for @group do |f| %>
   <div class="field">
-    <%= f.text_field :name, placeholder: "Group Name" %>
+    <%= f.text_field :name, placeholder: "Group Name", class: "form-control" %>
   </div>
   <br>
 
   <div class="field">
-    <%= f.text_field :picture, placeholder: "Group Picture URL" %><br>
+    <%= f.text_field :picture, placeholder: "Group Picture URL", class: "form-control" %><br>
   </div>
   <div>
-    Note: You will be the admin of this group, responsible for adding and deleting members.
+    <small>Note: You will be the admin of this group, responsible for adding and deleting members.</small>
   </div>
   <br>
-  <br>
-
-
-  <br>
-
-
   <div class="actions">
-    <%= f.submit "Create new group" %>
+    <%= f.submit "Create new group", class: "btn btn-success" %>
   </div>
 
 
