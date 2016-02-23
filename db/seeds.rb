@@ -18,6 +18,13 @@
 
 	User.create(first_name: 'Cole', last_name: "Kent", timezone: "-6", email: 'cole@power-minute.com', password: '12345678')
 
+	User.all.each do |user|
+		schedule = Schedule.create(user_id: user.id)
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    days.each do |day|
+      Day.create(name: day, schedule_id: schedule.id)
+    end
+	end
 
 	Category.create(name: 'Power')
 	Category.create(name: 'Cardio')

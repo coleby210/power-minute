@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :groups_users, foreign_key: :member_id
   has_many :favorites
   has_many :group_comments, foreign_key: :member_id
+  has_one :schedule
 
   def calculate_number_of_workouts(time_period)
     today = Date.today
@@ -28,7 +29,6 @@ class User < ActiveRecord::Base
       @percent_change.to_s + "%"
     end
   end
-
 
   def sort_most_common_workouts(time_period)
     now = Date.today
