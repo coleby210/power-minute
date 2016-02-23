@@ -22,7 +22,7 @@
       </td>
       <td><%= member.sort_most_common_workouts(31).values.reduce(:+) %></td>
       </td>
-      <td><%= member.sort_most_common_workouts(1000).values.reduce(:+) %></td>
+      <td><%= member.workouts.length %></td>
       </td>
       <% if current_user.is_group_admin?(@group) %>
         <td>
