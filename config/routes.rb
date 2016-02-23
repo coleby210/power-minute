@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get "/users/:id/7", to: "users#get_7"
   get "/users/:id/31", to: "users#get_31"
   get "/users/:id/all_time", to: "users#get_all_time"
+  patch "/groupsadmin", to: "groups#update_admin"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

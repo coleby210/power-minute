@@ -42,6 +42,16 @@ class GroupsController < ApplicationController
     redirect_to "/groups/#{params[:id]}"
   end
 
+  def update_admin
+    new_admin = User.find_by(email: params[:new_user_email])
+    group = Group.find(params[:group_id])
+    if group.members.include?(new_admin) == false
+        GroupsUser.create(member_id: new_admin.id, group_id: group.id)
+    end
+    group.update_attributes(admin_id: new_admin.id)
+    redirect_to "/groups/#{params[:group_id]}"
+  end
+
   def destroy
     group_to_delete = Group.find(params[:id])
     group_users_to_delete = GroupsUser.find_by(group_id: params[:id])
