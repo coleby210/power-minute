@@ -1,9 +1,12 @@
 $(document).ready(function(){
   $(".column-7").on('click',function(e){
     e.preventDefault();
-    $(".column-7").css('background-color','#F0EADF');
-    $(".column-31").css('background-color','#A0B27C');
-    $(".column-all-time").css('background-color','#A0B27C');
+    $(".column-7").css('background-color','#252A40');
+    $(".column-7").css('color','#F0EADF');
+    $(".column-31").css('background-color','white');
+    $(".column-31").css('color','black');
+    $(".column-all-time").css('background-color','white');
+    $(".column-all-time").css('color','black');
 
     url = window.location.pathname
     $.get(url+"/7", function( data ){
@@ -14,9 +17,12 @@ $(document).ready(function(){
 
   $(".column-31").on('click',function(e){
     e.preventDefault();
-    $(".column-31").css('background-color','#F0EADF');
-    $(".column-7").css('background-color','#A0B27C');
-    $(".column-all-time").css('background-color','#A0B27C');
+    $(".column-31").css('background-color','#252A40');
+    $(".column-31").css('color','#F0EADF');
+    $(".column-7").css('background-color','white');
+    $(".column-7").css('color','black');
+    $(".column-all-time").css('background-color','white');
+    $(".column-all-time").css('color','black');
     url = window.location.pathname
     $.get(url+"/31", function( data ){
       renderPieChart(data);
@@ -26,9 +32,12 @@ $(document).ready(function(){
 
   $(".column-all-time").on('click',function(e){
     e.preventDefault();
-    $(".column-all-time").css('background-color','#F0EADF');
-    $(".column-7").css('background-color','#A0B27C');
-    $(".column-31").css('background-color','#A0B27C');
+    $(".column-all-time").css('background-color','#252A40');
+    $(".column-all-time").css('color','#F0EADF');
+    $(".column-7").css('background-color','white');
+    $(".column-7").css('color','black');
+    $(".column-31").css('color','black');
+    $(".column-31").css('background-color','white');
     url = window.location.pathname
     $.get(url+"/all_time", function( data ){
       renderPieChart(data);
