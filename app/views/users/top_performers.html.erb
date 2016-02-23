@@ -19,12 +19,8 @@
     <% else %>
       <tr>
     <% end %>
-      <% if index == 0 %>
-        <td> <%= index + 1 %> <i class="fa fa-trophy"></i> </td>
-      <% else %>
         <td> <%= index + 1 %> </td>
-      <% end %>
-        <td><%= user.first_name %> </td>
+        <td><%= user.first_name %><% if index == 0 %> <i class="fa fa-trophy"></i> <% end %></td>
         <td><%= user.workouts.length %> </td>
         <td><%= user.sort_most_common_workouts(1000).first[0] %> </td>
       </tr>
