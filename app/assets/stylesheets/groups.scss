@@ -7,8 +7,11 @@
   padding-bottom: 15px;
 }
 
-*{
-  font-family: 'DIN Alternate';
+
+form .form-control {
+  width: 15em;
 }
 
-
+form .inline {
+  display: inline-block;
+}

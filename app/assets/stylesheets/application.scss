@@ -15,11 +15,19 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
 
 $our-green: #A0B27C;
 $our-gray: #3F4045;
 $our-cream: #F0EADF;
 $our-red: #F32C31;
+
+*{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+
 
 .nav-fix {
   margin-top: 4em;
@@ -35,7 +43,7 @@ $our-red: #F32C31;
 }
 
 body {
-  background: $our-green;
+  background: white;
 }
 
 .navbar {
@@ -54,13 +62,18 @@ body {
   position: relative;
 }
 
-a{
+.navbar-header a.nav-btn-color {
   color: $our-cream;
 }
-a:hover {
-  color: #F32C31;
-}
-a:active{
-  color: #F32C31;
+
+.navbar-header a.nav-btn-color:hover {
+  color: #20cfb1
 }
 
+#logo {
+  color: #ff7003;
+}
+
+#logo:hover {
+  color: $our-cream;
+}

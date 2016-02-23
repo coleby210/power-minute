@@ -91,7 +91,9 @@ class User < ActiveRecord::Base
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
+      user.first_name = auth.info.first_name   # assuming the user model has a name
+      user.last_name = auth.info.last_name
+      user.timezone = auth.info.timezone
     end
   end
 
