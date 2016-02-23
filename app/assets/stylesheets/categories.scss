@@ -29,6 +29,26 @@ a.category-name:hover .category-index-tile {
 }
 
 .workout-template-individual {
-  height: 50px;
-  border: 1px solid black;
+  height: 80px;
+  margin-bottom: 7px;
+}
+
+.row {
+  display: block;
+}
+
+a .category-description {
+  height: 80px;
+  line-height: 80px;
+  background-color: #252a40;
+  color: white;
+}
+
+a .category-description:hover {
+  background-color: #ff7003; // orange color
+}
+
+.favorite-button-div {
+  height: 80px;
+  // background-color: #252a40;
 }

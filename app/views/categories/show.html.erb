@@ -10,19 +10,20 @@
     <% end %>
 
     <div class="col-md-4 workout-template-<%= workout_template.id %> workout-template-individual">
-      <div class="row">
-        <div class="col-md-10 col-xs-10">
-          <h5><%= link_to workout_template.title, workout_template_path( workout_template) %></h5>
-        </div>
 
-        <div class="col-md-2 col-xs-2 favorite-button" >
-          <% favorite = current_user.favorites.find_by(workout_template_id: workout_template.id) %>
-          <% unless favorite %>
-            <h5><%= render partial: 'favorites/category_add_favorite', locals: {workout_template: workout_template} %></h5>
-          <% else %>
-            <h5><%= render partial: 'favorites/category_remove_favorite', locals: {favorite: favorite} %></h5>
-          <% end %>
+      <%= link_to workout_template_path(workout_template), class: "category-description" do %>
+        <div class="col-md-10 col-xs-10 category-description">
+          <%= workout_template.title %>
         </div>
+      <% end %>
+
+      <div class="col-md-2 col-xs-2 favorite-button-div" >
+        <% favorite = current_user.favorites.find_by(workout_template_id: workout_template.id) %>
+        <% unless favorite %>
+          <h3 class="favorite-button"><%= render partial: 'favorites/category_add_favorite', locals: {workout_template: workout_template} %></h3>
+        <% else %>
+          <h3 class="favorite-button"><%= render partial: 'favorites/category_remove_favorite', locals: {favorite: favorite} %></h3>
+        <% end %>
       </div>
     </div>
 
