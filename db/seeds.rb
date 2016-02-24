@@ -8,15 +8,15 @@
 
 	User.create(first_name: 'Admin',last_name: "Admin", timezone: "-8", email: 'admin@power-minute.com', password: '12345678')
 
-	User.create(first_name: 'Beni',last_name: "Shpringer", timezone: "-8", email: 'bshpringer@gmail.com', password: '12345678')
+	User.create(first_name: 'Beni',last_name: "Shpringer", timezone: "-8", email: 'bshpringer@gmail.com', password: '12345678', phone_number: "+14152333355")
 
-	User.create(first_name: 'Ryan', last_name: "Ho", timezone: "-8", email: 'ryan@power-minute.com', password: '12345678')
+	User.create(first_name: 'Ryan', last_name: "Ho", timezone: "-8", email: 'ryan@power-minute.com', password: '12345678', phone_number: "+14156194486")
 
-	User.create(first_name: 'Sean', last_name: "From Iran", timezone: "-8", email: 'sean@power-minute.com', password: '12345678')
+	User.create(first_name: 'Sean', last_name: "From Iran", timezone: "-8", email: 'sean@power-minute.com', password: '12345678', phone_number: "+15106129959")
 
-	User.create(first_name: 'Josh', last_name: "Kim", timezone: "-8", email: 'josh@power-minute.com', password: '12345678')
+	User.create(first_name: 'Josh', last_name: "Kim", timezone: "-8", email: 'josh@power-minute.com', password: '12345678', phone_number: "+12136634691")
 
-	User.create(first_name: 'Cole', last_name: "Kent", timezone: "-6", email: 'cole@power-minute.com', password: '12345678')
+	User.create(first_name: 'Cole', last_name: "Kent", timezone: "-6", email: 'cole@power-minute.com', password: '12345678', phone_number: "+19254374085")
 
 	User.all.each do |user|
 		schedule = Schedule.create(user_id: user.id)
