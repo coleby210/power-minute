@@ -8,6 +8,5 @@ module TwilioHelper
     p Rails.application.secrets.twilio_auth_token
     client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
     message = client.messages.create from: '+16508352013', to: user_phone, body: message
-    render plain: message.status
   end
 end

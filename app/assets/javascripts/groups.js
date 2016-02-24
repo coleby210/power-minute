@@ -1,29 +1,42 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).ready(function(){
+  $("div").on('click', '#create-group', function(e){
+    e.preventDefault();
+    $( this ).hide();
+    var url = $( this ).parent().attr('href');
+    debugger;
+    var obj = $( this ).parent()
+    $.get(url, function(response){
+      console.log(response);
+      $("#form-holder").html(response);
+    });
+  });
+
+
   (function vendorTableSorter(){
     var stIsIE = /*@cc_on!@*/false;
 
-sorttable = {
-  init: function() {
-    // quit if this function has already been called
-    if (arguments.callee.done) return;
-    // flag this function so we don't do the same thing twice
-    arguments.callee.done = true;
-    // kill the timer
-    if (_timer) clearInterval(_timer);
+    sorttable = {
+      init: function() {
+        // quit if this function has already been called
+        if (arguments.callee.done) return;
+        // flag this function so we don't do the same thing twice
+        arguments.callee.done = true;
+        // kill the timer
+        if (_timer) clearInterval(_timer);
 
-    if (!document.createElement || !document.getElementsByTagName) return;
+        if (!document.createElement || !document.getElementsByTagName) return;
 
-    sorttable.DATE_RE = /^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/;
+        sorttable.DATE_RE = /^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/;
 
-    forEach(document.getElementsByTagName('table'), function(table) {
-      if (table.className.search(/\bsortable\b/) != -1) {
-        sorttable.makeSortable(table);
-      }
-    });
+        forEach(document.getElementsByTagName('table'), function(table) {
+          if (table.className.search(/\bsortable\b/) != -1) {
+            sorttable.makeSortable(table);
+          }
+        });
 
-  },
+      },
 
   makeSortable: function(table) {
     if (table.getElementsByTagName('thead').length == 0) {
