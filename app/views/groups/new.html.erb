@@ -9,8 +9,18 @@
   <div class="field">
     <%= f.text_field :picture, placeholder: "Group Picture URL", class: "form-control" %><br>
   </div>
+
+  <h4>Would you like your group to be:</h4>
+  <div class="field radio">
+    <%= f.radio_button :private_status, :false, :checked => true %>
+    <%= label :private_status, 'Public' %>
+    <br>
+    <%= f.radio_button :private_status, :true %>
+    <%= label :private_status, 'Private' %>
+  </div>
+  <br>
   <div>
-    <small>Note: You will be the admin of this group, responsible for adding and deleting members.</small>
+    <small>Note: You will be the admin of this group, responsible for adding and deleting members. You can appoint a new group admin later.</small>
   </div>
   <br>
   <div class="actions">
