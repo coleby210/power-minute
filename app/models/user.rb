@@ -62,23 +62,12 @@ class User < ActiveRecord::Base
     daily_workouts = {}
     first_workout = (self.workouts.first.created_at).to_date
     @total_workouts = self.workouts
-
-    # first_workout = first_workout.to_date
-    puts "*" * 30
-    p first_workout
-    p Date.today
-
     while (first_workout <= Date.today)
-
-      p Date.today
       daily_workouts[first_workout] =  @total_workouts.where("created_at >= ? AND created_at < ?", first_workout, first_workout + 1).length
-
       first_workout += 1;
     end
 
-
     daily_workouts
-    # p daily_workouts.keys
 
   end
 
@@ -93,7 +82,7 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.first_name   # assuming the user model has a name
       user.last_name = auth.info.last_name
-      user.timezone = auth.info.timezone
+      user.timezone = auth.extra.raw_info.timezone
     end
   end
 

@@ -6,7 +6,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '9997014b50a1b3e818bb09681cad026a95f357ebbac1a796d1390e5f8b0319392c1347885d04e1d610566313bb61eccba10775d898754b52486f76eed7d99b99'
+  # config.secret_key = '126319591d63f54b9e310465387fafddd5ba5eb250df2467579cfc5c0fda08c7add8ad4cb4338ac0aa753bf17412200d4ad398bd1ead9c4f14c4eec7327a3120'
+  config.secret_key = '34fef8157b1a8aa85e9f3c5ae37771c8b5a5e200c296ce0ee603d9c81d262180f1a6d5cc722c3b2a7ec84eabba40fd434966df89a21440887bbfefddbfa6e156'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -238,7 +239,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, '1023027834423940', 'ee569e15ed8c652457833c17d62c1d29', scope: "email",info_fields: 'email, first_name, last_name, timezone'
+  config.omniauth :facebook, Rails.application.secrets.fb_app_id, Rails.application.secrets.fb_app_secret, scope: "email", info_fields: 'email, first_name, last_name, timezone'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
