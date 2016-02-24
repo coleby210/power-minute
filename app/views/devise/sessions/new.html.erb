@@ -1,9 +1,10 @@
+<body class="landing-bg">
 <div id="landing">
   <div id = "landing-description"> Grab Your Friends <br> It's Time For A </div>
   <div id = "landing-header"> POWER<br> MINUTE </div>
   <center>
   <div id="log-in-form">
-    <h2>Log in</h2>
+    <h2 style="color:#F0EADF">Log in</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field form-group">
         <%= f.email_field :email, placeholder: "Email", autofocus: true, class: "home form-control" %>
@@ -15,7 +16,7 @@
 
       <% if devise_mapping.rememberable? -%>
         <div class="field checkbox">
-          <%= f.check_box :remember_me %>Remember Me
+          <%= f.check_box :remember_me  %> <span style="color:#F0EADF">Remember Me</span>
         </div>
       <% end -%>
 
@@ -27,7 +28,7 @@
     <button id="back-button" class="btn btn-info">Back Home</button>
   </div>
   <div id="sign-up-form">
-    <h2>Sign up</h2>
+    <h2 style="color:#F0EADF">Sign up</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
@@ -38,10 +39,6 @@
 
       <div class="field">
         <%= f.text_field :last_name, placeholder: "Last Name", class: "home form-control" %>
-      </div><br>
-
-      <div class="field">
-        <%= f.text_field :timezone, placeholder: "Timezone (-8)", class: "home form-control" %>
       </div><br>
 
       <div class="field">
@@ -63,6 +60,38 @@
         <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation", class: "home form-control" %>
       </div><br>
 
+      <div class="field" id="time-zone-select">
+        <select name="user[timezone]">
+          <option value="-12" >(GMT -12:00) Eniwetok, Kwajalein</option>
+                <option value="-11" >(GMT -11:00) Midway Island, Samoa</option>
+                <option value="-10" >(GMT -10:00) Hawaii</option>
+                <option value="-9"  >(GMT -9:00) Alaska</option>
+                <option value="-8" selected="selected" >(GMT -8:00) Pacific Time </option>
+                <option value="-7"  >(GMT -7:00) Mountain Time</option>
+                <option value="-6"  >(GMT -6:00) Central Time </option>
+                <option value="-5"  >(GMT -5:00) Eastern Time </option>
+                <option value="-4"  >(GMT -4:00) Atlantic Time </option>
+                <option value="-3"  >(GMT -3:00) Brazil</option>
+                <option value="-2"  >(GMT -2:00) Mid-Atlantic</option>
+                <option value="-1"  >(GMT -1:00 hour) Azores</option>
+                <option value="0"  >(GMT) London</option>
+                <option value="1"   >(GMT +1:00 hour) Brussels</option>
+                <option value="2"   >(GMT +2:00) Kaliningrad </option>
+                <option value="3"   >(GMT +3:00) Baghdad, Riyadh</option>
+                <option value="4"   >(GMT +4:00) Abu Dhabi, Muscat</option>
+                <option value="5"   >(GMT +5:00) Islamabad</option>
+                <option value="6"   >(GMT +6:00) Almaty, Dhaka</option>
+                <option value="7"   >(GMT +7:00) Bangkok</option>
+                <option value="8"   >(GMT +8:00) Singapore, Hong Kong</option>
+                <option value="9"   >(GMT +9:00) Tokyo, Seoul</option>
+                <option value="10"  >(GMT +10:00) Eastern Australia</option>
+                <option value="11"  >(GMT +11:00) Magadan</option>
+                <option value="12"  >(GMT +12:00) Auckland</option>
+        </select>
+      </div><br>
+
+        <!-- <a id="notifications-click"> Add notifications </a> -->
+
       <div class="actions">
         <%= f.submit "Sign up", class: "btn btn-success" %>
       </div><br>
@@ -78,3 +107,4 @@
   <%= link_to image_tag("/fb_login.png"), user_omniauth_authorize_path(:facebook), class: "fb-login" %>
   </center>
 </div>
+</body>
