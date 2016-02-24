@@ -92,14 +92,26 @@ body {
   color: $our-cream;
 }
 
+#logo:active {
+  color: #ff7003; // orange color
+}
+
 #landing-header{
   font-size: 6em;
   align: center;
   color: #FF7003;
   font-family: 'Oswald';
 }
+
 #landing-description{
   font-size: 2em;
   align: center;
   color: #F0EADF;
 }
+
+.add-workout-template-logo {
+  height: 22px;
+  width: 20px;
+}
+
+
