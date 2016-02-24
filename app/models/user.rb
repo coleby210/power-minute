@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.first_name   # assuming the user model has a name
       user.last_name = auth.info.last_name
-      user.timezone = auth.info.timezone
+      user.timezone = auth.extra.raw_info.timezone
     end
   end
 
