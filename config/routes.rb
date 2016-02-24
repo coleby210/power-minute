@@ -15,12 +15,8 @@ Rails.application.routes.draw do
   get "/users/:id/31", to: "users#get_31"
   get "/users/:id/all_time", to: "users#get_all_time"
   get "/schedule", to: "users#schedule"
-
   put "/users/:id/schedule/day/:day_id", to: "days#update"
   patch "/groupsadmin", to: "groups#update_admin"
-
-  post 'twilio/voice' => 'twilio#voice'
-  post 'notifications/notify' => 'notifications#notify'
 
   resources :categories
   resources :workout_templates
