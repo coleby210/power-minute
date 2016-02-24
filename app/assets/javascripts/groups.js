@@ -5,7 +5,6 @@ $(document).ready(function(){
     e.preventDefault();
     $( this ).hide();
     var url = $( this ).parent().attr('href');
-    debugger;
     var obj = $( this ).parent()
     $.get(url, function(response){
       console.log(response);
