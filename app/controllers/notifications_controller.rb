@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
 
     def notify
         client = TwilioClient.new
-        result = client.notify
+        result = client.notify_weekly
         render plain: result.status
     end
 end
