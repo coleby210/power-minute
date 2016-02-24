@@ -20,6 +20,10 @@ class WorkoutTemplatesController < ApplicationController
     end
   end
 
+  def edit
+    @workout_template = WorkoutTemplate.find(params[:id])
+  end
+
   def create
     @workout_template = current_user.workout_templates.new(workout_template_params)
 
@@ -32,6 +36,12 @@ class WorkoutTemplatesController < ApplicationController
       flash[:error] = @workout_template.errors.full_messages
       render 'new'
     end
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private

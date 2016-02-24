@@ -7,7 +7,6 @@
 </div>
 
 <h2>My created workouts </h2>
-<br>
 
 <h4>Public workouts you created</h4>
 <table class = "table table-hover">
@@ -15,6 +14,7 @@
     <th class="table-header" style="font-weight: bold">No</th>
     <th class="table-header" style="font-weight: bold">Name</th>
     <th>Description</th>
+    <th>Category</th>
     <th class="table-header" style="font-weight: bold">Edit</th>
     <th class="table-header" style="font-weight: bold">Remove</th>
   </tr>
@@ -28,8 +28,15 @@
         <% end %>
       </td>
       <td><%= workout_template.description %></td>
-      <td> Edit </td>
-      <td> Remove </td>
+      <th><%= workout_template.category.name %></th>
+      <td>
+        <%= link_to edit_workout_template_path(workout_template) do %>
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        <% end %>
+      </td>
+      <td>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      </td>
     </tr>
   <% end %>
 </table>
@@ -41,6 +48,7 @@
     <th class="table-header" style="font-weight: bold">No</th>
     <th class="table-header" style="font-weight: bold">Name</th>
     <th>Description</th>
+    <th>Category</th>
     <th class="table-header" style="font-weight: bold">Edit</th>
     <th class="table-header" style="font-weight: bold">Remove</th>
   </tr>
@@ -53,8 +61,15 @@
         <% end %>
       </td>
       <td><%= workout_template.description %></td>
-      <td> Edit </td>
-      <td> Remove </td>
+      <td><%= workout_template.category.name %></td>
+      <td>
+        <%= link_to edit_workout_template_path(workout_template) do %>
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        <% end %>
+      </td>
+      <td>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      </td>
     </tr>
   <% end %>
 </table>
