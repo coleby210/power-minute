@@ -33,9 +33,12 @@
               <span class="icon-bar"></span>
             </button>
     <!--         <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a> -->
-            <a class="navbar-brand nav-btn-color" href="/workout_templates/new">+</a>
+
+    <!-- <img class="add-workout-template-logo" src="/assets/add-workout-template.png" /> -->
+            <a class="navbar-brand nav-btn-color" href="/users/<%= current_user.id %>/workout_templates"><img class="add-workout-template-logo" src="/assets/add-workout-template.png" onmouseover="this.src='/assets/add-workout-template-hover.png'" onmouseout="this.src='/assets/add-workout-template.png'" /></a>
             <a class="navbar-brand nav-btn-color" href= <%= "/users/#{current_user.id}/favorites" %>><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></a>
             <a class="navbar-brand nav-btn-color" id="logo" href="/">POWER MINUTE</a>
+
           </div>
 
           <div id="navbar" class="navbar-collapse collapse">

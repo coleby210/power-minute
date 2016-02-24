@@ -88,6 +88,10 @@ body {
   color: $our-cream;
 }
 
+#logo:active {
+  color: #ff7003; // orange color
+}
+
 #landing-header{
   font-size: 6em;
   align: center;
@@ -99,3 +103,11 @@ body {
   align: center;
   color: #F0EADF;
 }
+
+.add-workout-template-logo {
+  height: 22px;
+  width: 20px;
+  //background:transparent url('assets/add-workout-template.png') center top no-repeat;
+}
+
+

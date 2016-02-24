@@ -1,0 +1,13 @@
+<h2>My created workouts </h2>
+<br>
+
+<h4>Public workouts you created</h4>
+<% @user_created_workout_templates_public.each do |workout_template| %>
+<%= workout_template.title %><br>
+<% end %>
+
+<br><br>
+<h4>Private workouts you created</h4>
+<% @user_created_workout_templates_private.each do |workout_template| %>
+<%= workout_template.title %><br>
+<% end %>
