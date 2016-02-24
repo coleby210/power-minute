@@ -1,17 +1,61 @@
 <h2>Create a new workout</h2>
-<button class="btn btn-success">Create a new workout</button>
-<br>
+
+<div class="create-workout-template-form">
+<%= link_to new_workout_template_path, class:"link-create-workout-template" do %>
+  <button class="btn btn-success create-workout-template-btn">Create a new workout</button>
+<% end %>
+</div>
 
 <h2>My created workouts </h2>
 <br>
 
 <h4>Public workouts you created</h4>
-<% @user_created_workout_templates_public.each do |workout_template| %>
-<%= workout_template.title %><br>
-<% end %>
+<table class = "table table-hover">
+  <tr>
+    <th class="table-header" style="font-weight: bold">No</th>
+    <th class="table-header" style="font-weight: bold">Name</th>
+    <th>Description</th>
+    <th class="table-header" style="font-weight: bold">Edit</th>
+    <th class="table-header" style="font-weight: bold">Remove</th>
+  </tr>
 
-<br><br>
+  <% @user_created_workout_templates_public.each do |workout_template| %>
+    <tr>
+      <td><%= workout_template.id %></td>
+      <td>
+        <%= link_to workout_template_path(workout_template), class: "created-workout" do %>
+          <%= workout_template.title %>
+        <% end %>
+      </td>
+      <td><%= workout_template.description %></td>
+      <td> Edit </td>
+      <td> Remove </td>
+    </tr>
+  <% end %>
+</table>
+<br>
+
 <h4>Private workouts you created</h4>
-<% @user_created_workout_templates_private.each do |workout_template| %>
-<%= workout_template.title %><br>
-<% end %>
+<table class = "table table-hover">
+  <tr>
+    <th class="table-header" style="font-weight: bold">No</th>
+    <th class="table-header" style="font-weight: bold">Name</th>
+    <th>Description</th>
+    <th class="table-header" style="font-weight: bold">Edit</th>
+    <th class="table-header" style="font-weight: bold">Remove</th>
+  </tr>
+  <% @user_created_workout_templates_private.each do |workout_template| %>
+    <tr>
+      <td><%= workout_template.id %></td>
+      <td>
+        <%= link_to workout_template_path(workout_template), class: "created-workout" do %>
+          <%= workout_template.title %>
+        <% end %>
+      </td>
+      <td><%= workout_template.description %></td>
+      <td> Edit </td>
+      <td> Remove </td>
+    </tr>
+  <% end %>
+</table>
+

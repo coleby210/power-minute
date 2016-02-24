@@ -13,6 +13,11 @@ class WorkoutTemplatesController < ApplicationController
 
   def new
     @workout_template = current_user.workout_templates.new
+    if request.xhr?
+      render partial: 'form', layout: false
+    else
+      render 'new'
+    end
   end
 
   def create
