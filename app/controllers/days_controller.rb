@@ -1,4 +1,5 @@
 class DaysController < ApplicationController
+  include TwilioHelper
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
 
@@ -21,6 +22,7 @@ class DaysController < ApplicationController
     end
     today.save
 
+    send_sms(current_user.phone_number, "You have updated your schedule for today! To edit it, visit: http://power-minute.com/schedule")
     redirect_to "/schedule"
   end
 
