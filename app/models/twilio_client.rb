@@ -38,9 +38,10 @@ class TwilioClient
             "18": "eighteen",
             "19": "nineteen",
             "20": "twenty",
-            "21": "twenty-one",
-            "22": "twenty-two",
-            "23": "twenty-three"
+            "21": "twentyone",
+            "22": "twentytwo",
+            "23": "twentythree",
+            "24": "twentyfour"
         }
 
         all_users.each do |user|
