@@ -1,3 +1,8 @@
+<% if @groupmembers.include?(current_user) == false && @group.private_status == true %>
+<h2> You must be a member of this group to view this page. Please contact the group's admin to be added to the group </h2>
+
+<% else%>
+
 <h2 class="table-title"><%= @group.name %>
   <% if current_user.is_group_admin?(@group) %>
     <a href=<%="/groups/#{@group.id}/edit"%>><button class="btn btn-info">Edit Group</button></a>
@@ -82,6 +87,7 @@
   <% end %>
 <% else %>
   <h3>You must be a member of this group to comment... </h3>
+<% end %>
 <% end %>
 
 

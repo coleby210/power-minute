@@ -60,8 +60,8 @@ class User < ActiveRecord::Base
 
   def number_of_workouts_per_day
     daily_workouts = {}
-    first_workout = (self.workouts.first.created_at).to_date
-    @total_workouts = self.workouts
+    @total_workouts = self.workouts.order(created_at: :ASC)
+    first_workout = (@total_workouts.first.created_at).to_date
     while (first_workout <= Date.today)
       daily_workouts[first_workout] =  @total_workouts.where("created_at >= ? AND created_at < ?", first_workout, first_workout + 1).length
       first_workout += 1;

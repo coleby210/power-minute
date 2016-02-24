@@ -4,6 +4,10 @@ class GroupsController < ApplicationController
 
   def new
     @group = current_user.groups.new
+    if request.xhr?
+      p "*" * 30
+      render :new, layout: false
+    end
   end
 
   def index
@@ -23,7 +27,7 @@ class GroupsController < ApplicationController
       GroupsUser.create(member_id: current_user.id, group_id: @group.id)
       redirect_to @group
     else
-      render 'new'
+      render 'new', layout: false
     end
   end
 
@@ -62,7 +66,7 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    input_hash = params.require(:group).permit(:name, :picture, :admin_id)
+    input_hash = params.require(:group).permit(:name, :picture, :admin_id, :private_status)
     input_hash[:admin_id] = current_user.id
     input_hash
   end
