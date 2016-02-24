@@ -1,4 +1,4 @@
-class TwilioClient
+    class TwilioClient
     require 'twilio-ruby'
 
     def initialize
