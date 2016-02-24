@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   put "/users/:id/schedule/day/:day_id", to: "days#update"
   patch "/groupsadmin", to: "groups#update_admin"
 
-  post '/workouts/:id/tagged', to: "workouts#tagged"
   post 'twilio/voice' => 'twilio#voice'
   post 'notifications/notify' => 'notifications#notify'
 
