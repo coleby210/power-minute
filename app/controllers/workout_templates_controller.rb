@@ -35,17 +35,17 @@ class WorkoutTemplatesController < ApplicationController
     input_hash = params.require(:workout_template).permit(:title, :description, :image)
     category = Category.find_by(name: "#{params[:category]}");
 
-    # unless category.nil?
-    #   input_hash[:category_id] = category.id
-    # else
-    #   errors.add(:category_id, "needs to be selected")
-    # end
+    unless category.nil?
+      input_hash[:category_id] = category.id
+    else
+      # errors.add(:category_id, "needs to be selected")
+    end
 
-    # unless params[:private_status].nil?
-    #   input_hash[:private_status] = params[:private_status]
-    # else
-    #   error.add(:private_status, "needs to be selected")
-    # end
+    unless params[:private_status].nil?
+      input_hash[:private_status] = params[:private_status]
+    else
+      # error.add(:private_status, "needs to be selected")
+    end
 
     input_hash
   end
