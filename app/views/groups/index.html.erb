@@ -1,11 +1,21 @@
 
-<h1><%= "#{current_user.first_name}'s Groups" %></h1>
+<h1><%= "My Groups" %></h1>
 
-<ul>
+<table style="width: 60%" class = "sortable">
+  <tr>
+    <th>Group Name</th>
+    <th>Number of Members</th>
+    <th> Privacy Settings </th>
+  </tr>
 <% @groups.each do |group| %>
-  <li><a href=<%= "/groups/#{group.id}" %>><%= group.name %></a></li>
+  <tr>
+    <td><h4><a href=<%= "/groups/#{group.id}" %>><%= group.name %></h4></td>
+    <td> <%=group.members.length%> </td>
+    <td> <%= if group.private_status
+      "Private" else "Public" end%> </td>
+  </tr>
 <% end %>
-</ul>
+</table>
 
 <br>
 <br>
