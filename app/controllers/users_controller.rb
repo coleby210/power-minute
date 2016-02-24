@@ -24,19 +24,39 @@ class UsersController < ApplicationController
     render :top_performers
   end
 
-  def get_7
+  def get_7_pie
     @user = User.find(params[:id])
     render :json => @user.sort_most_common_categories(7)
   end
 
-  def get_31
+  def get_31_pie
     @user = User.find(params[:id])
     render :json => @user.sort_most_common_categories(31)
   end
 
-  def get_all_time
+  def get_all_time_pie
     @user = User.find(params[:id])
     render :json => @user.sort_most_common_categories(1000)
+  end
+
+  def get_7_bar
+    @user = User.find(params[:id])
+    first_workout = Date.today - 7
+    render :json => @user.number_of_workouts_per_day(first_workout, 1)
+  end
+
+  def get_30_bar
+    @user = User.find(params[:id])
+    first_workout = Date.today - 30
+    render :json => @user.number_of_workouts_per_day(30, 3)
+  end
+
+  def get_all_time_bar
+    @user = User.find(params[:id])
+    first_workout = Date.today - 1000
+    Date.today - @user.created_at.to_date > 180 ? jump_time = 30 : jump_time = 7
+
+    render :json => @user.number_of_workouts_per_day(first_workout, jump_time)
   end
 
   def schedule

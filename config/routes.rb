@@ -11,9 +11,12 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get "/top_performers", to: "users#top_users"
-  get "/users/:id/7", to: "users#get_7"
-  get "/users/:id/31", to: "users#get_31"
-  get "/users/:id/all_time", to: "users#get_all_time"
+  get "/users/:id/7/pie", to: "users#get_7_pie"
+  get "/users/:id/31/pie", to: "users#get_31_pie"
+  get "/users/:id/all_time/pie", to: "users#get_all_time_pie"
+  get "/users/:id/7/bar", to: "users#get_7_bar"
+  get "/users/:id/30/bar", to: "users#get_30_bar"
+  get "/users/:id/all_time/bar", to: "users#get_all_time_bar"
   get "/schedule", to: "users#schedule"
 
   put "/users/:id/schedule/day/:day_id", to: "days#update"
