@@ -62,7 +62,7 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    input_hash = params.require(:group).permit(:name, :picture, :admin_id)
+    input_hash = params.require(:group).permit(:name, :picture, :admin_id, :private_status)
     input_hash[:admin_id] = current_user.id
     input_hash
   end
