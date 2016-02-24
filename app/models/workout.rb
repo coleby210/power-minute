@@ -12,5 +12,4 @@ class Workout < ActiveRecord::Base
   def calculate_workout_instances(total_workouts)
     total_workouts.where(workout_template_id: self.workout_template_id).count
   end
-
 end

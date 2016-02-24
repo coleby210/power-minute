@@ -1,18 +1,26 @@
 Rails.application.routes.draw do
-  get 'favorite/index'
 
   devise_for :users, controllers: {
         registrations: 'users/registrations',
         omniauth_callbacks: "users/omniauth_callbacks"
       }
 
+  get 'favorite/index'
   get "users/:id", to: "users#show", as: "profile"
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
+  get "/top_performers", to: "users#top_users"
+  get "/users/:id/7", to: "users#get_7"
+  get "/users/:id/31", to: "users#get_31"
+  get "/users/:id/all_time", to: "users#get_all_time"
+  get "/schedule", to: "users#schedule"
+
+  put "/users/:id/schedule/day/:day_id", to: "days#update"
+  patch "/groupsadmin", to: "groups#update_admin"
+
   post 'twilio/voice' => 'twilio#voice'
   post 'notifications/notify' => 'notifications#notify'
-
 
   resources :categories
   resources :workout_templates
@@ -25,9 +33,6 @@ Rails.application.routes.draw do
   resources :group_comments
 
   root "categories#index"
-
-  get "/top_performers", to: "users#top_users"
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

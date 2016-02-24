@@ -18,13 +18,20 @@
 
 	User.create(first_name: 'Cole', last_name: "Kent", timezone: "-6", email: 'cole@power-minute.com', password: '12345678')
 
+	User.all.each do |user|
+		schedule = Schedule.create(user_id: user.id)
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    days.each do |day|
+      Day.create(name: day, schedule_id: schedule.id)
+    end
+	end
 
 	Category.create(name: 'Power')
 	Category.create(name: 'Cardio')
 	Category.create(name: 'Yoga')
 
 	20.times do
-		WorkoutTemplate.create(title: Faker::Company.name, description: Faker::Company.catch_phrase, creator_id: rand(2..6), category_id: rand(1..3))
+		WorkoutTemplate.create(title: Faker::Company.name, description: Faker::Company.catch_phrase, creator_id: rand(2..6), category_id: rand(1..3), private_status: false)
 	end
 
 	200.times do

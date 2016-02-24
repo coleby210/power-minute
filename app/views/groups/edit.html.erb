@@ -3,14 +3,14 @@
 
 <%= form_for @group do |f| %>
   <div class="field">
-    <%= f.text_field :name, placeholder: "Group Name" %>
+    <%= f.text_field :name, placeholder: "Group Name", class: "form-control" %>
   </div>
   <br>
   <div class="field">
-    <%= f.text_field :picture, placeholder: "Group Picture URL" %><br>
+    <%= f.text_field :picture, placeholder: "Group Picture URL", class: "form-control" %><br>
   </div>
   <div class="actions">
-    <%= f.submit "Edit group" %>
+    <%= f.submit "Edit group", class: "btn btn-success" %>
   </div>
 <%end%>
 
@@ -18,5 +18,21 @@
 <br>
 <br>
 
+Appoint New Admin:
+
+  <form method="POST" action="/groupsadmin">
+    <input name="_method" type="hidden" value="patch"/>
+    <input type="hidden" name="group_id" value=<%="#{@group.id}"%> >
+    <input type="text" name="new_user_email" placeholder="enter user email", class="form-control inline">
+    <input type="submit" class="btn btn-success">
+  </form>
+
+<br>
+<br>
+<br>
+
 Delete Group:
-  <form method="POST" action = <%= "/groups/#{@group.id}"%>> <input name="_method" type="hidden" value="delete"/> <input type = "submit" value = "Delete Group"> </form>
+  <form method="POST" action=<%= "/groups/#{@group.id}"%>>
+    <input name="_method" type="hidden" value="delete"/>
+    <input type="submit" value="Delete Group", class="btn btn-danger">
+  </form>

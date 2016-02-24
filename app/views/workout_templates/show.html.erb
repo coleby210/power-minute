@@ -1,13 +1,30 @@
 <h1><%= @workout_template.title %></h1>
+
 <div class="timer">
   <div id="example-timer"></div>
 </div>
+<audio class="audioDemo" controls preload="none">
+   <source src="/eye_60s.mp3" type="audio/mpeg">
+</audio>
 <br>
 <div id="log-workout">
   <%= form_for :workouts, url: workouts_path, method: :post do |f| %>
     <%= f.hidden_field :workout_template_id, value: params[:id] %>
     <%= f.submit "Log Workout", class: "btn btn-success" %>
   <% end %>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.power-minute.com/users/<%=current_user.id%>" data-text="I just completed a minute of <%=@workout_template.title%> on Power Minute! Check out my profile at:" data-dnt="true">Tweet</a>
+  <script>
+    !function(d,s,id){
+    var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+      if(!d.getElementById(id)){
+        js=d.createElement(s);
+        js.id=id;
+        js.src=p+'://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js,fjs);
+      }
+    }
+  (document, 'script', 'twitter-wjs');
+  </script>
 </div>
 
 <p><%= @workout_template.description %></p>

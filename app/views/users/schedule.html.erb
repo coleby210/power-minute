@@ -1,0 +1,26 @@
+<h1>Schedule</h1>
+<% @days.each do |day| %>
+<div class="week-day" id="<%= day.name %>">
+  <h4><%= day.name %></h4>
+  <form action=<%= "/users/#{current_user.id}/schedule/day/#{day.id}" %> method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <% @hours.each_with_index do |hour, index| %>
+      <% if index < 10 %>
+        <% if day[hour] == true %>
+          0<%= index %>:00 - <input class="check" type="checkbox" name="day[]" value=<%= "#{hour}" %> checked><br>
+        <% else %>
+          0<%= index %>:00 - <input class="check" type="checkbox" name="day[]" value=<%= "#{hour}" %>><br>
+        <% end %>
+      <% else %>
+        <% if day[hour] == true %>
+          <%= index %>:00 - <input class="check" type="checkbox" name="day[]" value=<%= "#{hour}" %> checked><br>
+        <% else %>
+          <%= index %>:00 - <input class="check" type="checkbox" name="day[]" value=<%= "#{hour}" %>><br>
+        <% end %>
+      <% end %>
+    <% end %>
+    <input type="submit" class="btn btn-success daybreak">
+  </form>
+</div>
+<% end %>
+
