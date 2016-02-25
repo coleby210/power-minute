@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160224010420) do
   create_table "days", force: :cascade do |t|
     t.integer  "schedule_id"
     t.string   "name"
+    t.boolean  "zero",        default: false
     t.boolean  "one",         default: false
     t.boolean  "two",         default: false
     t.boolean  "three",       default: false
@@ -48,7 +49,6 @@ ActiveRecord::Schema.define(version: 20160224010420) do
     t.boolean  "twentyone",   default: false
     t.boolean  "twentytwo",   default: false
     t.boolean  "twentythree", default: false
-    t.boolean  "twentyfour",  default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
