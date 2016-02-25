@@ -42,8 +42,7 @@ class WorkoutTemplatesController < ApplicationController
 
   def update
     @workout_template = WorkoutTemplate.find(params[:id])
-    p "-----------------PARAMS--------------"
-    p params
+    
     if @workout_template.update(workout_template_params)
       if params[:favorite_status] == "true"
         current_user.favorites.create(workout_template_id: @workout_template.id)
