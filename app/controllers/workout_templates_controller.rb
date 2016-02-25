@@ -9,6 +9,13 @@ class WorkoutTemplatesController < ApplicationController
   def show
     @workout_template = WorkoutTemplate.find(params[:id])
     @category = @workout_template.category
+    @user_friends = []
+    @user_groups = current_user.groups.each do |group|
+      group.members.each do |member|
+        @user_friends << member
+      end
+    end
+    @user_friends.uniq!.delete(current_user)
   end
 
   def new

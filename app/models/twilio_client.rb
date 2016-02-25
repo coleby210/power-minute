@@ -46,8 +46,8 @@
 
         all_users.each do |user|
             user.schedule.days.each do |day|
-                if day.name == Date.today.strftime('%A')
-                    current_hour = Time.now.hour.to_s
+                if day.name == DateTime.now.in_time_zone().strftime('%A')
+                    current_hour = DateTime.now.in_time_zone().hour.to_s
                     if day[hours[:"#{current_hour}"]]
                         @client.messages.create(
                             from: '+16508352013',
