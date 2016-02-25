@@ -10,7 +10,12 @@ class WorkoutTemplatesController < ApplicationController
     @workout_template = WorkoutTemplate.find(params[:id])
     @category = @workout_template.category
     @user_friends = []
-    @user_groups = current_user.groups.each do |group|
+    usergroups = GroupsUser.where(member_id: current_user.id)
+    user_groups = []
+    usergroups.each do |groupuser|
+      user_groups << Group.find(groupuser.group_id)
+    end
+    user_groups.each do |group|
       group.members.each do |member|
         @user_friends << member if member != current_user
       end
