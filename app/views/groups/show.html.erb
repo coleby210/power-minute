@@ -47,12 +47,25 @@
   <% end %>
 </table>
 <% if current_user.is_group_admin?(@group) %>
-  Add New User:
+ <button id="new-user-button" class="btn btn-success"> Add New User </button>
+<div id="add-user-form" style="display:none">
+  <br>
+  <br>
+  Add New User By Email:
   <form method="POST" action="/groups_user">
     <input type="hidden" name="group_id" value=<%="#{@group.id}"%> >
     <input type="text" name="new_user_email" placeholder="enter user email", class="form-control inline">
     <input type="submit" class="btn btn-success">
   </form>
+  Add New User By Full Name:
+  <form method="POST" action="/groups_user">
+    <input type="hidden" name="group_id" value=<%="#{@group.id}"%> >
+    <input type="text" name="new_user_first" placeholder="First Name", class="form-control inline">
+    <input type="text" name="new_user_last" placeholder="Last Name", class="form-control inline">
+    <input type="submit" class="btn btn-success">
+  </form>
+</div>
+
 <% end %>
 <br>
 <br>

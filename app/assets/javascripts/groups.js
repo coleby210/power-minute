@@ -1,6 +1,12 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).ready(function(){
+  $("#new-user-button").on('click',function(e){
+    e.preventDefault();
+    $("#add-user-form").css('display','initial');
+  })
+
+
   $("div").on('click', '#create-group', function(e){
     e.preventDefault();
     $( this ).hide();
