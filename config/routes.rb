@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get "/schedule", to: "users#schedule"
   get "/user_log", to: "users#log"
   get '/users/:id/workout_templates', to: 'workout_templates#index', as:'user_workout_templates'
+  get '/help', to: 'application#help'
 
   put "/users/:id/schedule/day/:day_id", to: "days#update"
   patch "/groupsadmin", to: "groups#update_admin"
