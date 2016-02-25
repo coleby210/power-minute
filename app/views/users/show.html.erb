@@ -1,5 +1,3 @@
-
-
 <h1 id="profile-title"><%= "#{@user.first_name}'s Stats" %></h1>
 <% if @user.workouts.length > 0 %>
   <% if current_user == @user %>
@@ -29,63 +27,87 @@
     <th id="profile-main-header" colspan="3" > Total Power Minutes </th>
   </tr>
   <tr>
-    <th class="profile-column-header column-7 #{@user.id}" id="last-7-header"> Last 7 </th>
-    <th class="profile-column-header column-31" id="last-31-header"> Last 31 </th>
-    <th class="profile-column-header column-all-time" id="all-time-header"> All Time </th>
+    <th class="profile-column-header column-7-pie #{@user.id}" id="last-7-header"> Last 7 </th>
+    <th class="profile-column-header column-31-pie" id="last-31-header"> Last 31 </th>
+    <th class="profile-column-header column-all-time-pie" id="all-time-header"> All Time </th>
   </tr>
   <tr>
-    <td class="profile-data column-7" id="last-7-stats"><%= @user.calculate_number_of_workouts(7) %></td>
-    <td class="profile-data column-31" id="last-31-stats"><%= @user.calculate_number_of_workouts(31) %></td>
-    <td class="profile-data column-all-time" id="all-time-stats"><%= @user.workouts.length %></td>
+    <td class="profile-data column-7-pie" id="last-7-stats"><%= @user.calculate_number_of_workouts(7) %></td>
+    <td class="profile-data column-31-pie" id="last-31-stats"><%= @user.calculate_number_of_workouts(31) %></td>
+    <td class="profile-data column-all-time-pie" id="all-time-stats"><%= @user.workouts.length %></td>
   </tr>
   <tr>
-    <td class="profile-data-change column-7 #{@user.id}" id="last-7-stats"><%= @user.calculate_change_in_workout_frequency(7,14) + " WoW" %></td>
-    <td class="profile-data-change column-31" id="last-31-stats"><%= @user.calculate_change_in_workout_frequency(31,62)+" WoW" %></td>
-    <td class="profile-data-change column-all-time" id="all-time-stats"></td>
+    <td class="profile-data-change column-7-pie #{@user.id}" id="last-7-stats"><%= @user.calculate_change_in_workout_frequency(7,14) + " WoW" %></td>
+    <td class="profile-data-change column-31-pie" id="last-31-stats"><%= @user.calculate_change_in_workout_frequency(31,62)+" WoW" %></td>
+    <td class="profile-data-change column-all-time-pie" id="all-time-stats"></td>
   </tr>
 </table>
 
 <div id="pie-chart-div">
   <h1>Your top workouts by categories</h1>
   <canvas id="myChart" width="380" height="400"></canvas>
+  <script>
+    url = window.location.pathname;
+    $.get(url+"/7/pie", function( data ){
+      $("#myChart").remove();
+      $("#pie-chart-div").append('<canvas id="myChart" width="380" height="400"></canvas>')
+      var ctx2 = document.getElementById("myChart").getContext("2d");
+
+      data = [
+        {
+          value: data["Cardio"],
+          color: "#F32C31",
+          label: "Cardio"
+        },
+        {
+          value: data["Yoga"],
+          color: "#F0EADF",
+          label: "Yoga"
+        },
+        {
+          value: data["Power"],
+          color: "#3F4045",
+          label: "Power"
+        }
+      ]
+      var myPieChart = new Chart(ctx2).Pie(data);
+    });
+  </script>
 </div>
 
 <div id="top-workouts-chart">
 
-<canvas id="myLineChart" width="317" height="250"></canvas><br><br><br>
+<canvas id="myLineChart" width="400" height="300"></canvas>
   <script>
-    var ctx1 = document.getElementById("myLineChart").getContext("2d");
-    var data1 = {
-      labels: [
-                <% @user.number_of_workouts_per_day.each_with_index do |(key, value), index| %>
-                  <% if index != @user.number_of_workouts_per_day.keys.length - 1 %>
-                    "<%= key.to_s %>",
-                  <% else %>
-                    "<%= key.to_s %>"
-                  <% end %>
-                <% end %>],
-      datasets: [
+    url = window.location.pathname;
+    $.get(url+"/7/bar", function( data ){
+      $("#myLineChart").remove();
+      $("#top-workouts-chart").append('<canvas id="myLineChart" width="400" height="300"></canvas>')
+      var ctx1 = document.getElementById("myLineChart").getContext("2d");
+      var data1 = {
+        labels: [
+          <% @user.number_of_workouts_per_day(Date.today - 30, 3).each_with_index do |(key, value), index| %>
+            <% if index != @user.number_of_workouts_per_day(Date.today - 30, 3).keys.length - 1 %>
+              "<%= key.to_s %>",
+            <% else %>
+              "<%= key.to_s %>"
+            <% end %>
+          <% end %>],
+        datasets: [
           {
-              label: "My First dataset",
-              fillColor: "rgba(220,220,220,0.2)",
-              strokeColor: "rgba(220,220,220,1)",
-              pointColor: "rgba(220,220,220,1)",
-              pointStrokeColor: "#fff",
-              pointHighlightFill: "#fff",
-              pointHighlightStroke: "rgba(220,220,220,1)",
-              data: <%= "#{@user.number_of_workouts_per_day.values}" %>
+            label: "My First dataset",
+            fillColor: "#F32C31",
+            strokeColor: "rgba(243,44,49,.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: <%= "#{@user.number_of_workouts_per_day(Date.today - 30, 3).values}" %>
           }
-      ]
-  };
-
+        ]
+      };
     var myLineChart = new Chart(ctx1).Bar(data1);
-
+    });
   </script>
 </div>
-
-
-
-
 
   <h3> All Time </h3>
   <%= "Total workouts: #{@total_workouts.length}" %>

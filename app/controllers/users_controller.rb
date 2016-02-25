@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :verify_user
   def show
     @user = User.find(params[:id])
-    @total_workouts = @user.workouts
+    @total_workouts = @user.workouts.order(created_at: :ASC)
     @distinct_workouts = @total_workouts.select(:workout_template_id).distinct
     if request.xhr?
       render :json => [@user.sort_most_common_categories(7),@user.sort_most_common_categories(31),sort_most_common_categories(1000).to_json]
@@ -20,22 +20,48 @@ class UsersController < ApplicationController
     render :log
   end
 
-  def get_7
+
+  def get_7_pie
     @user = User.find(params[:id])
     render :json => @user.sort_most_common_categories(7)
   end
 
-  def get_31
+  def get_31_pie
     @user = User.find(params[:id])
     render :json => @user.sort_most_common_categories(31)
   end
 
-  def get_all_time
+  def get_all_time_pie
     @user = User.find(params[:id])
     render :json => @user.sort_most_common_categories(1000)
   end
 
+  def get_7_bar
+    @user = User.find(params[:id])
+    first_workout = Date.today - 7
+    render :json => @user.number_of_workouts_per_day(first_workout, 1)
+  end
 
+  def get_30_bar
+    @user = User.find(params[:id])
+    first_workout = Date.today - 30
+    render :json => @user.number_of_workouts_per_day(first_workout, 3)
+  end
+
+  def get_all_time_bar
+    @user = User.find(params[:id])
+    @total_workouts = @user.workouts.order(created_at: :ASC)
+    if Date.today - 1000 > @total_workouts.first.created_at.to_date
+      first_workout = Date.today - 1000
+    else
+      first_workout = @total_workouts.first.created_at.to_date
+    end
+
+
+    Date.today - @user.created_at.to_date > 180 ? jump_time = 30 : jump_time = 7
+
+    render :json => @user.number_of_workouts_per_day(first_workout, jump_time)
+  end
 
   def schedule
     @hours = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "twentyone", "twentytwo", "twentythree", "twentyfour"]

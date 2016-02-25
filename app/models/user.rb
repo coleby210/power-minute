@@ -58,13 +58,32 @@ class User < ActiveRecord::Base
     Hash[@completed_categories.sort_by{|k,v| v}.reverse]
   end
 
-  def number_of_workouts_per_day
+  def number_of_workouts_per_day(first_workout, jump_time)
     daily_workouts = {}
-    @total_workouts = self.workouts.order(created_at: :ASC)
-    first_workout = (@total_workouts.first.created_at).to_date
-    while (first_workout <= Date.today)
-      daily_workouts[first_workout] =  @total_workouts.where("created_at >= ? AND created_at < ?", first_workout, first_workout + 1).length
-      first_workout += 1;
+    @total_workouts = self.workouts.where("created_at > ?", first_workout).order(created_at: :ASC)
+    last_workout = first_workout + jump_time
+
+    @total_workouts.each_with_index do |workout,index|
+      if (daily_workouts.has_key?("#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}")) && (workout.created_at.to_date < last_workout)
+        daily_workouts["#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}"] += 1
+      else
+        first_workout += jump_time unless index == 0
+        last_workout += jump_time unless index == 0
+        daily_workouts["#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}"] = 1
+      end
+    end
+
+    if last_workout < Date.today
+      while last_workout <= Date.today
+        unless daily_workouts["#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}"]
+          daily_workouts["#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}"] = 0
+        end
+        if last_workout + jump_time > Date.today
+          daily_workouts["#{last_workout.strftime('%m-%d')}" + "-" + "#{Date.today.strftime('%m-%d')}"] = 0
+        end
+        last_workout += jump_time
+        first_workout += jump_time
+      end
     end
 
     daily_workouts
