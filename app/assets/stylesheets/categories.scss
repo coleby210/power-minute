@@ -6,15 +6,89 @@
   color: #3F4045; // grey color
 }
 
-@media screen and (max-width: 991px) {
+// for small and mobile screens
+// max-width: 991px
+@media screen and (max-width: 766px) {
   .category-index-tile {
     padding: 30px;
+    padding-left: 30px;
+  }
+
+  .category-favorites {
+    background-image: url('/assets/favorites-small.png');
+    background-size: 100% auto;
+  }
+
+  .category-power {
+      background-image: url('/assets/power-small.jpg');
+      background-size: 100% auto;
+    }
+
+  .category-cardio {
+      background-image: url('/assets/cardio.jpg');
+      background-size: 100% auto;
+    }
+
+  .category-yoga {
+    background-image: url('/assets/yoga-small.jpg');
+    background-size: 100% auto;
+  }
+
+}
+
+// for medium screens
+@media screen and (max-width: 990px) and (min-width: 767px) {
+  .category-index-tile {
+    padding: 80px;
+    padding-left: 30px;
+  }
+
+  .category-favorites {
+    background-image: url('/assets/favorites-medium.png');
+  }
+
+  .category-power {
+    background-image: url('/assets/power-medium-large.jpg');
+    background-size: 100% auto;
+  }
+
+  .category-cardio {
+      background-image: url('/assets/cardio.jpg');
+      background-size: 100% auto;
+    }
+
+  .category-yoga {
+    background-image: url('/assets/yoga-medium-large.jpg');
+    background-size: 100% auto;
   }
 }
 
+
+// for large screens
 @media screen and (min-width: 992px) {
   .category-index-tile {
-    padding: 80px;
+    padding: 120px;
+    padding-left: 30px;
+  }
+
+  .category-favorites {
+    background-image: url('/assets/favorites-large.png');
+    //background-size: 100% auto;
+  }
+
+  .category-power {
+    background-image: url('/assets/power-medium-large.jpg');
+    background-size: 100% auto;
+  }
+
+  .category-cardio {
+      background-image: url('/assets/cardio.jpg');
+      background-size: 100% auto;
+    }
+
+  .category-yoga {
+    background-image: url('/assets/yoga-medium-large.jpg');
+    background-size: 100% auto;
   }
 }
 
@@ -22,11 +96,13 @@
   font-size: 18px;
   font-weight: 200;
   background-color: #252a40;
+  // background-image: url('/assets/favorites.png');
+  background-repeat: no-repeat;
   margin-bottom: 7px;
 }
 
 a.category-name {
-  color: #F0EADF; // cream color
+  color: white // #F0EADF; // cream color
 }
 
 a.category-name:hover {
@@ -35,7 +111,8 @@ a.category-name:hover {
 }
 
 a.category-name:hover .category-index-tile {
-  background-color: #b30c33;
+  background-image: none;
+  background-color: #ff7003; //orange color
 }
 
 @media screen and (max-width: 991px) {
@@ -78,5 +155,4 @@ a .category-description {
 a .category-description:hover {
   background-color: #ff7003; // orange color
 }
-
 
