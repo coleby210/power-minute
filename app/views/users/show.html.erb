@@ -1,5 +1,3 @@
-
-
 <h1 id="profile-title"><%= "#{@user.first_name}'s Stats" %></h1>
   <div class="profile-social-buttons">
     <div class="fb-share-button" data-href='http://www.power-minute.com/users/<%="#{@user.id}"%>' data-layout="button" style:"float: right"></div>
@@ -47,8 +45,29 @@
   <script>
     url = window.location.pathname;
     $.get(url+"/7/pie", function( data ){
-      renderPieChart(data);
-    })
+      $("#myChart").remove();
+      $("#pie-chart-div").append('<canvas id="myChart" width="380" height="400"></canvas>')
+      var ctx2 = document.getElementById("myChart").getContext("2d");
+
+      data = [
+        {
+          value: data["Cardio"],
+          color: "#F32C31",
+          label: "Cardio"
+        },
+        {
+          value: data["Yoga"],
+          color: "#F0EADF",
+          label: "Yoga"
+        },
+        {
+          value: data["Power"],
+          color: "#3F4045",
+          label: "Power"
+        }
+      ]
+      var myPieChart = new Chart(ctx2).Pie(data);
+    });
   </script>
 </div>
 
@@ -56,30 +75,33 @@
 
 <canvas id="myLineChart" width="400" height="300"></canvas>
   <script>
-    var ctx1 = document.getElementById("myLineChart").getContext("2d");
-    var data1 = {
-      labels: [
-        <% @user.number_of_workouts_per_day(Date.today - 30, 3).each_with_index do |(key, value), index| %>
-          <% if index != @user.number_of_workouts_per_day(Date.today - 30, 3).keys.length - 1 %>
-            "<%= key.to_s %>",
-          <% else %>
-            "<%= key.to_s %>"
-          <% end %>
-        <% end %>],
-      datasets: [
-        {
-          label: "My First dataset",
-          fillColor: "#F32C31",
-          strokeColor: "rgba(243,44,49,.8)",
-          highlightFill: "rgba(151,187,205,0.75)",
-          highlightStroke: "rgba(151,187,205,1)",
-          data: <%= "#{@user.number_of_workouts_per_day(Date.today - 30, 3).values}" %>
-        }
-      ]
-  };
-
+    url = window.location.pathname;
+    $.get(url+"/7/bar", function( data ){
+      $("#myLineChart").remove();
+      $("#top-workouts-chart").append('<canvas id="myLineChart" width="400" height="300"></canvas>')
+      var ctx1 = document.getElementById("myLineChart").getContext("2d");
+      var data1 = {
+        labels: [
+          <% @user.number_of_workouts_per_day(Date.today - 30, 3).each_with_index do |(key, value), index| %>
+            <% if index != @user.number_of_workouts_per_day(Date.today - 30, 3).keys.length - 1 %>
+              "<%= key.to_s %>",
+            <% else %>
+              "<%= key.to_s %>"
+            <% end %>
+          <% end %>],
+        datasets: [
+          {
+            label: "My First dataset",
+            fillColor: "#F32C31",
+            strokeColor: "rgba(243,44,49,.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: <%= "#{@user.number_of_workouts_per_day(Date.today - 30, 3).values}" %>
+          }
+        ]
+      };
     var myLineChart = new Chart(ctx1).Bar(data1);
-
+    });
   </script>
 </div>
 

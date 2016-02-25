@@ -75,9 +75,9 @@ class User < ActiveRecord::Base
 
     if last_workout < Date.today
       while last_workout <= Date.today
-        p '*' * 30
-        p last_workout
-        daily_workouts["#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}"] = 0
+        unless daily_workouts["#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}"]
+          daily_workouts["#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}"] = 0
+        end
         if last_workout + jump_time > Date.today
           daily_workouts["#{last_workout.strftime('%m-%d')}" + "-" + "#{Date.today.strftime('%m-%d')}"] = 0
         end
