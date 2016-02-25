@@ -31,6 +31,7 @@ class WorkoutTemplatesController < ApplicationController
   def edit
     @workout_template = WorkoutTemplate.find(params[:id])
     @categories = Category.all
+    @favorite = current_user.favorites.find_by(workout_template_id: @workout_template.id)
   end
 
   def create

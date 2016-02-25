@@ -29,43 +29,34 @@
     </div>
   <% end %>
 
-<!--   <h4>Which category does your workout belong to:</h4>
-  <div class="field radio">
-    <% if @workout_template.category %>
-      <input type="radio" name="category" value="Power" checked="checked"> Power <br>
-    <% else %>
-      <input type="radio" name="category" value="Power"> Power <br>
-    <% end %>
-
-    <input type="radio" name="category" value="Cardio"> Cardio <br>
-    <input type="radio" name="category" value="Yoga"> Yoga <br>
-  </div> -->
-
   <h4>Would you like your workout to be:</h4>
-    <div class="field radio">
+  <div class="field radio">
+    <% if @workout_template.id %>
       <% if @workout_template.private_status == false %>
         <input type="radio" name="private_status" value="false" checked="checked"> Public <br>
+        <input type="radio" name="private_status" value="true"> Private <br>
       <% else %>
         <input type="radio" name="private_status" value="false"> Public <br>
-      <% end %>
-
-      <% if @workout_template.private_status == true %>
         <input type="radio" name="private_status" value="true" checked="checked"> Private <br>
-      <% else %>
-        <input type="radio" name="private_status" value="true">
-      <% end %> Private <br>
-    </div>
-
-  <!-- <h4>Would you like your workout to be:</h4>
-  <div class="field radio">
-    <input type="radio" name="private_status" value="false"> Public <br>
-    <input type="radio" name="private_status" value="true"> Private <br>
-  </div> -->
+      <% end %>
+    <% else %>
+      <input type="radio" name="private_status" value="false"> Public <br>
+      <input type="radio" name="private_status" value="true"> Private <br>
+    <% end %>
+  </div>
 
   <h4>Would you like to add this workout to your favorites:</h4>
   <div class="field radio">
-    <input type="radio" name="favorite_status" value="true"> Yes <br>
-    <input type="radio" name="favorite_status" value="false"> No <br>
+    <% if @favorite %>
+      <input type="radio" name="favorite_status" value="true" checked="checked"> Yes <br>
+      <input type="radio" name="favorite_status" value="false"> No <br>
+    <% elsif @workout_template.id %>
+      <input type="radio" name="favorite_status" value="true"> Yes <br>
+      <input type="radio" name="favorite_status" value="false" checked="checked"> No <br>
+    <% else %>
+      <input type="radio" name="favorite_status" value="true"> Yes <br>
+      <input type="radio" name="favorite_status" value="false"> No <br>
+    <% end %>
   </div>
 
   <div class="actions">
