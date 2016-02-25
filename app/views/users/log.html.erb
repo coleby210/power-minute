@@ -15,11 +15,12 @@
       <td> <%= workout.created_at.hour + current_user.timezone.to_i %> </td>
       <td> <%= workout.find_workout_template_name %> </td>
       <td>
-          <form method="POST" action=<%= "/workouts/#{workout.id}" %>>
-            <input name="_method" type="hidden" value="delete"/>
-            <input type="submit" value="Delete Workout" class="btn btn-danger">
-          </form>
+           <%= link_to "/workouts/#{workout.id}", method: :delete do %>
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <% end %>
       </td>
     </tr>
   <%end%>
 </table>
+
+

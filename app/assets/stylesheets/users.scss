@@ -69,3 +69,8 @@ form .check {
 .table-header{
   font-weight: bold;
 }
+
+#side-chart-div{
+-webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    float:left}

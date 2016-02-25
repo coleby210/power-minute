@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   get "/users/:id/7/bar", to: "users#get_7_bar"
   get "/users/:id/30/bar", to: "users#get_30_bar"
   get "/users/:id/all_time/bar", to: "users#get_all_time_bar"
+
+  get "/users/:id/7/side", to: "users#get_7_side"
+  get "/users/:id/30/side", to: "users#get_30_side"
+  get "/users/:id/all_time/side", to: "users#get_all_time_side"
   get "/schedule", to: "users#schedule"
   get "/user_log", to: "users#log"
   get '/users/:id/workout_templates', to: 'workout_templates#index', as:'user_workout_templates'

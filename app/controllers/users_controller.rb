@@ -20,6 +20,21 @@ class UsersController < ApplicationController
     render :log
   end
 
+  def get_7_side
+    @user = User.find(params[:id])
+    render :json => @user.sort_most_common_workouts(7)
+  end
+
+  def get_30_side
+    @user = User.find(params[:id])
+    render :json => @user.sort_most_common_workouts(31)
+  end
+
+  def get_all_time_side
+    @user = User.find(params[:id])
+    render :json => @user.sort_most_common_workouts(1000)
+  end
+
 
   def get_7_pie
     @user = User.find(params[:id])

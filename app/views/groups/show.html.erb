@@ -3,37 +3,32 @@
 
 <% else%>
 
-<h2 class="table-title"><%= @group.name %>
+<h1 class="table-title"><%= @group.name %></h1>
   <% if current_user.is_group_admin?(@group) %>
     <a href=<%="/groups/#{@group.id}/edit"%>><button class="btn btn-info">Edit Group</button></a>
     <br>
   <% end %>
-</h2>
-
+<!-- INSERT PROFILE PICTURE HERE -->
 <table class="table table-hover sortable" style="width:100%">
   <tr>
+    <th width="40px"></th>
     <th class="table-header">Name</th>
     <th class="table-header">Last 7 Days</th>
     <th class="table-header">Last 31 Days</th>
     <th class="table-header">All Time</th>
-    <th class="table-header">Today's Workout Times </th>
     <% if current_user.is_group_admin?(@group) %>
     <th class="table-header">Remove User</th>
     <% end %>
   </tr>
   <% @groupmembers.each do |member| %>
     <tr>
+      <td> <img width="60px" src= "<%="#{member.profile_picture}"%>"</td>
       <td><a href=<%="/users/#{member.id}"%>><%= member.first_name + " " + member.last_name %></a></td>
       </td>
       <td><%= member.sort_most_common_workouts(7).values.reduce(:+) %></td>
       </td>
       <td><%= member.sort_most_common_workouts(31).values.reduce(:+) %></td>
-      </td>
       <td><%= member.workouts.length %></td>
-      </td>
-      </td>
-      <td><%= member.schedule %></td>
-      </td>
       <% if current_user.is_group_admin?(@group) %>
         <td>
           <form method="POST" action=<%= "/groups_user/#{member.id}" %>>
