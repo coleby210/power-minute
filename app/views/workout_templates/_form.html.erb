@@ -1,5 +1,3 @@
-<h2> Create a new workout </h2>
-
 <%= form_for @workout_template do |f| %>
   <div class="field">
     <%= f.text_field :title, placeholder: "Title", class: "form-control" %>
@@ -22,21 +20,18 @@
     <input type="radio" name="category" value="Cardio"> Cardio <br>
     <input type="radio" name="category" value="Yoga"> Yoga <br>
   </div>
-  <br>
 
   <h4>Would you like your workout to be:</h4>
   <div class="field radio">
     <input type="radio" name="private_status" value="false"> Public <br>
     <input type="radio" name="private_status" value="true"> Private <br>
   </div>
-  <br>
 
   <h4>Would you like to add this workout to your favorites:</h4>
   <div class="field radio">
     <input type="radio" name="favorite_status" value="true"> Yes <br>
     <input type="radio" name="favorite_status" value="false"> No <br>
   </div>
-  <br>
 
   <div class="actions">
     <%= f.submit "Create new workout", class: "btn btn-success" %>
