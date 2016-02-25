@@ -119,5 +119,10 @@ $(document).ready(function(){
       $(".audioDemo")[0].pause();
     }
   });
+
+  $("#load_preview").click(function(){
+    $("#workout_image").show();
+    $("#load_preview").hide();
+  })
 });
 

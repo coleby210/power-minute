@@ -29,3 +29,17 @@ svg text {
 form .radio {
   margin-left: 1.5em;
 }
+
+@media screen and (max-width: 767px) {
+  #workout_image {
+    width: 320px;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #workout_image {
+    width: 720px;
+    display: none;
+  }
+}
