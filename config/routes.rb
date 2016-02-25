@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         omniauth_callbacks: "users/omniauth_callbacks"
       }
 
-  get 'favorite/index'
+  # get 'favorite/index'
   get "users/:id", to: "users#show", as: "profile"
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get "/users/:id/30/bar", to: "users#get_30_bar"
   get "/users/:id/all_time/bar", to: "users#get_all_time_bar"
   get "/schedule", to: "users#schedule"
+  get "/user_log", to: "users#log"
+  get '/users/:id/workout_templates', to: 'workout_templates#index', as:'user_workout_templates'
 
   put "/users/:id/schedule/day/:day_id", to: "days#update"
   patch "/groupsadmin", to: "groups#update_admin"

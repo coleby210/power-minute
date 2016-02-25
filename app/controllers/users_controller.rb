@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     render :top_performers
   end
 
+  def log
+    @user_workouts = current_user.workouts.order(created_at: :desc )
+    render :log
+  end
+
+
   def get_7_pie
     @user = User.find(params[:id])
     render :json => @user.sort_most_common_categories(7)

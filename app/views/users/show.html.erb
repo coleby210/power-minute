@@ -1,4 +1,6 @@
 <h1 id="profile-title"><%= "#{@user.first_name}'s Stats" %></h1>
+<% if @user.workouts.length > 0 %>
+  <% if current_user == @user %>
   <div class="profile-social-buttons">
     <div class="fb-share-button" data-href='http://www.power-minute.com/users/<%="#{@user.id}"%>' data-layout="button" style:"float: right"></div>
     <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.power-minute.com/users/<%=current_user.id%>" data-text="Check Out My Profile on Power Minute! I'm getting buff:" data-dnt="true">Tweet</a>
@@ -15,7 +17,9 @@
         (document, 'script', 'twitter-wjs');
       </script>
   </div>
-<% if @user.workouts.length > 0 %>
+  <a href="/user_log" style="align:right">Full Workout Log</a>
+  <%end%>
+
 
 
 <table id ="profile-main-table" width="100%" border="1px black" align="center">
