@@ -1,0 +1,25 @@
+<h2> Your Workout Log </h2>
+<table width="80%">
+  <tr>
+    <th> Workout # </th>
+    <th> Date </th>
+    <th> Hour </th>
+    <th> Workout Name </th>
+    <th>Delete Workout? </th>
+  </tr>
+  <% @user_workouts.each_with_index do |workout,index| %>
+    <tr>
+      <td> <%= @user_workouts.length - index  %> </td>
+      <td> <%= workout.created_at.to_date %> </td>
+      <!-- probably wrong logic below-->
+      <td> <%= workout.created_at.hour + current_user.timezone.to_i %> </td>
+      <td> <%= workout.find_workout_template_name %> </td>
+      <td>
+          <form method="POST" action=<%= "/workouts/#{workout.id}" %>>
+            <input name="_method" type="hidden" value="delete"/>
+            <input type="submit" value="Delete Workout" class="btn btn-danger">
+          </form>
+      </td>
+    </tr>
+  <%end%>
+</table>

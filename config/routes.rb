@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/users/:id/31", to: "users#get_31"
   get "/users/:id/all_time", to: "users#get_all_time"
   get "/schedule", to: "users#schedule"
+  get "/user_log", to: "users#log"
 
   put "/users/:id/schedule/day/:day_id", to: "days#update"
   patch "/groupsadmin", to: "groups#update_admin"
