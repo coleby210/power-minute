@@ -45,6 +45,7 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="/users/<%=current_user.id%>">Profile</a></li>
+              <li><a href="/schedule">Schedule</a></li>
               <li><a href="/groups">Groups</a></li>
               <li><a href="/top_performers">Top Performers</a></li>
               <li><%= link_to "Settings", edit_user_registration_path %></li>
@@ -64,7 +65,7 @@
     <%= yield %>
   </div>
   <footer>
-    <div class="footer-div">Copyright Power-Minute.com</div>
+    <div class="footer-div">Copyright &#169; Power-Minute.com</div>
   </footer>
   <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   <!-- add to footer:
