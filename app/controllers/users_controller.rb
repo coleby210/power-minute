@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 
   def get_30_bar
     @user = User.find(params[:id])
-    first_workout = Date.today - 30
+    first_workout = Date.today - 29
     render :json => @user.number_of_workouts_per_day(first_workout, 3)
   end
 
