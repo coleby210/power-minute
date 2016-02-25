@@ -6,6 +6,54 @@ $our-green: #A0B27C;
 $our-gray: #3F4045;
 $our-cream: #F0EADF;
 
+
+
+.pluginButton {
+  padding-bottom: 10px;
+}
+
+#myChart {
+  min-width: 225px;
+  min-height: 225px;
+  max-width: 400px;
+  max-height: 400px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#pie-chart-div, #big-side-chart-div, #top-workouts-chart {
+  padding-bottom: 1em;
+  margin-bottom: 4em;
+  box-shadow: 10px 0px 0px #FFF, -10px -2px 0px #FFF,0px 2px 5px #999;
+}
+
+#mySideChart {
+  max-width: 800px;
+  max-height: 600px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#myLineChart {
+  max-width: 800px;
+  max-height: 600px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#line-chart-header {
+  text-align: center;
+}
+
 .fb-login img {
   height: 3em;
 }
@@ -49,7 +97,6 @@ form .home {
   text-align: center;
   width: 10em;
   height: 39.5em;
-  border: 1px solid black;
   border-radius: .5em;
   display: inline-block;
 }
@@ -69,8 +116,3 @@ form .check {
 .table-header{
   font-weight: bold;
 }
-
-#side-chart-div{
--webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-    float:left}
