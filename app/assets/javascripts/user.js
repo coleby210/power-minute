@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $(".column-7-pie").on('click',function(e){
     e.preventDefault();
-    $(".column-7-pie").css('background-color','#252A40');
+    $(".column-7-pie").css('background-color','#3F4045');
     $(".column-7-pie").css('color','#F0EADF');
     $(".column-31-pie").css('background-color','white');
     $(".column-31-pie").css('color','black');
@@ -23,7 +23,7 @@ $(document).ready(function(){
 
   $(".column-31-pie").on('click',function(e){
     e.preventDefault();
-    $(".column-31-pie").css('background-color','#252A40');
+    $(".column-31-pie").css('background-color','#3F4045');
     $(".column-31-pie").css('color','#F0EADF');
     $(".column-7-pie").css('background-color','white');
     $(".column-7-pie").css('color','black');
@@ -44,7 +44,7 @@ $(document).ready(function(){
 
   $(".column-all-time-pie").on('click',function(e){
     e.preventDefault();
-    $(".column-all-time-pie").css('background-color','#252A40');
+    $(".column-all-time-pie").css('background-color','#3F4045');
     $(".column-all-time-pie").css('color','#F0EADF');
     $(".column-7-pie").css('background-color','white');
     $(".column-7-pie").css('color','black');
@@ -64,13 +64,13 @@ $(document).ready(function(){
 
   renderPieChart = function(data) {
     $("#myChart").remove();
-    $("#pie-chart-div").append('<canvas id="myChart" width="225" height="225"></canvas>')
+    $("#pie-chart-div").append('<canvas id="myChart" width="225px" height="225px"></canvas>')
     var ctx2 = document.getElementById("myChart").getContext("2d");
 
     var data2 = [
       {
         value: data["Cardio"],
-        color: "#F32C31",
+        color: "rgba(255,112,3,1)",
         label: "Cardio"
       },
       {
@@ -84,12 +84,12 @@ $(document).ready(function(){
         label: "Power"
       }
     ]
-    var myPieChart = new Chart(ctx2).Pie(data2);
+    var myPieChart = new Chart(ctx2).Pie(data2, {responsive: true});
   };
 
   renderBarChart = function(data) {
     $("#myLineChart").remove();
-    $("#top-workouts-chart").append('<canvas id="myLineChart" width="400" height="300"></canvas>')
+    $("#top-workouts-chart").append('<canvas id="myLineChart"></canvas>')
     var ctx1 = document.getElementById("myLineChart").getContext("2d");
     var mylabels = [];
     var mydata2 = [];
@@ -102,7 +102,7 @@ $(document).ready(function(){
       datasets: [
         {
           label: "My First dataset",
-          fillColor: "#F32C31",
+          fillColor: "rgba(255,112,3,.4)",
           strokeColor: "rgba(243,44,49,.8)",
           highlightFill: "rgba(151,187,205,0.75)",
           highlightStroke: "rgba(151,187,205,1)",
@@ -110,16 +110,13 @@ $(document).ready(function(){
         }
       ]
     }
-    var myLineChart = new Chart(ctx1).Line(data1);
+    var myLineChart = new Chart(ctx1).Line(data1, {responsive: true});
   };
 
-});
-
-
-renderSideChart = function(data) {
+  renderSideChart = function(data) {
     $("#mySideChart").remove();
     $("#side-chart-div").append('<canvas id="mySideChart" width="380" height="400"></canvas>')
-     var ctx3 = document.getElementById("mySideChart").getContext("2d");
+    var ctx3 = document.getElementById("mySideChart").getContext("2d");
     var mylabels = [];
     var mydata3 = [];
     for ( var key in data) {
@@ -131,16 +128,20 @@ renderSideChart = function(data) {
       datasets: [
         {
           label: "My First dataset",
-          fillColor: "#F32C31",
-          strokeColor: "rgba(243,44,49,.8)",
+          fillColor: "rgba(255,112,3,.4)",
+          strokeColor: "rgba(255,112,3,.8)",
           highlightFill: "rgba(151,187,205,0.75)",
           highlightStroke: "rgba(151,187,205,1)",
           data: mydata3
         }
       ]
     }
-    var myLineChart = new Chart(ctx3).Bar(data3);
+    var myLineChart = new Chart(ctx3).Bar(data3, {responsive: true});
   };
+
+});
+
+
 
 
 
