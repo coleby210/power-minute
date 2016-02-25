@@ -4,7 +4,12 @@ class GroupsUserController < ApplicationController
   before_action :authenticate_user!
 
   def create
+
+    if params[:new_user_first] && params[:new_user_last]
+      @newgroupmember = User.find_by(first_name: params[:new_user_first], last_name: params[:new_user_last])
+    else
     @newgroupmember = User.find_by(email: params[:new_user_email])
+    end
     @group = Group.find(params[:group_id])
 
     if @newgroupmember
