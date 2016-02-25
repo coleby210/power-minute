@@ -18,6 +18,7 @@
     def notify_hourly
 
         hours = {
+            "0": "zero",
             "1": "one",
             "2": "two",
             "3": "three",
@@ -40,14 +41,13 @@
             "20": "twenty",
             "21": "twentyone",
             "22": "twentytwo",
-            "23": "twentythree",
-            "24": "twentyfour"
+            "23": "twentythree"
         }
 
         all_users.each do |user|
             user.schedule.days.each do |day|
-                if day.name == DateTime.now.in_time_zone().strftime('%A')
-                    current_hour = DateTime.now.in_time_zone().hour.to_s
+                if day.name == DateTime.now.in_time_zone(user.timezone.to_i).strftime('%A')
+                    current_hour = DateTime.now.in_time_zone(user.timezone.to_i).hour.to_s
                     if day[hours[:"#{current_hour}"]]
                         @client.messages.create(
                             from: '+16508352013',

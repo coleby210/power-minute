@@ -3,6 +3,7 @@ class CreateDays < ActiveRecord::Migration
     create_table :days do |t|
       t.references :schedule, index: true, foreign_key: true
       t.string :name, presence: true
+      t.boolean :zero, default: false
       t.boolean :one, default: false
       t.boolean :two, default: false
       t.boolean :three, default: false
@@ -26,7 +27,6 @@ class CreateDays < ActiveRecord::Migration
       t.boolean :twentyone, default: false
       t.boolean :twentytwo, default: false
       t.boolean :twentythree, default: false
-      t.boolean :twentyfour, default: false
 
       t.timestamps null: false
     end
