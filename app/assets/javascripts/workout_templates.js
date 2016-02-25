@@ -77,6 +77,7 @@ methods = {
     window.cancelAnimationFrame(data.reqId);
     return this.data("ct-meta", data);
   },
+
 };
 
 $.fn.circletimer = function(methodOrOptions) {
@@ -92,6 +93,7 @@ $.fn.circletimer = function(methodOrOptions) {
 $(document).ready(function(){
   var startPause = false
   var time = 60000
+  var i = 0;
 
   $(".timer").circletimer({
     timeout: time,
@@ -105,8 +107,42 @@ $(document).ready(function(){
       } else {
         $("text").html("0" + ((time / 1000) - Math.round(elapsed) / 1000).toString().split(".")[0]);
       }
+      // if (elapsed <= 4945 && elapsed >= 4933){
+      //   console.log(Math.floor(elapsed));
+      //   i += 10000
+      // };
+      // var number = console.log());
+      // if ((Math.floor(Math.round(elapsed) / 1000))%10===0) {
+        // console.log((Math.floor(Math.round(elapsed) / 1000)));
+        // console.log(Math.round(elapsed) / 1000);
+      var num = ((time / 1000) - Math.round(elapsed) / 1000)
+      var counter = 0
+
+      var myArray = ["YOU CAN DO IT!", "COME'ON! ALMOST THERE!", "GREAT JOB, KEEP GOING!", "NO PAIN NO GAIN!", "WORKING OUT IS FUN!", "KEEP SMILING, KEEP WORKING", "GIVE YOUR BEST EFFORT!", "POWER THROUGH THE POWER MINUTE!"]
+
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      if (num === 60) {
+        $('#encouragement-text').empty();
+        $('#encouragement-text').append(myArray[getRandomInt(0, myArray.length-1)]);
+      }
+      if(num % 10 === 1 ) {
+        $('#encouragement-text').empty();
+        if (num === 1) {
+          // $('#encouragement-text').html("Congratulations");
+          $('#encouragement-text').append("Congratulations");
+        } else {
+          // $('#encouragement-text').html("gello");
+          $('#encouragement-text').append(myArray[getRandomInt(0, myArray.length-1)]);
+        }
+      };
+
     })
   });
+
+
 
   $(".timer").on("click", "svg", function() {
     if(startPause == false){
