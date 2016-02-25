@@ -27,8 +27,8 @@
     <th id="profile-main-header" colspan="3" > Total Power Minutes </th>
   </tr>
   <tr>
-    <th class="profile-column-header column-7-pie #{@user.id}" id="last-7-header"> Last 7 </th>
-    <th class="profile-column-header column-31-pie" id="last-31-header"> Last 31 </th>
+    <th class="profile-column-header column-7-pie #{@user.id}" id="last-7-header"> Last 7 Days</th>
+    <th class="profile-column-header column-31-pie" id="last-31-header"> Last 31 Days</th>
     <th class="profile-column-header column-all-time-pie" id="all-time-header"> All Time </th>
   </tr>
   <tr>
@@ -37,20 +37,18 @@
     <td class="profile-data column-all-time-pie" id="all-time-stats"><%= @user.workouts.length %></td>
   </tr>
   <tr>
-    <td class="profile-data-change column-7-pie #{@user.id}" id="last-7-stats"><%= @user.calculate_change_in_workout_frequency(7,14) + " WoW" %></td>
-    <td class="profile-data-change column-31-pie" id="last-31-stats"><%= @user.calculate_change_in_workout_frequency(31,62)+" WoW" %></td>
-    <td class="profile-data-change column-all-time-pie" id="all-time-stats"></td>
+    Click columns to show new charts!
   </tr>
 </table>
 
 <div id="pie-chart-div">
-  <h1>Your top workouts by categories</h1>
-  <canvas id="myChart" width="380" height="400"></canvas>
+  <h4 id ="line-chart-header"> Workout Categories </h4>
+  <canvas id="myChart" width="225" height="225"></canvas>
   <script>
     url = window.location.pathname;
-    $.get(url+"/7/pie", function( data ){
+    $.get(url+"/31/pie", function( data ){
       $("#myChart").remove();
-      $("#pie-chart-div").append('<canvas id="myChart" width="380" height="400"></canvas>')
+      $("#pie-chart-div").append('<canvas id="myChart" width="225" height="225"></canvas>')
       var ctx2 = document.getElementById("myChart").getContext("2d");
 
       data = [
@@ -74,13 +72,59 @@
     });
   </script>
 </div>
+<h4 id ="line-chart-header"> Favorite Workouts </h4>
+<div id="side-chart-div">
 
-<div id="top-workouts-chart">
-
-<canvas id="myLineChart" width="400" height="300"></canvas>
+<canvas id="mySideChart" width="380" height="400"></canvas>
   <script>
     url = window.location.pathname;
-    $.get(url+"/7/bar", function( data ){
+    $.get(url+"/30/side", function( data ){
+      $("#mySideChart").remove();
+      $("#side-chart-div").append('<canvas id="mySideChart" width="380" height="400"></canvas>')
+      var ctx3 = document.getElementById("mySideChart").getContext("2d");
+      var data3 = {
+        labels: [
+          <% @user.sort_most_common_workouts(31).each_with_index do |(key, value), index| %>
+            <% if index != @user.sort_most_common_workouts(31).keys.length - 1 %>
+              "<%= key.to_s %>",
+            <% else %>
+              "<%= key.to_s %>"
+            <% end %>
+          <% end %>],
+        datasets: [
+          {
+            label: "My First dataset",
+            fillColor: "#F32C31",
+            strokeColor: "rgba(243,44,49,.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: <%= "#{@user.sort_most_common_categories(31).values}" %>
+          }
+        ]
+      };
+    var myLineChart = new Chart(ctx3).Bar(data3);
+    });
+  </script>
+</div>
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+<h4 id ="line-chart-header"> Workouts Over Time </h4>
+<div id="top-workouts-chart">
+  <canvas id="myLineChart" width="400" height="300"></canvas>
+
+  <script>
+    url = window.location.pathname;
+    $.get(url+"/30/bar", function( data ){
       $("#myLineChart").remove();
       $("#top-workouts-chart").append('<canvas id="myLineChart" width="400" height="300"></canvas>')
       var ctx1 = document.getElementById("myLineChart").getContext("2d");
@@ -104,77 +148,10 @@
           }
         ]
       };
-    var myLineChart = new Chart(ctx1).Bar(data1);
+    var myLineChart = new Chart(ctx1).Line(data1);
     });
   </script>
 </div>
-
-  <h3> All Time </h3>
-  <%= "Total workouts: #{@total_workouts.length}" %>
-  <ul>
-
-    <% @user.sort_most_common_workouts(1000000).each do |key, value| %>
-
-      <li>
-        <%= "#{key}: #{value}" %>
-      </li>
-
-    <% end %>
-  <h2> categories </h2>
-    <% @user.sort_most_common_categories(1000000).each do |key, value| %>
-
-      <li>
-        <%= "#{key}: #{value}" %>
-      </li>
-
-    <% end %>
-
-  </ul>
-
-
-  <h3> Last 31 Days </h3>
-  Total Workouts:
-  <ul>
-
-    <% @user.sort_most_common_workouts(31).each do |key, value| %>
-
-      <li>
-        <%= "#{key}: #{value}" %>
-      </li>
-
-    <% end %>
-  <h2> categories </h2>
-    <% @user.sort_most_common_categories(31).each do |key, value| %>
-
-      <li>
-        <%= "#{key}: #{value}" %>
-      </li>
-
-    <% end %>
-
-  </ul>
-
-
-  <h3> Last 7 Days </h3>
-  <ul>
-
-    <% @user.sort_most_common_workouts(7).each do |key, value| %>
-
-      <li>
-        <%= "#{key}: #{value}" %>
-      </li>
-
-    <% end %>
-  <h2> categories </h2>
-    <% @user.sort_most_common_categories(7).each do |key, value| %>
-
-      <li>
-        <%= "#{key}: #{value}" %>
-      </li>
-
-    <% end %>
-
-  </ul>
 <% else %>
   <h1>You haven't done any workouts yet!</h1>
 <% end %>
