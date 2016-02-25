@@ -53,6 +53,7 @@ $our-blue: #252A40;
 
 body {
   background: white;
+  padding-bottom: 60px;
 }
 
 .landing-bg {
@@ -122,5 +123,19 @@ body {
 
 .workout_image {
 
+}
+
+footer {
+ background: $our-gray;
+ height: 50px;
+ width: 100%;
+ position: fixed;
+ bottom: 0;
+}
+
+.footer-div {
+  color: $our-cream;
+  text-align: center;
+  padding-top: 16px;
 }
 
