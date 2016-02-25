@@ -9,10 +9,18 @@ class WorkoutTemplatesController < ApplicationController
   def show
     @workout_template = WorkoutTemplate.find(params[:id])
     @category = @workout_template.category
+    @user_friends = []
+    @user_groups = current_user.groups.each do |group|
+      group.members.each do |member|
+        @user_friends << member if member != current_user
+      end
+    end
+    @user_friends.uniq!
   end
 
   def new
     @workout_template = current_user.workout_templates.new
+    @categories = Category.all
     if request.xhr?
       render partial: 'form', layout: false
     else
@@ -22,6 +30,7 @@ class WorkoutTemplatesController < ApplicationController
 
   def edit
     @workout_template = WorkoutTemplate.find(params[:id])
+    @categories = Category.all
   end
 
   def create
@@ -39,9 +48,35 @@ class WorkoutTemplatesController < ApplicationController
   end
 
   def update
+    @workout_template = WorkoutTemplate.find(params[:id])
+
+    if @workout_template.update(workout_template_params)
+      if params[:favorite_status] == "true"
+        current_user.favorites.create(workout_template_id: @workout_template.id)
+        redirect_to user_workout_templates_path(current_user)
+      else
+        @favorite = current_user.favorites.find_by(workout_template_id: @workout_template.id)
+        @favorite.destroy
+        redirect_to user_workout_templates_path(current_user)
+      end
+    else
+      render 'edit'
+    end
+
+    # if params[:favorite_status]
+    #   @workout_template.update(workout_template_params)
+    #   redirect_to user_workout_templates_path(current_user)
+    # else
+    #   @favorite = current_user.favorites.find_by(workout_template_id: @workout_template.id)
+    #   @favorite.destroy
+    #   redirect_to user_workout_templates_path(current_user)
+    # end
   end
 
   def destroy
+    @workout_template = WorkoutTemplate.find(params[:id])
+    @workout_template.destroy
+    redirect_to user_workout_templates_path(current_user)
   end
 
   private

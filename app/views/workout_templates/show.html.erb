@@ -12,6 +12,14 @@
 <br>
 <div id="log-workout">
   <%= form_for :workouts, url: workouts_path, method: :post do |f| %>
+  <button type="submit" class="btn btn-info" id="tag-friends-button"> Tag Friends </button>
+  <div id="friends-tag-list" style="display: none">
+    <h3> Select Friends to Tag </h3>
+    <% @user_friends.each do|user| %>
+    <input type="checkbox" name=<%="tagged_ids[#{user.id}]"%> value=<%= "#{user.id}" %>>
+          <%= "#{user.first_name} #{user.last_name}" %> <br>
+    <%end%>
+  </div>
     <%= f.hidden_field :workout_template_id, value: params[:id] %>
     <%= f.submit "Log Workout", class: "btn btn-success" %>
   <% end %>
@@ -30,6 +38,7 @@
   </script>
 </div>
 
+<h3> Workout Description </h3>
 <p><%= @workout_template.description %></p>
 
 

@@ -12,16 +12,12 @@ class UsersController < ApplicationController
   def top_users
 
     @top_users = User.find_by_sql("Select users.*, COUNT(workouts.id) AS c from users, workouts WHERE workouts.user_id = users.id GROUP BY users.id ORDER BY c DESC")
-    p @top_users
-    # @user_stats = {}
-    # User.all.each do |user|
-    #   if user.workouts.length > 0
-    #   @user_stats[user] = [user.workouts.length, user.sort_most_common_workouts(1000).first[0]]
-    #   end
-    # end
-
-    # @user_stats = @user_stats.sort_by {|key, value| value}.reverse
     render :top_performers
+  end
+
+  def log
+    @user_workouts = current_user.workouts.order(created_at: :desc )
+    render :log
   end
 
   def get_7
@@ -38,6 +34,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     render :json => @user.sort_most_common_categories(1000)
   end
+
+
 
   def schedule
     @hours = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "twentyone", "twentytwo", "twentythree", "twentyfour"]
