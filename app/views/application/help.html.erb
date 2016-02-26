@@ -1,3 +1,23 @@
+<nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+          <div class="navbar-header">
+    <!--         <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a> -->
+
+    <!-- <img class="add-workout-template-logo" src="/assets/add-workout-template.png" /> -->
+            <a class="navbar-brand nav-btn-color" id="logo" href="/"><</a>
+            <a class="navbar-brand nav-btn-color" id="logo" href="/">POWER MINUTE</a>
+
+
+
+          </div>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
 <h3 > Welcome to <span class="feature-description">POWER MINUTE!</span> </h3>
 
 <p> Power Minute was built on the idea of taking one minute breaks every hour, on the hour, to flex your power.</p>
@@ -5,26 +25,28 @@
 <p> Whether you want to get stronger, stretch it out, or just move around - Power Minute makes it easy. We'll remind you if you want. We'll track your progress. We'll help you connect with friends. All you need to do is get up for a minute! </p>
 
 <h3> Features </h3>
+<ul>
+<li><p><span class="feature-description">Log In With Facebook</span> - We've made it easy to sign up and <%= link_to "login with your Facebook account" , user_omniauth_authorize_path(:facebook) %>, so you can get to working out. Don't worry, we don't save any information you don't want to share, nor will we ever post for you. </p></li>
 
-<p><span class="feature-description">Log In With Facebook</span> - We've made it easy to sign up and <%= link_to "login with your Facebook account" , user_omniauth_authorize_path(:facebook) %>, so you can get to working out. Don't worry, we don't save any information you don't want to share, nor will we ever post for you. </p>
+<li><p><span class="feature-description">Pick a Workout</span> - From the homepage, choose a category of the type of workout you want to do. You'll find a list of workouts that we have populated, as well as workouts created by the Power Minute community.</p></li>
 
-<p><span class="feature-description">Pick a Workout</span> - From the homepage, choose a category of the type of workout you want to do. You'll find a list of workouts that we have populated, as well as workouts created by the Power Minute community.</p>
+<li><p> <span class="feature-description">Start The Timer</span> - After selecting a workout, click the timer, and start working out for 60 seconds!! Check the preview of the workout if it's something you're not familiar with. We've provided some inspirational music, but feel free to pause it... We also have some inspirational messages for you to keep you going. </p></li>
 
-<p> <span class="feature-description">Start The Timer</span> - After selecting a workout, click the timer, and start working out for 60 seconds!! Check the preview of the workout if it's something you're not familiar with. We've provided some inspirational music, but feel free to pause it... We also have some inspirational messages for you to keep you going. </p>
+<li><p> <span class="feature-description">Log Your Workout</span> - Woo! You completed a workout. Now you can log your workout to add to your stats - and tag your friends, so they all get credit for the workout, too. You can also tweet about it to show off your dedication. </p></li>
 
-<p> <span class="feature-description">Log Your Workout</span> - Woo! You completed a workout. Now you can log your workout to add to your stats - and tag your friends, so they all get credit for the workout, too. You can also tweet about it to show off your dedication. </p>
+<li><p> <span class="feature-description">Groups</span> - Working out is fun, but working out with friends is great! Click "My Groups" in the nav bar, and create a group. Get your friends to sign up, add them to your group, and you're ready to workout together. You'll see their stats, and be able to tag them in workouts. You can also post messages to encourage your group mates. In short, you're all going to get buff together. </p></li>
 
-<p> <span class="feature-description">Groups</span> - Working out is fun, but working out with friends is great! Click "My Groups" in the nav bar, and create a group. Get your friends to sign up, add them to your group, and you're ready to workout together. You'll see their stats, and be able to tag them in workouts. You can also post messages to encourage your group mates. In short, you're all going to get buff together. </p>
-
-<p> <span class="feature-description">Favorites</span> - We've populated a bunch of workouts - but you probably have a few exercises that you like to do regulary. You can favorite a workout from the category page, or after you complete a workout. Then on your home page, you can easily access these favorites by clicking the heart in the nav bar, or right from the home page. </p>
+<li><p> <span class="feature-description">Favorites</span> - We've populated a bunch of workouts - but you probably have a few exercises that you like to do regulary. You can favorite a workout from the category page, or after you complete a workout. Then on your home page, you can easily access these favorites by clicking the heart in the nav bar, or right from the home page. </p></li>
 
 
-<p> <span class="feature-description">Create Workouts</span> - Don't like what we've populated for you? No Problem - make your own workout that you like best, and get to it. You can keep it private, or share it with the Power Minute community. Just click the Plus button on the top left of the nav. </p>
+<li><p> <span class="feature-description">Create Workouts</span> - Don't like what we've populated for you? No Problem - make your own workout that you like best, and get to it. You can keep it private, or share it with the Power Minute community. Just click the Plus button on the top left of the nav. </p></li>
 
-<p><span class="feature-description">Get Reminded</span> - If you want, you can enter your phone number in your settings, and head to your schedule page to set when you want SMS notifications. We'll send you a text right on the hour, to remind you to get going. You can also <a href = "https://twitter.com/power_minute"> follow Power Minute on Twitter</a>, where we'll tweet hourly that it's time for a Power Minute. </p>
+<li><p><span class="feature-description">Get Reminded</span> - If you want, you can enter your phone number in your settings, and head to your schedule page to set when you want SMS notifications. We'll send you a text right on the hour, to remind you to get going. You can also <a href = "https://twitter.com/power_minute"> follow Power Minute on Twitter</a>, where we'll tweet hourly that it's time for a Power Minute. </p></li>
 
-<p> <span class="feature-description">Profile</span> - Track your progress! We've provided some nifty charts to see how much you've been working out, and what your favorite workouts and workout categories are. Click the "Last 7", "Last 31", or "All Time" columns to get new data based on those time periods. Watch your numbers go up as you get stronger! Feel free to share on Twitter and Facebook so your friends can see your progress, too.</p>
+<li><p> <span class="feature-description">Profile</span> - Track your progress! We've provided some nifty charts to see how much you've been working out, and what your favorite workouts and workout categories are. Click the "Last 7", "Last 31", or "All Time" columns to get new data based on those time periods. Watch your numbers go up as you get stronger! Feel free to share on Twitter and Facebook so your friends can see your progress, too.</p></li>
 
-<p> <span class="feature-description">Top Performers</span> - See who the top workout freaks are on Power Minute by clicking "Top Performers". See if you have what it takes to get the gold, and a little trophy next to your name. <i class="fa fa-trophy"></i> </p>
+<li><p> <span class="feature-description">Top Performers</span> - See who the top workout freaks are on Power Minute by clicking "Top Performers". See if you have what it takes to get the gold, and a little trophy next to your name. <i class="fa fa-trophy"></i> </p></li>
 
-<p> That's it! Time to grab your friends and do a <span class="feature-description">POWER MINUTE!</span> </p>
+</ul>
+<br>
+<p style="text-align:center"> That's it! Time to grab your friends and do a <span class="feature-description">POWER MINUTE!</span> </p>
