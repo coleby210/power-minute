@@ -124,17 +124,19 @@ $(document).ready(function(){
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
 
+      console.log(num)
+
       if (num === 60) {
         $('#encouragement-text').empty();
-        // $('#encouragement-text').append(myArray[getRandomInt(0, myArray.length-1)]);
-        $('#encouragement-text').html('LET\'S HAVE A STRONG START!')
+        $('#encouragement-text').append(myArray[getRandomInt(0, myArray.length-1)]);
+        // $('#encouragement-text').html('LET\'S HAVE A STRONG START!')
       }
-      if(num % 10 === 1 ) {
+      if((1.02 > (num % 10)) && ((num % 10) > .98)) {
         $('#encouragement-text').empty();
-        if (num === 1) {
-          $('#encouragement-text').html("Congratulations!!<br>You did it!");
+        if ((1.02 > num) && (num > .98)) {
+          $('#encouragement-text').append("Congratulations!!<br>You did it!");
         } else {
-          $('#encouragement-text').html(myArray[getRandomInt(0, myArray.length-1)]);
+          $('#encouragement-text').append(myArray[getRandomInt(0, myArray.length-1)]);
         }
       };
 
