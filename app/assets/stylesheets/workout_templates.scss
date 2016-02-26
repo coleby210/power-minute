@@ -45,11 +45,15 @@ form .radio {
 }
 
 .encouragement-div {
-  height: 123px;
-  padding: 30px;
+  display: table;
+  height: 130px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: #ff7003; // orange color
 }
 
 #encouragement-text {
+  display: table-cell;
+  vertical-align: middle;
   color: #F0EADF; // cream color
 }

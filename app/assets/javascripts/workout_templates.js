@@ -126,17 +126,15 @@ $(document).ready(function(){
 
       if (num === 60) {
         $('#encouragement-text').empty();
-        $('#encouragement-text').append(myArray[getRandomInt(0, myArray.length-1)]);
+        // $('#encouragement-text').append(myArray[getRandomInt(0, myArray.length-1)]);
+        $('#encouragement-text').html('LET\'S HAVE A STRONG START!')
       }
       if(num % 10 === 1 ) {
         $('#encouragement-text').empty();
         if (num === 1) {
-          $('#encouragement-text').html("Congratulations");
-          alert("Congratulations");
+          $('#encouragement-text').html("Congratulations!!<br>You did it!");
         } else {
-          // $('#encouragement-text').html("gello");
           $('#encouragement-text').html(myArray[getRandomInt(0, myArray.length-1)]);
-          alert(myArray[getRandomInt(0, myArray.length-1)]);
         }
       };
 
