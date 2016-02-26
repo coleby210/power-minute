@@ -337,13 +337,6 @@ $(document).ready(function(){
   }
 }
 
-/* ******************************************************************
-   Supporting functions: bundled here to avoid depending on a library
-   ****************************************************************** */
-
-// Dean Edwards/Matthias Miller/John Resig
-
-/* for Mozilla/Opera9 */
 if (document.addEventListener) {
     document.addEventListener("DOMContentLoaded", sorttable.init, false);
 }
@@ -437,14 +430,6 @@ fixEvent.preventDefault = function() {
 fixEvent.stopPropagation = function() {
   this.cancelBubble = true;
 }
-
-// Dean's forEach: http://dean.edwards.name/base/forEach.js
-/*
-  forEach, version 1.0
-  Copyright 2006, Dean Edwards
-  License: http://www.opensource.org/licenses/mit-license.php
-*/
-
 // array-like enumeration
 if (!Array.forEach) { // mozilla already supports this
   Array.forEach = function(array, block, context) {
