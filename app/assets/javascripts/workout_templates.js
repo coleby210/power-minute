@@ -131,11 +131,12 @@ $(document).ready(function(){
       if(num % 10 === 1 ) {
         $('#encouragement-text').empty();
         if (num === 1) {
-          // $('#encouragement-text').html("Congratulations");
-          $('#encouragement-text').append("Congratulations");
+          $('#encouragement-text').html("Congratulations");
+          alert("Congratulations");
         } else {
           // $('#encouragement-text').html("gello");
-          $('#encouragement-text').append(myArray[getRandomInt(0, myArray.length-1)]);
+          $('#encouragement-text').html(myArray[getRandomInt(0, myArray.length-1)]);
+          alert(myArray[getRandomInt(0, myArray.length-1)]);
         }
       };
 
