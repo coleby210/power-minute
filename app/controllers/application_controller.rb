@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   def index
   end
 
+  def help
+    render :help
+  end
+
   private
 
 end
