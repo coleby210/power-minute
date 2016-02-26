@@ -129,6 +129,7 @@ body {
 }
 
 footer {
+ padding-top: 12px;
  background: $our-gray;
  height: 50px;
  width: 100%;
@@ -136,17 +137,45 @@ footer {
  bottom: 0;
  right: 0;
  left: 0;
-}
-
-.footer-div {
+ line-height: 25px;
   color: $our-orange;
   text-align: center;
+}
+
+#facebook-footer {
+  padding-top: 5px;
+}
+
+
+.footer-div {
+  text-align: center;
   padding-top: 16px;
+  vertical-align: middle;
 }
 
 .feature-description{
   color: #FF7003;
   font-weight: bold;
+}
+
+#footer-help{
+  color: $our-cream;
+  float: right;
+  margin-right: 10px;
 
 }
 
+#social-buttons{
+  float: left;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+#copyright-span{
+  bottom: 20px;
+  margin-right: 20px;
+}
+
+#encouragement{
+  background-color: $our-orange;
+}

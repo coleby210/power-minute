@@ -42,10 +42,6 @@
       </div><br>
 
       <div class="field">
-        <%= f.text_field :phone_number, placeholder: "Phone: +19105104343", class: "home form-control" %>
-      </div><br>
-
-      <div class="field">
         <%= f.email_field :email, placeholder: "Email", class: "home form-control" %>
       </div><br>
 
@@ -58,6 +54,10 @@
 
       <div class="field">
         <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation", class: "home form-control" %>
+      </div><br>
+
+      <div class="field">
+        <%= f.text_field :phone_number, placeholder: "Phone: +19105104343", class: "home form-control" %> <span style="color: #F0EADF"> *optional, if you want to receive reminders </span>
       </div><br>
 
       <div class="field" id="time-zone-select">

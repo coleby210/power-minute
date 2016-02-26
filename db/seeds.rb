@@ -74,8 +74,6 @@ workout_template_seed_data =
   ["Lunge + Bow", "https://zippy.gfycat.com/SoulfulPastGibbon.webm", 1]
 ]
 
-	User.create(first_name: 'Admin',last_name: "Admin", timezone: "-8", email: 'admin@power-minute.com', password: '12345678')
-
 	User.create(first_name: 'Beni',last_name: "Shpringer", timezone: "-8", email: 'bshpringer@gmail.com', password: '12345678', phone_number: "+14152333355")
 
 	User.create(first_name: 'Ryan', last_name: "Ho", timezone: "-8", email: 'ryan@power-minute.com', password: '12345678', phone_number: "+14156194486")
@@ -85,6 +83,14 @@ workout_template_seed_data =
 	User.create(first_name: 'Josh', last_name: "Kim", timezone: "-8", email: 'josh@power-minute.com', password: '12345678', phone_number: "+12136634691")
 
 	User.create(first_name: 'Cole', last_name: "Kent", timezone: "-8", email: 'cole@power-minute.com', password: '12345678', phone_number: "+19254374085")
+
+chorus_frogs = [["Bernice","Chua"],["Fatma","Ocal"],["Hanah","Yendler"],["Jonathan","Huang"],["Karla","King"],["Lindsey","Stevenson"],["Luis","De Castro"],["Michael","Du"],["Michael","Whelpley"],["Natasha","Thapliyal"],["Ovi","Calvo"],["Regina","Wong"],["Shawn","Spears"],["Walter","Kerr"]]
+
+chorus_frogs.each do |person|
+  User.create(first_name: person[0], last_name: person[1], timezone: "-8", email: "#{person[0]}_#{person[1]}@power-minute.com", password: '12345678')
+
+end
+
 
 	User.all.each do |user|
 		schedule = Schedule.create(user_id: user.id)
@@ -102,23 +108,37 @@ workout_template_seed_data =
 		WorkoutTemplate.create(title: template[0], creator_id: 1, category_id: template[2], image: template[1], private_status: false)
 	end
 
-	200.times do
-		Workout.create(user_id: rand(2..6), workout_template_id: rand(1..20), reps: rand(0..25), created_at: DateTime.new(2016,1,rand(1..31),4,5,6,'+7'))
+	400.times do
+		Workout.create(user_id: rand(1..18), workout_template_id: rand(1..64), created_at: DateTime.new(2016,1,rand(1..31),4,5,6,'+7'))
 	end
 
-	100.times do
-		Workout.create(user_id: rand(2..6), workout_template_id: rand(1..20), reps: rand(0..25), created_at: DateTime.new(2016,2,rand(1..18),4,5,6,'+7'))
+	400.times do
+		Workout.create(user_id: rand(1..18), workout_template_id: rand(1..64), reps: rand(0..25), created_at: DateTime.new(2016,2,rand(1..26),4,5,6,'+7'))
+	end
+
+  Group.create(name: "Chorus Frogs", admin_id: 2)
+  Group.create(name: "Family", admin_id: 2)
+  Group.create(name: "Coworkers", admin_id: 2)
+  Group.create(name: "Roommates", admin_id: 2)
+  GroupsUser.create(group_id: 2, member_id: 2)
+  GroupsUser.create(group_id: 3, member_id: 2)
+  GroupsUser.create(group_id: 4, member_id: 2)
+  GroupsUser.create(group_id: 3, member_id: 1)
+  GroupsUser.create(group_id: 3, member_id: 3)
+  GroupsUser.create(group_id: 2, member_id: 4)
+
+  Favorite.create(user_id: 2, workout_template_id: 4)
+  Favorite.create(user_id: 2, workout_template_id: 10)
+
+  1.upto(18) do  |count|
+    GroupsUser.create(group_id: 1, member_id: count)
+  end
+
+	15.times do
+		GroupComment.create(member_id: rand(1..18), group_id: 1, comment_text: Faker::Hacker.say_something_smart)
 	end
 
 
-	1.upto(5) do |count|
-		Group.create(name: Faker::Company.name, admin_id: count)
-		GroupsUser.create(member_id: count, group_id: count)
-	end
-
-	30.times do
-		GroupComment.create(member_id: rand(2..6), group_id: rand(1..5), comment_text: Faker::Hacker.say_something_smart)
-	end
 
 
 

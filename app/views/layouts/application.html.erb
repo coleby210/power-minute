@@ -14,15 +14,6 @@
 <body>
   <% if current_user %>
   <!-- Facebook Script Below -->
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1023027834423940";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
 
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -45,7 +36,6 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="/users/<%=current_user.id%>">Profile</a></li>
-              <li><a href="/schedule">Schedule</a></li>
               <li><a href="/groups">Groups</a></li>
               <li><a href="/top_performers">Top Performers</a></li>
               <li><%= link_to "Settings", edit_user_registration_path %></li>
@@ -64,17 +54,16 @@
   <div class="container nav-fix">
     <%= yield %>
   </div>
-  <footer>
-    <div class="footer-div">Copyright &#169; Power-Minute.com</div>
-  </footer>
+  <footer "footer-div">
+    <span id="copyright-span"> Copyright &#169; Power-Minute.com </span>
+    <div id="social-buttons">
+      <span>
+        <a href="https://twitter.com/power_minute" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @power_minute</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
   <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-  <!-- add to footer:
-  <div class="fb-like" data-href="https://www.facebook.com/powerminuteapp/" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div> -->
-  <!-- <a href="https://twitter.com/power_minute" class="twitter-follow-button" data-show-count="false">Follow @power_minute</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
-
-  <!-- <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.power-minute.com" data-text="One Minute Workouts Rule! Check it out:" data-via="power_minute">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+  <a id="footer-help" href="/help"> Help </a>
+  </footer>
 
 </body>
 </html>
