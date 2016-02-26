@@ -85,10 +85,12 @@
       var data3 = {
         labels: [
           <% @user.sort_most_common_workouts(31).each_with_index do |(key, value), index| %>
-            <% if index != @user.sort_most_common_workouts(31).keys.length - 1 %>
-              "<%= key.to_s %>",
-            <% else %>
-              "<%= key.to_s %>"
+            <% unless value == 1%>
+              <% if index != @user.sort_most_common_workouts(31).keys.length - 1 %>
+                "<%= key.to_s %>",
+              <% else %>
+                "<%= key.to_s %>"
+              <% end %>
             <% end %>
           <% end %>],
         datasets: [
