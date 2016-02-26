@@ -23,20 +23,10 @@
     <%= f.hidden_field :workout_template_id, value: params[:id] %>
     <%= f.submit "Log Workout", class: "btn btn-success" %>
   <% end %>
-  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.power-minute.com/users/<%=current_user.id%>" data-text="I just completed a minute of <%=@workout_template.title%> on Power Minute! Check out my profile at:" data-dnt="true">Tweet</a>
-  <script>
-    !function(d,s,id){
-    var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-      if(!d.getElementById(id)){
-        js=d.createElement(s);
-        js.id=id;
-        js.src=p+'://platform.twitter.com/widge3ts.js';
-        fjs.parentNode.insertBefore(js,fjs);
-      }
-    }
-  (document, 'script', 'twitter-wjs');
-  </script>
-</div>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.power-minute.com/users/<%=current_user.id%>" data-text="I just completed a minute of <%=@workout_template.title%> on Power Minute! Check out my profile at:" data-dnt="true" data-size="large">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  </div>
 
 <div class="row">
   <div class=" col-md-12 encouragement-div">
