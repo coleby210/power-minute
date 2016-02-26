@@ -33,12 +33,18 @@ $our-orange: #FF7003;
 // rgba(37,42,64,0)
 $our-blue: #252A40;
 
+
+html {
+  height: 100%;
+}
+
 *{
   font-family: 'Roboto Condensed', sans-serif;
 }
 
 .nav-fix {
   margin-top: 4em;
+  padding-bottom: 60px;
 }
 
 #sign-up-form, #log-in-form {
@@ -54,7 +60,8 @@ $our-blue: #252A40;
 
 body {
   background: white;
-  padding-bottom: 60px;
+  min-height: 100%;
+  position: relative;
 }
 
 .landing-bg {
@@ -122,16 +129,14 @@ body {
   width: 20px;
 }
 
-.workout_image {
-
-}
-
 footer {
  background: $our-gray;
  height: 50px;
  width: 100%;
- position: fixed;
+ position: absolute;
  bottom: 0;
+ right: 0;
+ left: 0;
 }
 
 .footer-div {
