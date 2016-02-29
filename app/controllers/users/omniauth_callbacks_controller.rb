@@ -6,6 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
+      generate_schedule
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
@@ -36,7 +37,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   super
   # end
 
-  # protected
+  protected
+
+  def generate_schedule
+    schedule = Schedule.create(user_id: current_user.id)
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    days.each do |day|
+      Day.create(name: day, schedule_id: schedule.id)
+    end
+  end
 
   # The path used when OmniAuth fails
   # def after_omniauth_failure_path_for(scope)
