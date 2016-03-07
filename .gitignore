@@ -18,5 +18,3 @@
 
 .ENV
 .*
-
-/config/secrets.yml
