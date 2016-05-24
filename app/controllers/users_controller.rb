@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def top_users
-
     @top_users = User.find_by_sql("Select users.*, COUNT(workouts.id) AS c from users, workouts WHERE workouts.user_id = users.id GROUP BY users.id ORDER BY c DESC")
     render :top_performers
   end
