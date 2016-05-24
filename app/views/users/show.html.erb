@@ -1,0 +1,150 @@
+<h1 id="profile-title"><%= "#{@user.first_name}'s Stats" %></h1>
+<% if @user.workouts.length > 0 %>
+  <% if current_user == @user %>
+  <div class="profile-social-buttons">
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.power-minute.com/users/<%=current_user.id%>" data-text="Check Out My Profile on Power Minute! I'm getting buff:" data-dnt="true">Tweet</a>
+      <script>
+        !function(d,s,id){
+        var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+          if(!d.getElementById(id)){
+            js=d.createElement(s);
+            js.id=id;
+            js.src=p+'://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js,fjs);
+          }
+        }
+        (document, 'script', 'twitter-wjs');
+      </script>
+  </div>
+  <a href="/user_log" style="align:right">Full Workout Log</a>
+  <%end%>
+
+
+
+<table id ="profile-main-table" width="100%" border="1px black" align="center">
+  <tr>
+    <th id="profile-main-header" colspan="3" > Total Power Minutes </th>
+  </tr>
+  <tr>
+    <th class="profile-column-header column-7-pie #{@user.id}" id="last-7-header"> Last 7 Days</th>
+    <th class="profile-column-header column-31-pie" id="last-31-header"> Last 31 Days</th>
+    <th class="profile-column-header column-all-time-pie" id="all-time-header"> All Time </th>
+  </tr>
+  <tr>
+    <td class="profile-data column-7-pie" id="last-7-stats"><%= @user.calculate_number_of_workouts(7) %></td>
+    <td class="profile-data column-31-pie" id="last-31-stats"><%= @user.calculate_number_of_workouts(31) %></td>
+    <td class="profile-data column-all-time-pie" id="all-time-stats"><%= @user.workouts.length %></td>
+  </tr>
+  <tr>
+    Click columns to show new charts!
+  </tr>
+</table>
+
+<div id="pie-chart-div">
+  <h3 id ="line-chart-header"> Workout Categories </h4>
+  <canvas id="myChart" width="225px" height="225px"></canvas>
+  <script>
+    url = window.location.pathname;
+    $.get(url+"/31/pie", function( data ){
+      $("#myChart").remove();
+      $("#pie-chart-div").append('<canvas id="myChart" width="225px" height="225px"></canvas>')
+      var ctx2 = document.getElementById("myChart").getContext("2d");
+
+      data = [
+        {
+          value: data["Cardio"],
+          color: "rgba(255,112,3,1)",
+          label: "Cardio"
+        },
+        {
+          value: data["Yoga"],
+          color: "#F0EADF",
+          label: "Yoga"
+        },
+        {
+          value: data["Power"],
+          color: "#3F4045",
+          label: "Power"
+        }
+      ]
+      var myPieChart = new Chart(ctx2).Pie(data, {responsive: true});
+    });
+  </script>
+</div>
+<div class="col-mid-12" id="big-side-chart-div">
+<h3 id ="line-chart-header"> Favorite Workouts </h3>
+  <div id="side-chart-div">
+
+  <canvas id="mySideChart" width="380" height="400"></canvas>
+  <script>
+    url = window.location.pathname;
+    $.get(url+"/30/side", function( data ){
+      $("#mySideChart").remove();
+      $("#side-chart-div").append('<canvas id="mySideChart" width="380" height="400"></canvas>')
+      var ctx3 = document.getElementById("mySideChart").getContext("2d");
+      var data3 = {
+        labels: [
+          <% @user.sort_most_common_workouts(31).each_with_index do |(key, value), index| %>
+            <% unless value == 1%>
+              <% if index != @user.sort_most_common_workouts(31).keys.length - 1 %>
+                "<%= key.to_s %>",
+              <% else %>
+                "<%= key.to_s %>"
+              <% end %>
+            <% end %>
+          <% end %>],
+        datasets: [
+          {
+            label: "My First dataset",
+            fillColor: "rgba(255,112,3,.4)",
+            strokeColor: "rgba(255,112,3,.8)",
+            highlightFill: "rgba(255,112,3,1)",
+            highlightStroke: "rgba(255,112,3,1)",
+            data: <%= "#{@user.sort_most_common_categories(31).values}" %>
+          }
+        ]
+      };
+    var myLineChart = new Chart(ctx3).Bar(data3, {responsive: true});
+    });
+  </script>
+  </div>
+</div>
+
+<div class="col-md-12" id="top-workouts-chart">
+<h3 id ="line-chart-header"> Workouts Over Time </h3>
+  <canvas id="myLineChart"></canvas>
+
+  <script>
+    url = window.location.pathname;
+    $.get(url+"/30/bar", function( data ){
+      $("#myLineChart").remove();
+      $("#top-workouts-chart").append('<canvas id="myLineChart"></canvas>')
+      var ctx1 = document.getElementById("myLineChart").getContext("2d");
+      var data1 = {
+        labels: [
+          <% @user.number_of_workouts_per_day(Date.today - 29, 3).each_with_index do |(key, value), index| %>
+            <% if index != @user.number_of_workouts_per_day(Date.today - 29, 3).keys.length - 1 %>
+              "<%= key.to_s %>",
+            <% else %>
+              "<%= key.to_s %>"
+            <% end %>
+          <% end %>],
+        datasets: [
+          {
+            label: "My First dataset",
+            fillColor: "rgba(255,112,3,.4)",
+            strokeColor: "rgba(255,112,3,1)",
+            pointColor: "rgba(240,234,223,0)",
+            pointHighlightFill: "rgba(240,234,223,.8)",
+             pointHighlightStroke: "rgba(240,234,223,1)",
+            data: <%= "#{@user.number_of_workouts_per_day(Date.today - 29, 3).values}" %>
+          }
+        ]
+      };
+    var myLineChart = new Chart(ctx1).Line(data1, {responsive: true});
+    });
+  </script>
+</div>
+<% else %>
+  <h1>You haven't done any workouts yet!</h1>
+<% end %>

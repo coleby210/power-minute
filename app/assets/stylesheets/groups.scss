@@ -1,0 +1,27 @@
+// Place all the styles related to the groups controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.table-title {
+  font-family: 'DIN Alternate';
+  padding-bottom: 15px;
+  display: inline-block;
+}
+
+
+form .form-control {
+  width: 15em;
+}
+
+form .inline {
+  display: inline-block;
+}
+
+#group-profile-picture{
+float:right;
+clear:both;
+margin-bottom: 50px;
+}
+
+.table-title{
+}

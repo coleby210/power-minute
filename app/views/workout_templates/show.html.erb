@@ -1,0 +1,39 @@
+<center>
+<h1><%= @workout_template.title %></h1>
+<div><button id="load_preview" class="btn btn-info">Load Preview</button></div>
+<video id="workout_image" loop="true" autoplay="autoplay" src="<%=@workout_template.image%>" controls></video>
+
+<div class="timer">
+  <div id="example-timer"></div>
+</div>
+<audio class="audioDemo" controls preload="none">
+   <source src="/eye_60s.mp3" type="audio/mpeg">
+</audio>
+<br>
+<div id="log-workout">
+  <%= form_for :workouts, url: workouts_path, method: :post do |f| %>
+  <button type="submit" class="btn btn-info" id="tag-friends-button"> Tag Friends </button>
+  <div id="friends-tag-list" style="display: none">
+    <h3> Select Friends to Tag </h3>
+    <% @user_friends.each do|user| %>
+    <input type="checkbox" name=<%="tagged_ids[#{user.id}]"%> value=<%= "#{user.id}" %>>
+          <%= "#{user.first_name} #{user.last_name}" %> <br>
+    <%end%>
+  </div>
+    <%= f.hidden_field :workout_template_id, value: params[:id] %>
+    <%= f.submit "Log Workout", class: "btn btn-success" %>
+  <% end %>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.power-minute.com/users/<%=current_user.id%>" data-text="I just completed a minute of <%=@workout_template.title%> on Power Minute! Check out my profile at:" data-dnt="true" data-size="large">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+  </div>
+
+<div class="row" id="encouragement" >
+  <div class=" col-md-12 encouragement-div" width="100%">
+    <h2 id="encouragement-text">READY?</h2>
+  </div>
+</div>
+
+<br>
+<%= link_to 'Back', category_path(@category) %>
+</center>

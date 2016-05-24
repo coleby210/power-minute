@@ -1,0 +1,38 @@
+<h1 class="category-text">Welcome, <%= current_user.first_name %>!</h1>
+<h4 class="category-text">What workout would you like to do?</h4>
+
+<div class="row">
+<%= link_to user_favorites_path(current_user), class: "category-name" do %>
+  <div class="col-md-6 col-sm-6 category">
+    <div class="category-index-tile category-favorites">
+      <h2>Favorites</h2>
+    </div>
+  </div>
+<% end %>
+
+  <%= link_to category_path(@categories[0]), class: "category-name" do %>
+    <div class="col-md-6 col-sm-6">
+      <div class="category-index-tile category-power">
+        <h2><%= @categories[0].name %></h2>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <%= link_to category_path(@categories[1]), class: "category-name" do %>
+    <div class="col-md-6 col-sm-6">
+      <div class="category-index-tile category-cardio">
+        <h2><%= @categories[1].name %></h2>
+      </div>
+    </div>
+  <% end %>
+
+  <%= link_to category_path(@categories[2]), class: "category-name" do %>
+    <div class="col-md-6 col-sm-6">
+      <div class="category-index-tile category-yoga">
+        <h2><%= @categories[2].name %></h2>
+      </div>
+    </div>
+  <% end %>
+</div>

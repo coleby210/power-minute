@@ -26,3 +26,10 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+*************************************
+* Color Scheme
+  * Gray/slate: #3F4045
+  * Green: #A0B27C
+  * Red: #F32C31
+  * Text/cream: #F0EAD6

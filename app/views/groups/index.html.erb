@@ -1,0 +1,24 @@
+
+<h1><%= "My Groups" %></h1>
+
+<table style="width:90%" class = "sortable">
+  <tr>
+    <th>Group Name</th>
+    <th>Number of Members</th>
+    <th> Privacy Settings </th>
+  </tr>
+<% @groups.each do |group| %>
+  <tr>
+    <td><h4><a href=<%= "/groups/#{group.id}" %>><%= group.name %></h4></td>
+    <td> <%=group.members.length%> </td>
+    <td> <%= if group.private_status
+      "Private" else "Public" end%> </td>
+  </tr>
+<% end %>
+</table>
+
+<br>
+<br>
+
+<a href="/groups/new"><button class="btn btn-success" id="create-group">Create a New Group</button></a>
+<div id="form-holder"></div>

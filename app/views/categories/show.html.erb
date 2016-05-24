@@ -1,0 +1,42 @@
+<h1><%= @category.name %></h1>
+
+<div class="workout-templates">
+  <% @workout_templates.each_with_index do |workout_template, index| %>
+    <% if index == 0 %>
+      <div class="row">
+    <% elsif index % 3 == 0 %>
+      </div>
+      <div class="row">
+    <% end %>
+
+    <div class="col-md-4 workout-template-<%= workout_template.id %> workout-template-individual">
+
+      <%= link_to workout_template_path(workout_template), class: "category-description" do %>
+        <div class="col-md-10 col-xs-10 category-description">
+          <%= workout_template.title %>
+        </div>
+      <% end %>
+
+      <div class="col-md-2 col-xs-2 favorite-button-div" >
+        <% favorite = current_user.favorites.find_by(workout_template_id: workout_template.id) %>
+        <% unless favorite %>
+          <h3 class="favorite-button"><%= render partial: 'favorites/category_add_favorite', locals: {workout_template: workout_template} %></h3>
+        <% else %>
+          <h3 class="favorite-button"><%= render partial: 'favorites/category_remove_favorite', locals: {favorite: favorite} %></h3>
+        <% end %>
+      </div>
+    </div>
+
+    <% if index == (@workout_templates.length - 1) %>
+      </div>
+    <% end %>
+
+
+  <% end %> <!-- End of loop -->
+  <br>
+</div>
+<br>
+
+<%= link_to "Back", categories_path %><br><br><br>
+
+

@@ -1,0 +1,12 @@
+<h2>Edit Comment</h2>
+
+<%= form_for @comment do |f| %>
+  <div class="field inline">
+    <%= f.text_field :comment_text, class: "form-control" %>
+  </div>
+  <div class="actions inline">
+    <%= f.submit "Edit Comment", class: "btn btn-success" %>
+  </div>
+  <%end%>
+  <br>
+  <br>

@@ -1,0 +1,181 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require users.scss
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Oswald:700);
+
+// rgba(160,178,125,0)
+$our-green: #A0B27C;
+// rgba(63,64,69,0)
+$our-gray: #3F4045;
+// rgba(240,234,223,0)
+$our-cream: #F0EADF;
+// rgba(243,44,49,0)
+$our-red: #F32C31;
+// rgba(255,112,3,0)
+$our-orange: #FF7003;
+// rgba(37,42,64,0)
+$our-blue: #252A40;
+
+
+html {
+  height: 100%;
+}
+
+*{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.nav-fix {
+  margin-top: 4em;
+  padding-bottom: 70px;
+}
+
+#sign-up-form, #log-in-form {
+  display: none;
+}
+
+#landing {
+  text-align: center;
+  background: #3F4045;
+  width: 100%;
+}
+
+body {
+  background: white;
+  min-height: 92.5%;
+  position: relative;
+}
+
+.landing-bg {
+  background: $our-gray;
+}
+
+.navbar {
+ background: $our-gray;
+}
+
+#navbar a {
+  color: $our-cream;
+  position: relative;
+}
+
+#navbar a:hover {
+  color: #ff7003; // orange color
+}
+
+#header-text {
+  font-family:'Copperplate';
+  color: #F0EAD6;
+  font-size: 2.2em;
+  position: relative;
+}
+
+.navbar-header a.nav-btn-color {
+  color: $our-cream;
+}
+
+.navbar-header a.nav-btn-color:hover {
+  color: #ff7003; // orange color
+}
+
+#logo {
+  color: #ff7003; // orange color
+  font-size: 2em;
+  margin: auto;
+  padding-left: 10px;
+}
+
+#logo:hover {
+  color: $our-cream;
+}
+
+#logo:active {
+  color: #ff7003; // orange color
+}
+
+#landing-header{
+  font-size: 6em;
+  align: center;
+  color: #FF7003;
+  font-family: 'Oswald';
+}
+
+#landing-description{
+  font-size: 2em;
+  align: center;
+  color: #F0EADF;
+}
+
+.add-workout-template-logo {
+  height: 22px;
+  width: 20px;
+}
+
+footer {
+ padding-top: 12px;
+ background: $our-gray;
+ height: 50px;
+ width: 100%;
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ left: 0;
+ line-height: 25px;
+  color: $our-orange;
+  text-align: center;
+}
+
+#facebook-footer {
+  padding-top: 5px;
+}
+
+
+.footer-div {
+  text-align: center;
+  padding-top: 16px;
+  vertical-align: middle;
+}
+
+.feature-description{
+  color: #FF7003;
+  font-weight: bold;
+}
+
+#footer-help{
+  color: $our-cream;
+  float: right;
+  margin-right: 10px;
+
+}
+
+#social-buttons{
+  float: left;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+#copyright-span{
+  bottom: 20px;
+  margin-right: 20px;
+}
+
+#encouragement{
+  background-color: $our-orange;
+}

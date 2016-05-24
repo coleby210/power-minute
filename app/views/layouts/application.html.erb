@@ -1,14 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PowerMinute</title>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
 </head>
 <body>
+<<<<<<< HEAD
+=======
+  <% if current_user %>
+  <!-- Facebook Script Below -->
 
-<%= yield %>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle nav</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+    <!--         <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a> -->
+>>>>>>> d8f719bc38572fa2d906837a9cba38ae08444b63
+
+    <!-- <img class="add-workout-template-logo" src="/assets/add-workout-template.png" /> -->
+            <a class="navbar-brand nav-btn-color" href="/users/<%= current_user.id %>/workout_templates"><img class="add-workout-template-logo" src="/assets/add-workout-template.png" onmouseover="this.src='/assets/add-workout-template-hover.png'" onmouseout="this.src='/assets/add-workout-template.png'" /></a>
+            <a class="navbar-brand nav-btn-color" href= <%= "/users/#{current_user.id}/favorites" %>><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></a>
+            <a class="navbar-brand nav-btn-color" id="logo" href="/">POWER MINUTE</a>
+
+          </div>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/users/<%=current_user.id%>">Profile</a></li>
+              <li><a href="/groups">Groups</a></li>
+              <li><a href="/top_performers">Top Performers</a></li>
+              <li><%= link_to "Settings", edit_user_registration_path %></li>
+              <li><%= link_to("Log out", destroy_user_session_path, method: :delete) %></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    <% end %>
+<!--   < % if user_signed_in? %>
+    < %= link_to("logout",destroy_user_session_path, method: :delete) %>
+  < % else %>
+    < %= link_to("Sign Up",new_user_registration_path) %>
+    < %= link_to("Sign In",new_user_session_path) %>
+  < % end %> -->
+  <div class="container nav-fix">
+    <%= yield %>
+  </div>
+  <footer "footer-div">
+    <span id="copyright-span"> Copyright &#169; Power-Minute.com </span>
+    <div id="social-buttons">
+      <span>
+        <a href="https://twitter.com/power_minute" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @power_minute</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
+  <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  <a id="footer-help" href="/help"> Help </a>
+  </footer>
 
 </body>
 </html>

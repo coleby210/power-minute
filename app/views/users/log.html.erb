@@ -1,0 +1,26 @@
+<h2> Your Workout Log </h2>
+<table width="80%">
+  <tr>
+    <th> Workout # </th>
+    <th> Date </th>
+    <th> Hour </th>
+    <th> Workout Name </th>
+    <th>Delete Workout? </th>
+  </tr>
+  <% @user_workouts.each_with_index do |workout,index| %>
+    <tr>
+      <td> <%= @user_workouts.length - index  %> </td>
+      <td> <%= workout.created_at.to_date %> </td>
+      <!-- probably wrong logic below-->
+      <td> <%= workout.created_at.hour + current_user.timezone.to_i %> </td>
+      <td> <%= workout.find_workout_template_name %> </td>
+      <td>
+           <%= link_to "/workouts/#{workout.id}", method: :delete do %>
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <% end %>
+      </td>
+    </tr>
+  <%end%>
+</table>
+
+

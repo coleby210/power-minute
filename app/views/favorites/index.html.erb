@@ -1,0 +1,29 @@
+<h2>My Favorites</h2>
+
+<div class="favorites">
+  <% @favorites.each_with_index do |favorite, index| %>
+    <% if index == 0 %>
+      <div class="row">
+    <% elsif index % 3 == 0 %>
+      </div>
+      <div class="row">
+    <% end %>
+
+    <div class="col-md-4 favorite-individual">
+      <%= link_to workout_template_path(favorite.workout_template), class: "category-description" do %>
+        <div class="col-md-10 col-xs-10 category-description">
+          <%= favorite.workout_template.title %>
+        </div>
+      <% end %>
+
+      <div class="col-md-2 col-xs-2 remove-favorite-div">
+        <%= link_to 'Remove', user_favorite_path(current_user, favorite), method: :delete %>
+      </div>
+    </div>
+
+    <% if index == (@favorites.length - 1) %>
+      </div>
+    <% end %>
+
+  <% end %>
+</div>

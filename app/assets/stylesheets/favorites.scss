@@ -1,0 +1,47 @@
+// Place all the styles related to the favorites controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+a.fav-add {
+  color: black;
+}
+
+a.fav-add:hover {
+  color: #ff7003; // orange color
+}
+
+a.fav-remove {
+  color: #ff7003; // orange color
+}
+
+a.fav-remove:hover {
+  color: black;
+}
+
+@media screen and (max-width: 991px) {
+  .favorite-individual {
+    height: 100px;
+    line-height: 100px;
+  }
+
+  .remove-favorite-div {
+    height: 100px;
+
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .favorite-individual {
+    height: 150px;
+    line-height: 150px;
+  }
+
+  .remove-favorite-div {
+    height: 150px;
+  }
+}
+
+.favorite-individual {
+  margin-bottom: 7px;
+}

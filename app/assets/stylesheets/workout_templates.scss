@@ -1,0 +1,59 @@
+// Place all the styles related to the workout_templates controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#log-workout {
+  display: none;
+}
+
+#ct-circle-container svg{
+  height: 28em;
+  -webkit-transform:rotate(-90deg);
+  transform:rotate(-90deg);
+  width: 28em;
+}
+
+#ct-circle-container svg circle {
+  fill: none;
+  stroke: #3F4045;
+  stroke-dashoffset: 0;
+  stroke-width: 3%
+}
+
+svg text {
+  font-size: 800%;
+  fill: #3F4045;
+}
+
+form .radio {
+  margin-left: 1.5em;
+}
+
+@media screen and (max-width: 767px) {
+  #workout_image {
+    width: 320px;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #workout_image {
+    width: 720px;
+    display: none;
+  }
+}
+
+.encouragement-div {
+  display: table;
+  height: 130px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #ff7003; // orange color
+}
+
+#encouragement-text {
+  display: table-cell;
+  vertical-align: middle;
+  color: #F0EADF; // cream color
+}

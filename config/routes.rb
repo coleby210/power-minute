@@ -1,5 +1,53 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   root "application#index"
+=======
+
+  devise_for :users, controllers: {
+        registrations: 'users/registrations',
+        omniauth_callbacks: "users/omniauth_callbacks"
+      }
+
+  # get 'favorite/index'
+  get "users/:id", to: "users#show", as: "profile"
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+  get "/top_performers", to: "users#top_users"
+  get "/users/:id/7/pie", to: "users#get_7_pie"
+  get "/users/:id/31/pie", to: "users#get_31_pie"
+  get "/users/:id/all_time/pie", to: "users#get_all_time_pie"
+  get "/users/:id/7/bar", to: "users#get_7_bar"
+  get "/users/:id/30/bar", to: "users#get_30_bar"
+  get "/users/:id/all_time/bar", to: "users#get_all_time_bar"
+
+  get "/users/:id/7/side", to: "users#get_7_side"
+  get "/users/:id/30/side", to: "users#get_30_side"
+  get "/users/:id/all_time/side", to: "users#get_all_time_side"
+  get "/schedule", to: "users#schedule"
+  get "/user_log", to: "users#log"
+  get '/users/:id/workout_templates', to: 'workout_templates#index', as:'user_workout_templates'
+  get '/help', to: 'application#help'
+
+  put "/users/:id/schedule/day/:day_id", to: "days#update"
+  patch "/groupsadmin", to: "groups#update_admin"
+
+  post 'twilio/voice' => 'twilio#voice'
+  post 'notifications/notify' => 'notifications#notify'
+
+  resources :categories
+  resources :workout_templates
+  resources :workouts
+  resources :users do
+    resources :favorites
+  end
+  resources :groups
+  resources :groups_user
+  resources :group_comments
+
+  root "categories#index"
+
+>>>>>>> d8f719bc38572fa2d906837a9cba38ae08444b63
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
