@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-  root "application#index"
-=======
 
   devise_for :users, controllers: {
         registrations: 'users/registrations',
@@ -46,8 +43,6 @@ Rails.application.routes.draw do
   resources :group_comments
 
   root "categories#index"
-
->>>>>>> d8f719bc38572fa2d906837a9cba38ae08444b63
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
