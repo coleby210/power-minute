@@ -12,8 +12,6 @@
   <%= favicon_link_tag 'favicon.ico' %>
 </head>
 <body>
-<<<<<<< HEAD
-=======
   <% if current_user %>
   <!-- Facebook Script Below -->
 
@@ -27,10 +25,9 @@
               <span class="icon-bar"></span>
             </button>
     <!--         <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a> -->
->>>>>>> d8f719bc38572fa2d906837a9cba38ae08444b63
 
     <!-- <img class="add-workout-template-logo" src="/assets/add-workout-template.png" /> -->
-            <a class="navbar-brand nav-btn-color" href="/users/<%= current_user.id %>/workout_templates"><img class="add-workout-template-logo" src="/assets/add-workout-template.png" onmouseover="this.src='/assets/add-workout-template-hover.png'" onmouseout="this.src='/assets/add-workout-template.png'" /></a>
+            <a class="navbar-brand nav-btn-color" href="/users/<%= current_user.id %>/workout_templates"><img class="add-workout-template-logo" src="/assets/images/add-workout-template.png" onmouseover="this.src='/assets/add-workout-template-hover.png'" onmouseout="this.src='/assets/add-workout-template.png'" /></a>
             <a class="navbar-brand nav-btn-color" href= <%= "/users/#{current_user.id}/favorites" %>><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></a>
             <a class="navbar-brand nav-btn-color" id="logo" href="/">POWER MINUTE</a>
 
