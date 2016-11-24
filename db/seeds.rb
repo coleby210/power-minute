@@ -74,21 +74,12 @@ workout_template_seed_data =
   ["Lunge + Bow", "https://zippy.gfycat.com/SoulfulPastGibbon.webm", 1]
 ]
 
-	User.create(first_name: 'Beni',last_name: "Shpringer", timezone: "-8", email: 'bshpringer@gmail.com', password: '12345678', phone_number: "+14152333355")
-
-	User.create(first_name: 'Ryan', last_name: "Ho", timezone: "-8", email: 'ryan@power-minute.com', password: '12345678', phone_number: "+14156194486")
-
-	User.create(first_name: 'Sean', last_name: "From Iran", timezone: "-8", email: 'sean@power-minute.com', password: '12345678', phone_number: "+15106129959")
-
-	User.create(first_name: 'Josh', last_name: "Kim", timezone: "-8", email: 'josh@power-minute.com', password: '12345678', phone_number: "+12136634691")
-
-	User.create(first_name: 'Cole', last_name: "Kent", timezone: "-8", email: 'cole@power-minute.com', password: '12345678', phone_number: "+19254374085")
+	User.create(first_name: 'user',last_name: "name", timezone: "-8", email: 'user@gmail.com', password: 'password', phone_number: "+11111111111")
 
 chorus_frogs = [["Bernice","Chua"],["Fatma","Ocal"],["Hanah","Yendler"],["Jonathan","Huang"],["Karla","King"],["Lindsey","Stevenson"],["Luis","De Castro"],["Michael","Du"],["Michael","Whelpley"],["Natasha","Thapliyal"],["Ovi","Calvo"],["Regina","Wong"],["Shawn","Spears"],["Walter","Kerr"]]
 
 chorus_frogs.each do |person|
   User.create(first_name: person[0], last_name: person[1], timezone: "-8", email: "#{person[0]}_#{person[1]}@power-minute.com", password: '12345678')
-
 end
 
 
@@ -109,11 +100,11 @@ end
 	end
 
 	400.times do
-		Workout.create(user_id: rand(1..18), workout_template_id: rand(1..64), created_at: DateTime.new(2016,1,rand(1..31),4,5,6,'+7'))
+		Workout.create(user_id: rand(1..10), workout_template_id: rand(1..64), created_at: DateTime.new(2016,1,rand(1..31),4,5,6,'+7'))
 	end
 
 	400.times do
-		Workout.create(user_id: rand(1..18), workout_template_id: rand(1..64), reps: rand(0..25), created_at: DateTime.new(2016,2,rand(1..26),4,5,6,'+7'))
+		Workout.create(user_id: rand(1..10), workout_template_id: rand(1..64), reps: rand(0..25), created_at: DateTime.new(2016,2,rand(1..26),4,5,6,'+7'))
 	end
 
   Group.create(name: "Chorus Frogs", admin_id: 2)
@@ -135,7 +126,7 @@ end
   end
 
 	15.times do
-		GroupComment.create(member_id: rand(1..18), group_id: 1, comment_text: Faker::Hacker.say_something_smart)
+		GroupComment.create(member_id: rand(1..10), group_id: 1, comment_text: Faker::Hacker.say_something_smart)
 	end
 
 
