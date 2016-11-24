@@ -19,7 +19,7 @@ Power Minute is a social workout web app developed to connect friends by doing a
 
 ## Usage
 
-[![ScreenShot](http://i.imgur.com/V0EhbpC.png)](https://youtu.be/PxxuOWLN7Dc)
+[![ScreenShot](image)](link)
 
 ## Testing
 
