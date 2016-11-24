@@ -104,7 +104,8 @@
   <button id="log-in" class="btn btn-success">Log In</button>
   <br>
   <br>
-  <%= link_to image_tag("/fb_login.png"), user_omniauth_authorize_path(:facebook), class: "fb-login" %>
+  <!-- correct_link user_omniauth_authorize_path(:facebook) -->
+  <%= link_to image_tag("/fb_login.png"), "#", class: "fb-login" %>
   <br>
   <br>
   <a href = "/help"> <button class="btn btn-info"> More Info </button></a>
