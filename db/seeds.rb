@@ -74,7 +74,7 @@ workout_template_seed_data =
   ["Lunge + Bow", "https://zippy.gfycat.com/SoulfulPastGibbon.webm", 1]
 ]
 
-	User.create(first_name: 'user',last_name: "name", timezone: "-8", email: 'user@gmail.com', password: 'password', phone_number: "+11111111111")
+	User.create(first_name: 'User',last_name: "Name", timezone: "-8", email: 'user@gmail.com', password: 'password', phone_number: "+11111111111")
 
 chorus_frogs = [["Bernice","Chua"],["Fatma","Ocal"],["Hanah","Yendler"],["Jonathan","Huang"],["Karla","King"],["Lindsey","Stevenson"],["Luis","De Castro"],["Michael","Du"],["Michael","Whelpley"],["Natasha","Thapliyal"],["Ovi","Calvo"],["Regina","Wong"],["Shawn","Spears"],["Walter","Kerr"]]
 
