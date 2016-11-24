@@ -12,13 +12,11 @@ class User < ActiveRecord::Base
   has_many :group_comments, foreign_key: :member_id
   has_one :schedule
 
-  # Get the number of workouts done within a certain time period
   def calculate_number_of_workouts(time_period)
     today = Date.today
     @number_of_workouts = self.workouts.where( "created_at > ?" ,today - time_period).length
   end
 
-  # Compare the amount of workouts done within the current time period to that of the previous time period
   def calculate_change_in_workout_frequency(time_period,compared_time_period)
     today = Date.today
 
@@ -32,7 +30,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Return an ascending list of the most common workouts
   def sort_most_common_workouts(time_period)
     now = Date.today
     @total_workouts = self.workouts.where( "created_at > ?" ,now - time_period)
@@ -50,7 +47,6 @@ class User < ActiveRecord::Base
     Hash[@completed_workouts.sort_by{|k,v| v}.reverse]
   end
 
-  # Return an ascending list of the most common workout categories
   def sort_most_common_categories(time_period)
     @total_workouts = self.workouts
     @completed_categories = {}
@@ -62,23 +58,14 @@ class User < ActiveRecord::Base
     Hash[@completed_categories.sort_by{|k,v| v}.reverse]
   end
 
-  # This method returns the number of workouts done within a fixed time frame,
-  # and this number is calculated for each instance in some master time frame.
-  # The variable "jump_time" specifies the fixed time frame.
-  # The variable "first_workout" specifies the start date for the master time frame,
-  # and the current time is the end date.
   def number_of_workouts_per_day(first_workout, jump_time)
     daily_workouts = {}
-    # Get all workouts done within the master time frame
     @total_workouts = self.workouts.where("created_at > ?", first_workout).order(created_at: :ASC)
     last_workout = first_workout + jump_time
 
-    # Iterate over all workouts
     @total_workouts.each_with_index do |workout,index|
-      # Increment the number of workouts done within a fixed time frame.
       if (daily_workouts.has_key?("#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}")) && (workout.created_at.to_date < last_workout)
         daily_workouts["#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}"] += 1
-      # Else, create a new fixed time frame with a default value of 1.
       else
         first_workout += jump_time unless index == 0
         last_workout += jump_time unless index == 0
@@ -86,7 +73,6 @@ class User < ActiveRecord::Base
       end
     end
 
-    # Set unpopulated fixed time frames to 0.
     if last_workout < Date.today
       while last_workout <= Date.today
         unless daily_workouts["#{first_workout.strftime('%m-%d')}" + "-" + "#{(last_workout - 1).strftime('%m-%d')}"]

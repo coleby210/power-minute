@@ -18,3 +18,5 @@
 
 .ENV
 .*
+
+/config/secrets.yml
