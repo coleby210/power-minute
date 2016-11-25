@@ -39,7 +39,9 @@ pw: password
 
 ## Usage
 
-[![ScreenShot](image)](link)
+```text
+Coming Soon!
+```
 
 ## Testing
 
