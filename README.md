@@ -4,6 +4,7 @@ Power Minute is a social workout web app developed to connect friends by doing a
 
 ## Table of Contents
 
+- [Demo](#demo)
 - [Features](#features)
 - [Usage](#usage)
 - [Testing](#testing)
@@ -13,9 +14,28 @@ Power Minute is a social workout web app developed to connect friends by doing a
 - [Acknowledgments](#acknowledgments)
 - [License](#license)
 
+## Demo
+
+The demo is set up and currently working at: [http://power-minute.colebykent.com](http://power-minute.colebykent.com)
+
+The default login for testing is:  
+id: user@gmail.com  
+pw: password
+
 ## Features
 
-- Coming Soon
+- Login With Facebook (disabled for demo)
+- Many Predefined 1-minute workouts to choose from
+- Favoritable workouts
+- Custom Workouts (Public or Private)
+- User Statistics with charts
+- User Groups to connect with friends
+  - User ranking within Groups
+  - Commenting within groups
+- Site-wide ranking
+- User manageable settings
+  - Customized notification schedule which texts via twilio (disabled for demo)
+  - Change username, password, etc
 
 ## Usage
 
@@ -29,15 +49,16 @@ Coming soon!
 
 ## Built With
 
+
 - [Ruby on Rails](http://rubyonrails.org/)
 - [jQuery](https://github.com/rails/jquery-rails)
 - [PostgreSQL](https://www.postgresql.org/)
 - [Bootstrap](http://getbootstrap.com/)
 - [Devise](https://github.com/plataformatec/devise)
 - [Font Awesome](http://fontawesome.io/)
-- FB OAuth
-- Twilio API
-- ChartJS
+- [FB OAuth](https://github.com/mkdynamic/omniauth-facebook)
+- [Twilio API](https://www.twilio.com/docs/api)
+- [Chart.js](https://github.com/airblade/chartjs-ror)
 
 
 ## Contributing
@@ -52,7 +73,11 @@ Coming soon!
 
 ## Acknowledgments
 
-- Coming Soon
+- Beni Shpringer: (The man with the plan!)
+- Ryan Ho: Team Member
+- Sean Massih: Team Member
+- Joshua Kim: Team Member
+- DBC For bringing us all together
 
 ## License
 
